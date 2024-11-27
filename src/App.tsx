@@ -1,12 +1,7 @@
-import './App.css'
+import "./App.css";
 
 function App() {
-
-  return (
-    <div>
-      I am alive
-    </div>
-  )
+  return <div id="app-container">I am alive</div>;
 }
 
 export default App;

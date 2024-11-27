@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import "./counter.less";
+import { useTimeContext } from "../allCountersActions/useTimeContext";
 
 const Counter = () => {
   const [count, setCount] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
+  const { isTimePaused } = useTimeContext();
+
   useEffect(() => {
-    if (count > 0 && !isPaused) {
+    if (count > 0 && !isPaused && !isTimePaused) {
       const timer = setTimeout(() => setCount(count - 1), 1000);
       return () => clearTimeout(timer);
     }
-  }, [count, isPaused]);
+  }, [count, isPaused, isTimePaused]);
 
   const onReset = () => {
     setCount(0);

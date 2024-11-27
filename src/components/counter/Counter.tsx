@@ -20,6 +20,10 @@ const Counter = () => {
     setIsPaused(false);
   };
 
+  const onAddTime = () => {
+    setCount(count + 30);
+  };
+
   return (
     <div className="counter">
       <div className="time">{count}</div>
@@ -32,6 +36,9 @@ const Counter = () => {
       </button>
       <button disabled={count === 0} onClick={() => onReset()}>
         reset
+      </button>
+      <button disabled={count === 0} onClick={() => onAddTime()}>
+        +30
       </button>
     </div>
   );

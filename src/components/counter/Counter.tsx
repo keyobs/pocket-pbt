@@ -1,29 +1,35 @@
 import { useEffect, useState } from "react";
 import "./counter.less";
 import { useTimeContext } from "../allCountersActions/useTimeContext";
+import { Button } from "../buttons/Button";
 
 const Counter = () => {
   const [wasCountStarted, setWasCountStarted] = useState(false);
   const [count, setCount] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isCounterPaused, setIsCounterPaused] = useState(false);
 
   const { isTimePaused } = useTimeContext();
 
   useEffect(() => {
-    if (count > 0 && !isPaused && !isTimePaused) {
+    if (count > 0 && !isCounterPaused && !isTimePaused) {
       const timer = setTimeout(() => setCount(count - 1), 1000);
       return () => clearTimeout(timer);
     }
-  }, [count, isPaused, isTimePaused]);
+  }, [count, isCounterPaused, isTimePaused]);
 
   useEffect(() => {
-    if (count > 0 && !wasCountStarted) setWasCountStarted(true);
-    else if (count === 0 && wasCountStarted) setWasCountStarted(false);
-  }, [count, wasCountStarted]);
+    if (wasCountStarted) setIsCounterPaused(isTimePaused ?? false);
+
+    if (count > 0) {
+      if (!wasCountStarted) setWasCountStarted(true);
+    } else if (count === 0 && wasCountStarted) {
+      setWasCountStarted(false);
+    }
+  }, [count, wasCountStarted, isTimePaused]);
 
   const onReset = () => {
     setCount(0);
-    setIsPaused(false);
+    setIsCounterPaused(false);
   };
 
   const onAddTime = () => {
@@ -31,30 +37,43 @@ const Counter = () => {
   };
 
   const startButtonLabel = wasCountStarted
-    ? isPaused
+    ? isTimePaused
+      ? "..."
+      : isCounterPaused
       ? "resume"
       : "pause"
     : "start";
 
   const onStartButtonClick = () =>
-    wasCountStarted ? setIsPaused(!isPaused) : setCount(30);
+    wasCountStarted ? setIsCounterPaused(!isCounterPaused) : setCount(30);
 
   return (
     <div className="counter">
       <div className="time">{count}</div>
-
-      <button disabled={isTimePaused!} onClick={() => onStartButtonClick()}>
-        {startButtonLabel}
-      </button>
-      <button disabled={count === 0 || !isPaused} onClick={() => onReset()}>
-        reset
-      </button>
-      <button
-        disabled={count === 0 && !isTimePaused}
-        onClick={() => onAddTime()}
-      >
-        +30
-      </button>
+      <div className="counter-actions">
+        <Button
+          disabled={count === 0 || !isCounterPaused}
+          onClick={() => onReset()}
+        >
+          reset
+        </Button>
+        <Button
+          disabled={count === 0 && !isTimePaused}
+          onClick={() => onAddTime()}
+        >
+          +30
+        </Button>
+        <Button
+          style="primary"
+          size="large"
+          active={count !== 0 && !isTimePaused}
+          paused={isCounterPaused && !isTimePaused}
+          disabled={isTimePaused ?? false}
+          onClick={() => onStartButtonClick()}
+        >
+          {startButtonLabel}
+        </Button>
+      </div>
     </div>
   );
 };

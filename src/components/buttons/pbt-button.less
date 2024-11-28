@@ -1,0 +1,58 @@
+.pbt-button {
+  padding: 10px 20px;
+  margin: 7px 5px;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+
+  &.medium {
+    width: 100px;
+  }
+
+  &.large {
+    width: 110px;
+  }
+
+  &.fit {
+    width: unset;
+  }
+
+  &.default {
+    background-color: #0e0808;
+    border: 2px solid #2a86fb;
+  }
+
+  &.primary {
+    background-color: #0c2046;
+    border: 2px solid #2a86fb;
+
+    &.active,
+    &:active {
+      background-color: #0063e2;
+    }
+
+    &.paused {
+      animation: flashing 1s infinite;
+    }
+  }
+
+  &.disabled {
+    background-color: #505050;
+    border: 2px solid #f0f0f0;
+    color: #f0f0f0;
+  }
+
+  @keyframes flashing {
+    0% {
+      background-color: #0c2046;
+    }
+    50% {
+      background-color: #0063e2;
+    }
+    100% {
+      background-color: #0c2046;
+    }
+  }
+}

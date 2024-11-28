@@ -1,3 +1,4 @@
+import { Button } from "../buttons/Button";
 import { useTimeContext } from "./useTimeContext";
 import { useTimeDispatchContext } from "./useTimeDispatchContext";
 
@@ -7,9 +8,9 @@ const AllCountersActions = () => {
 
   return (
     <div>
-      <button onClick={onPauseTime}>
+      <Button onClick={onPauseTime} size="fit">
         {isTimePaused ? "resume all" : "pause all"}
-      </button>
+      </Button>
     </div>
   );
 };

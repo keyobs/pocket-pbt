@@ -4,7 +4,6 @@ import "./timers.less";
 const Timers = () => {
   return (
     <div className="timers">
-      <div className="teamTimers"></div>
       <div className="teamTimers">
         {Array.from({ length: 2 }).map((_, index) => (
           <Counter key={index} />

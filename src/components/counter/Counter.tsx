@@ -3,7 +3,11 @@ import "./counter.less";
 import { useTimeContext } from "../allCountersActions/useTimeContext";
 import { Button } from "../buttons/Button";
 
-const Counter = () => {
+interface CounterInterface {
+  type: "jammer" | "blocker";
+}
+
+const Counter = ({ type }: CounterInterface) => {
   const [wasCountStarted, setWasCountStarted] = useState(false);
   const [count, setCount] = useState(0);
   const [isCounterPaused, setIsCounterPaused] = useState(false);
@@ -49,7 +53,10 @@ const Counter = () => {
 
   return (
     <div className="counter">
-      <div className="time">{count}</div>
+      <div className="timer-container">
+        <span>{type}</span>
+        <div className="timer">{count}</div>
+      </div>
       <div className="counter-actions">
         <Button
           disabled={count === 0 || !isCounterPaused}

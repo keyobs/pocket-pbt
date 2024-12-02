@@ -6,15 +6,15 @@ const Timers = () => {
     <div className="timers">
       <div className="teamTimers">
         {Array.from({ length: 2 }).map((_, index) => (
-          <Counter key={index} />
+          <Counter key={index} type="blocker" />
         ))}
-        <Counter />
+        <Counter type="jammer" />
       </div>
       <div className="teamTimers">
+        <Counter type="jammer" />
         {Array.from({ length: 2 }).map((_, index) => (
-          <Counter key={index} />
+          <Counter key={index} type="blocker" />
         ))}
-        <Counter />
       </div>
     </div>
   );

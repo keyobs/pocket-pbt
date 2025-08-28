@@ -1,55 +1,19 @@
-import { useEffect, useState } from "react";
 import "./counter.less";
-import { useTimeContext } from "../allCountersActions/useTimeContext";
 import { Button } from "../buttons/Button";
+import { useTimeContext } from "../allCountersActions/useTimeContext";
+import useCounter from "./useCounter";
 
-interface CounterInterface {
+interface ICounter {
   type: "jammer" | "blocker";
 }
 
-const Counter = ({ type }: CounterInterface) => {
-  const [wasCountStarted, setWasCountStarted] = useState(false);
-  const [count, setCount] = useState(0);
-  const [isCounterPaused, setIsCounterPaused] = useState(false);
-
+const Counter = ({ type }: ICounter) => {
+  const { count, isCounterPaused, onReset, onAddTime, onStartButtonClick } =
+    useCounter();
   const { isTimePaused } = useTimeContext();
 
-  useEffect(() => {
-    if (count > 0 && !isCounterPaused && !isTimePaused) {
-      const timer = setTimeout(() => setCount(count - 1), 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [count, isCounterPaused, isTimePaused]);
-
-  useEffect(() => {
-    if (wasCountStarted) setIsCounterPaused(isTimePaused ?? false);
-
-    if (count > 0) {
-      if (!wasCountStarted) setWasCountStarted(true);
-    } else if (count === 0 && wasCountStarted) {
-      setWasCountStarted(false);
-    }
-  }, [count, wasCountStarted, isTimePaused]);
-
-  const onReset = () => {
-    setCount(0);
-    setIsCounterPaused(false);
-  };
-
-  const onAddTime = () => {
-    setCount(count + 30);
-  };
-
-  const startButtonLabel = wasCountStarted
-    ? isTimePaused
-      ? "..."
-      : isCounterPaused
-      ? "resume"
-      : "pause"
-    : "start";
-
-  const onStartButtonClick = () =>
-    wasCountStarted ? setIsCounterPaused(!isCounterPaused) : setCount(30);
+  const startButtonLabel =
+    count === 0 ? "start" : isCounterPaused ? "resume" : "pause";
 
   return (
     <div className="counter">

@@ -1,39 +1,23 @@
 import "./counter.less";
 import { Button } from "../buttons/Button";
 import { useTimeContext } from "../allCountersActions/useTimeContext";
-import useCounter from "./useCounter";
-import { TJammerCounter } from "../jammersCounter/useJammersCounter";
-import { useJammersCounterContext } from "../jammersCounter/jammersContext";
 import { PENALTY_TIME } from "../../constants/penalties";
+import { JammersCounterData } from "./JammersCounterData";
+import { BlockerCounterData } from "./BlockerCounterData";
 
 export interface ICounter {
   type: "jammer" | "blocker";
   jammerId?: "jammer1" | "jammer2";
 }
 
-const JammersCounter = (jammerId: TJammerCounter) => {
-  const jammers = useJammersCounterContext();
-  return {
-    count: jammers.counts[jammerId],
-    isCounterPaused: jammers.areCountersPaused[jammerId],
-    onStartTime: () => jammers.onStartTime(jammerId),
-    onPauseTime: () => jammers.onPauseTime(jammerId),
-    onReset: () => jammers.onReset(jammerId),
-    onAddTime: () => jammers.onAddTime(jammerId),
-  };
-};
-
-const BlockerCounter = () => {
-  const data = useCounter();
-  return data;
-};
-
 const Counter = (props: ICounter) => {
   const { type, jammerId } = props;
   const { isTimePaused } = useTimeContext();
 
   const data =
-    type === "jammer" && jammerId ? JammersCounter(jammerId) : BlockerCounter();
+    type === "jammer" && jammerId
+      ? JammersCounterData(jammerId)
+      : BlockerCounterData();
 
   const onClickStartPauseButton = () => {
     return data.count > 0

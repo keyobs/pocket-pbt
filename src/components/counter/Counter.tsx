@@ -4,6 +4,8 @@ import { useTimeContext } from "../allCountersActions/useTimeContext";
 import useCounter from "./useCounter";
 import { TJammerCounter } from "../jammersCounter/useJammersCounter";
 import { useJammersCounterContext } from "../jammersCounter/jammersContext";
+import { PENALTY_TIME } from "../../constants/penalties";
+
 export interface ICounter {
   type: "jammer" | "blocker";
   jammerId?: "jammer1" | "jammer2";
@@ -61,7 +63,7 @@ const Counter = (props: ICounter) => {
           disabled={data.count === 0 && !isTimePaused}
           onClick={() => data.onAddTime()}
         >
-          +30
+          {`+${PENALTY_TIME}`}
         </Button>
         <Button
           style="primary"

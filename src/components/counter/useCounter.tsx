@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTimeContext } from "../allCountersActions/useTimeContext";
+import { PENALTY_TIME } from "../../constants/penalties";
 
 export type TUseCounter = {
   count: number;
@@ -40,12 +41,12 @@ const useCounter = () => {
   };
 
   const onStartTime = () =>
-    wasCountStarted() ? setIsCounterPaused(false) : setCount(30);
+    wasCountStarted() ? setIsCounterPaused(false) : setCount(PENALTY_TIME);
 
   const onPauseTime = () => setIsCounterPaused(true);
 
   const onAddTime = () => {
-    setCount(count + 30);
+    setCount(count + PENALTY_TIME);
   };
 
   return {

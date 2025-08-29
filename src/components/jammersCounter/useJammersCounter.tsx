@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTimeContext } from "../allCountersActions/useTimeContext";
+import { PENALTY_TIME } from "../../constants/penalties";
 
 export type TJammerCounter = "jammer1" | "jammer2";
 
@@ -78,7 +79,7 @@ const useJammersCounter = () => {
         }))
       : setJammersCounts((prev) => ({
           ...prev,
-          [jammerId]: 30,
+          [jammerId]: PENALTY_TIME,
         }));
   };
 
@@ -87,16 +88,16 @@ const useJammersCounter = () => {
     otherJammerCount: number,
     penalizedJammerId: TJammerCounter
   ) => {
-    if (otherJammerCount > 30) {
+    if (otherJammerCount > PENALTY_TIME) {
       return setJammersCounts((prev) => ({
         ...prev,
         [penalizedJammerId]: 0,
-        [otherJammerId]: 30,
+        [otherJammerId]: PENALTY_TIME,
       }));
     } else {
       setJammersCounts((prev) => ({
         ...prev,
-        [penalizedJammerId]: 30 - otherJammerCount,
+        [penalizedJammerId]: PENALTY_TIME - otherJammerCount,
         [otherJammerId]: 0,
       }));
     }
@@ -123,7 +124,7 @@ const useJammersCounter = () => {
   const onAddTime = (jammerId: TJammerCounter) => {
     setJammersCounts((prev) => ({
       ...prev,
-      [jammerId]: prev[jammerId] + 30,
+      [jammerId]: prev[jammerId] + PENALTY_TIME,
     }));
   };
 

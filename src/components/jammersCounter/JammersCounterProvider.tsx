@@ -1,11 +1,17 @@
-import { createContext, useContext } from "react";
+import { createContext, ReactNode, useContext } from "react";
 import useJammersCounter from "./useJammersCounter";
 
 type JammerContextType = ReturnType<typeof useJammersCounter>;
 
 const JammersCounterContext = createContext<JammerContextType | null>(null);
 
-export const JammersCounterProvider = ({ children }) => {
+interface IJammersCounterProvider {
+  children: ReactNode;
+}
+
+export const JammersCounterProvider = ({
+  children,
+}: IJammersCounterProvider) => {
   const value = useJammersCounter();
   return (
     <JammersCounterContext.Provider value={value}>

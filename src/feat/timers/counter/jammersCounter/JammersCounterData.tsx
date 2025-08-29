@@ -1,5 +1,5 @@
-import { useJammersCounterContext } from "../jammersCounter/jammersContext";
-import { TJammerCounter } from "../jammersCounter/useJammersCounter";
+import { useJammersCounterContext } from "./jammersContext";
+import { TJammerCounter } from "./useJammersCounter";
 
 export const JammersCounterData = (jammerId: TJammerCounter) => {
   const jammers = useJammersCounterContext();

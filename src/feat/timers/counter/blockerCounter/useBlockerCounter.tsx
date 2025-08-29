@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useTimeContext } from "../allCountersActions/useTimeContext";
-import { PENALTY_TIME } from "../../constants/penalties";
+import { useTimeContext } from "../../../../components/allCountersActions/useTimeContext";
+import { PENALTY_TIME } from "../../../../constants/penalties";
 
 export type TUseCounter = {
   count: number;
@@ -11,7 +11,7 @@ export type TUseCounter = {
   onPauseTime: () => void;
 };
 
-const useCounter = () => {
+const useBlockerCounter = () => {
   const { isTimePaused } = useTimeContext();
 
   const wasCountStarted = () => count > 0;
@@ -60,4 +60,4 @@ const useCounter = () => {
   };
 };
 
-export default useCounter;
+export default useBlockerCounter;

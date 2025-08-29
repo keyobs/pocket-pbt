@@ -1,9 +1,9 @@
 import "./counter.less";
-import { Button } from "../buttons/Button";
-import { useTimeContext } from "../allCountersActions/useTimeContext";
-import { PENALTY_TIME } from "../../constants/penalties";
-import { JammersCounterData } from "./JammersCounterData";
-import { BlockerCounterData } from "./BlockerCounterData";
+import { Button } from "../../../components/buttons/Button";
+import { useTimeContext } from "../../../components/allCountersActions/useTimeContext";
+import { PENALTY_TIME } from "../../../constants/penalties";
+import { JammersCounterData } from "./jammersCounter/JammersCounterData";
+import { BlockerCounterData } from "./blockerCounter/BlockerCounterData";
 
 export interface ICounter {
   type: "jammer" | "blocker";

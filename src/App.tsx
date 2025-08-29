@@ -1,7 +1,7 @@
 import "./App.css";
 import AllTimersActionsBar from "./components/allCountersActions/AllCountersActions";
 import TimeProvider from "./components/allCountersActions/AllCountersActionsContext";
-import Timers from "./timers/Timers";
+import Timers from "./feat/timers/Timers";
 
 function App() {
   return (

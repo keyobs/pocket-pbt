@@ -3,22 +3,22 @@ import useJammersCounter from "./useJammersCounter";
 
 type JammerContextType = ReturnType<typeof useJammersCounter>;
 
-const JammerCountersContext = createContext<JammerContextType | null>(null);
+const JammersCounterContext = createContext<JammerContextType | null>(null);
 
-export const JammerCountersProvider = ({ children }) => {
+export const JammersCounterProvider = ({ children }) => {
   const value = useJammersCounter();
   return (
-    <JammerCountersContext.Provider value={value}>
+    <JammersCounterContext.Provider value={value}>
       {children}
-    </JammerCountersContext.Provider>
+    </JammersCounterContext.Provider>
   );
 };
 
-export function useJammerCountersContext() {
-  const context = useContext(JammerCountersContext);
+export function useJammersCounterContext() {
+  const context = useContext(JammersCounterContext);
   if (!context) {
     throw new Error(
-      "useJammerCountersContext must be used inside JammerCountersProvider"
+      "useJammersCounterContext must be used inside JammerCountersProvider"
     );
   }
   return context;

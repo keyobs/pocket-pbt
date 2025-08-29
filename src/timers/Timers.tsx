@@ -1,10 +1,10 @@
 import Counter from "../components/counter/Counter";
-import { JammerCountersProvider } from "../components/jammersCounter/JammersCounterProvider";
+import { JammersCounterProvider } from "../components/jammersCounter/JammersCounterProvider";
 import "./timers.less";
 
 const Timers = () => {
   return (
-    <JammerCountersProvider>
+    <JammersCounterProvider>
       <div className="timers">
         <div className="teamTimers">
           {Array.from({ length: 2 }).map((_, index) => (
@@ -20,7 +20,7 @@ const Timers = () => {
           ))}
         </div>
       </div>
-    </JammerCountersProvider>
+    </JammersCounterProvider>
   );
 };
 

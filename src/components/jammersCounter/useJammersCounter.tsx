@@ -3,7 +3,7 @@ import { useTimeContext } from "../allCountersActions/useTimeContext";
 
 export type TJammerCounter = "jammer1" | "jammer2";
 
-const useJammerCounter = () => {
+const useJammersCounter = () => {
   const { isTimePaused } = useTimeContext();
   const wasJammerCountStarted = (jammerId: TJammerCounter) =>
     jammersCounts[jammerId] > 0;
@@ -130,4 +130,4 @@ const useJammerCounter = () => {
   };
 };
 
-export default useJammerCounter;
+export default useJammersCounter;

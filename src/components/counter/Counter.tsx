@@ -3,7 +3,7 @@ import { Button } from "../buttons/Button";
 import { useTimeContext } from "../allCountersActions/useTimeContext";
 import useCounter from "./useCounter";
 import { TJammerCounter } from "../jammersCounter/useJammersCounter";
-import { useJammerCountersContext } from "../jammersCounter/JammersCounterProvider";
+import { useJammersCounterContext } from "../jammersCounter/JammersCounterProvider";
 
 export interface ICounter {
   type: "jammer" | "blocker";
@@ -11,7 +11,7 @@ export interface ICounter {
 }
 
 const JammersCounter = (jammerId: TJammerCounter) => {
-  const jammers = useJammerCountersContext();
+  const jammers = useJammersCounterContext();
   return {
     count: jammers.counts[jammerId],
     isCounterPaused: jammers.areCountersPaused[jammerId],

@@ -87,11 +87,19 @@ const useJammersCounter = () => {
     otherJammerCount: number,
     penalizedJammerId: TJammerCounter
   ) => {
-    setJammersCounts((prev) => ({
-      ...prev,
-      [penalizedJammerId]: 30 - otherJammerCount,
-      [otherJammerId]: 0,
-    }));
+    if (otherJammerCount > 30) {
+      return setJammersCounts((prev) => ({
+        ...prev,
+        [penalizedJammerId]: 0,
+        [otherJammerId]: 30,
+      }));
+    } else {
+      setJammersCounts((prev) => ({
+        ...prev,
+        [penalizedJammerId]: 30 - otherJammerCount,
+        [otherJammerId]: 0,
+      }));
+    }
   };
 
   const onPauseJammerTime = (jammerId: TJammerCounter) => {

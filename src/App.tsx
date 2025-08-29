@@ -1,13 +1,13 @@
 import "./App.css";
 import AllTimersActionsBar from "./components/allCountersActions/AllCountersActions";
 import TimeProvider from "./components/allCountersActions/AllCountersActionsContext";
-import Timers from "./feat/timers/Timers";
+import PenaltyTimers from "./feat/penaltyTimers/PenaltyTimers";
 
 function App() {
   return (
     <div id="app-container" className="container">
       <TimeProvider>
-        <Timers />
+        <PenaltyTimers />
         <AllTimersActionsBar />
       </TimeProvider>
     </div>

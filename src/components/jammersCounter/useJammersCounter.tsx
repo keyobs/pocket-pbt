@@ -21,7 +21,7 @@ const useJammerCounter = () => {
   );
 
   useEffect(() => {
-    const timers = [];
+    const timers: NodeJS.Timeout[] = [];
 
     (Object.keys(jammersCounts) as TJammerCounter[]).forEach((jammerId) => {
       if (

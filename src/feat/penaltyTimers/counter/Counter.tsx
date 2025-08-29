@@ -4,6 +4,7 @@ import { useTimeContext } from "../../../components/allCountersActions/useTimeCo
 import { PENALTY_TIME } from "../../../constants/penalties";
 import { JammersCounterData } from "./jammersCounter/JammersCounterData";
 import { BlockerCounterData } from "./blockerCounter/BlockerCounterData";
+import Timer from "../../../components/timer/Timer";
 
 export interface ICounter {
   type: "jammer" | "blocker";
@@ -34,7 +35,7 @@ const Counter = (props: ICounter) => {
     <div className="counter">
       <div className="timer-container">
         <span>{type}</span>
-        <div className="timer">{data.count}</div>
+        <Timer count={data.count} />
       </div>
       <div className="counter-actions">
         <Button

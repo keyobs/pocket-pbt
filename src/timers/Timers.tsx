@@ -1,5 +1,5 @@
 import Counter from "../components/counter/Counter";
-import { JammersCounterProvider } from "../components/jammersCounter/JammersCounterProvider";
+import { JammersCounterProvider } from "../components/jammersCounter/jammersContext/JammersCounterProvider";
 import "./timers.less";
 
 const Timers = () => {

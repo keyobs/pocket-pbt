@@ -3,8 +3,7 @@ import { Button } from "../buttons/Button";
 import { useTimeContext } from "../allCountersActions/useTimeContext";
 import useCounter from "./useCounter";
 import { TJammerCounter } from "../jammersCounter/useJammersCounter";
-import { useJammersCounterContext } from "../jammersCounter/JammersCounterProvider";
-
+import { useJammersCounterContext } from "../jammersCounter/jammersContext";
 export interface ICounter {
   type: "jammer" | "blocker";
   jammerId?: "jammer1" | "jammer2";

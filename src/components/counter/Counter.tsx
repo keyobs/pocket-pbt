@@ -2,11 +2,17 @@ import "./counter.less";
 import { Button } from "../buttons/Button";
 import { useTimeContext } from "../allCountersActions/useTimeContext";
 import useCounter from "./useCounter";
+import useJammerCounter, { TJammerCounter } from "./useJammerCounter";
 
 export interface ICounter {
   type: "jammer" | "blocker";
   jammerId?: "jammer1" | "jammer2";
 }
+
+const JammerCounter = (jammerId: TJammerCounter) => {
+  const data = useJammerCounter(jammerId);
+  return data;
+};
 
 const BlockerCounter = () => {
   const data = useCounter();
@@ -14,10 +20,13 @@ const BlockerCounter = () => {
 };
 
 const Counter = (props: ICounter) => {
-  const { type } = props;
+  const { type, jammerId } = props;
   const { isTimePaused } = useTimeContext();
 
-  const data = BlockerCounter();
+  const data =
+    type === "jammer" && jammerId != undefined
+      ? JammerCounter(jammerId)
+      : BlockerCounter();
 
   const onClickStartPauseButton = () => {
     return data.count > 0

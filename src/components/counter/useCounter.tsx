@@ -7,6 +7,7 @@ export type TUseCounter = {
   onReset: () => void;
   onAddTime: () => void;
   onStartTime: () => void;
+  onPauseTime: () => void;
 };
 
 const useCounter = () => {
@@ -14,7 +15,7 @@ const useCounter = () => {
 
   const wasCountStarted = () => count > 0;
   const [count, setCount] = useState(0);
-  const [isCounterPaused, setIsCounterPaused] = useState(false);
+  const [isCounterPaused, setIsCounterPaused] = useState<boolean>(false);
 
   useEffect(() => {
     if (count > 0 && !isCounterPaused && !isTimePaused) {
@@ -23,6 +24,14 @@ const useCounter = () => {
     }
   }, [count, isCounterPaused, isTimePaused]);
 
+  useEffect(() => {
+    if (wasCountStarted()) {
+      if (count === 0) {
+        setIsCounterPaused(false);
+      }
+    }
+  }, [count]);
+
   useEffect(() => {}, [isTimePaused]);
 
   const onReset = () => {
@@ -30,14 +39,24 @@ const useCounter = () => {
     setIsCounterPaused(false);
   };
 
+  const onStartTime = () =>
+    wasCountStarted() ? setIsCounterPaused(false) : setCount(30);
+
+  const onPauseTime = () => setIsCounterPaused(true);
+
   const onAddTime = () => {
     setCount(count + 30);
   };
 
-  const onStartTime = () =>
-    wasCountStarted() ? setIsCounterPaused(!isCounterPaused) : setCount(30);
-
-  return { count, isCounterPaused, onReset, onAddTime, onStartTime };
+  return {
+    count,
+    isCounterPaused,
+    onReset,
+    onAddTime,
+    onStartTime,
+    onPauseTime,
+    wasCountStarted,
+  };
 };
 
 export default useCounter;

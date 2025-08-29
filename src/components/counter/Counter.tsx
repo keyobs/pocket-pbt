@@ -8,43 +8,56 @@ export interface ICounter {
   jammerId?: "jammer1" | "jammer2";
 }
 
-const Counter = ({ type }: ICounter) => {
+const BlockerCounter = () => {
+  const data = useCounter();
+  return data;
+};
+
+const Counter = (props: ICounter) => {
+  const { type } = props;
   const { isTimePaused } = useTimeContext();
 
-  const { count, isCounterPaused, onReset, onAddTime, onStartTime } =
-    useCounter();
+  const data = BlockerCounter();
 
-  const startButtonLabel =
-    count === 0 ? "start" : isCounterPaused ? "resume" : "pause";
+  const onClickStartPauseButton = () => {
+    return data.count > 0
+      ? data.isCounterPaused
+        ? data.onStartTime()
+        : data.onPauseTime()
+      : data.onStartTime();
+  };
+
+  const startPauseButtonLabel =
+    data.count === 0 ? "start" : data.isCounterPaused ? "resume" : "pause";
 
   return (
     <div className="counter">
       <div className="timer-container">
         <span>{type}</span>
-        <div className="timer">{count}</div>
+        <div className="timer">{data.count}</div>
       </div>
       <div className="counter-actions">
         <Button
-          disabled={count === 0 || !isCounterPaused}
-          onClick={() => onReset()}
+          disabled={data.count === 0 || data.isCounterPaused}
+          onClick={() => data.onReset()}
         >
           reset
         </Button>
         <Button
-          disabled={count === 0 && !isTimePaused}
-          onClick={() => onAddTime()}
+          disabled={data.count === 0 && !isTimePaused}
+          onClick={() => data.onAddTime()}
         >
           +30
         </Button>
         <Button
           style="primary"
           size="large"
-          active={count !== 0 && !isTimePaused}
-          paused={isCounterPaused && !isTimePaused}
+          active={data.count !== 0 && !isTimePaused}
+          paused={data.isCounterPaused && !isTimePaused}
           disabled={isTimePaused ?? false}
-          onClick={() => onStartTime()}
+          onClick={() => onClickStartPauseButton()}
         >
-          {startButtonLabel}
+          {startPauseButtonLabel}
         </Button>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import "./App.css";
 import AllTimersActionsBar from "./components/allCountersActions/AllCountersActions";
-import TimeProvider from "./components/allCountersActions/AllCountersActionsContext";
+import { TimeProvider } from "./components/allCountersActions/time";
 import PenaltyTimers from "./feat/penaltyTimers/PenaltyTimers";
 import TeamBackgroundColor from "./feat/teamBackgroundColor/TeamBackgroundColor";
 

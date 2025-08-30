@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useTimeContext } from "../../../../components/allCountersActions/useTimeContext";
+import { useTimeContext } from "../../../../components/allCountersActions/time";
 import { PENALTY_TIME } from "../../../../constants/penalties";
 
 export type TUseCounter = {

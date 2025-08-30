@@ -1,10 +1,9 @@
 import { Button } from "../buttons/Button";
-import { useTimeContext } from "./useTimeContext";
-import { useTimeDispatchContext } from "./useTimeDispatchContext";
+import { useTimeContext, useTimeDispatch } from "./time";
 
 const AllCountersActions = () => {
   const { isTimePaused } = useTimeContext();
-  const { onPauseTime } = useTimeDispatchContext();
+  const onPauseTime = useTimeDispatch();
 
   return (
     <div>

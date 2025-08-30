@@ -2,10 +2,12 @@ import "./App.css";
 import AllTimersActionsBar from "./components/allCountersActions/AllCountersActions";
 import TimeProvider from "./components/allCountersActions/AllCountersActionsContext";
 import PenaltyTimers from "./feat/penaltyTimers/PenaltyTimers";
+import TeamBackgroundColor from "./feat/teamBackgroundColor/TeamBackgroundColor";
 
 function App() {
   return (
     <div id="app-container" className="container">
+      <TeamBackgroundColor />
       <TimeProvider>
         <PenaltyTimers />
         <AllTimersActionsBar />

@@ -2,16 +2,19 @@ import "./App.css";
 import AllTimersActionsBar from "./components/allCountersActions/AllCountersActions";
 import { TimeProvider } from "./components/allCountersActions/time";
 import PenaltyTimers from "./feat/penaltyTimers/PenaltyTimers";
-import TeamBackgroundColor from "./feat/teamBackgroundColor/TeamBackgroundColor";
+import TeamsColorManager from "./feat/teamsColor/TeamsColorManager";
+import { TeamColorProvider } from "./feat/teamsColor/context/TeamsColorProvider";
 
 function App() {
   return (
     <div id="app-container" className="container">
-      <TeamBackgroundColor />
-      <TimeProvider>
-        <PenaltyTimers />
-        <AllTimersActionsBar />
-      </TimeProvider>
+      <TeamColorProvider>
+        <TeamsColorManager />
+        <TimeProvider>
+          <PenaltyTimers />
+          <AllTimersActionsBar />
+        </TimeProvider>
+      </TeamColorProvider>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import "./teamsColorManager.less";
 import { Button } from "../../components/buttons/Button";
 import ColorDot from "../../components/colorDot/ColorDot";
 import { teamColors } from "../../constants/teamColors";
@@ -16,7 +17,7 @@ const TeamsColorManager = () => {
   };
 
   return (
-    <div>
+    <div className="teams-color-manager">
       {[1, 2].map((team) => (
         <div key={team}>
           <h3>Team {team}</h3>
@@ -25,8 +26,10 @@ const TeamsColorManager = () => {
               disabled={color === (team === 1 ? team1Color : team2Color)}
               key={index}
               onClick={() => getOnChangeColor(team)(color)}
+              size="fit"
             >
               <ColorDot color={color} />
+              <span style={{ marginLeft: "4px" }}>{color.color}</span>
             </Button>
           ))}
         </div>

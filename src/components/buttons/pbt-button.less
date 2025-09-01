@@ -1,3 +1,5 @@
+@import "../../style/variables.less";
+
 .pbt-button {
   padding: 10px 20px;
   margin: 7px 5px;
@@ -8,15 +10,25 @@
   transition: background-color 0.3s;
 
   &.medium {
-    width: 100px;
+    width: 80px;
   }
 
   &.large {
-    width: 110px;
+    width: 90px;
   }
 
   &.fit {
     width: unset;
+  }
+
+  @media (min-width: @small) {
+    &.medium {
+      width: 100px;
+    }
+
+    &.large {
+      width: 110px;
+    }
   }
 
   &.default {
@@ -38,12 +50,6 @@
     }
   }
 
-  &.disabled {
-    background-color: #505050;
-    border: 2px solid #f0f0f0;
-    color: #f0f0f0;
-  }
-
   @keyframes flashing {
     0% {
       background-color: #0c2046;
@@ -54,5 +60,11 @@
     100% {
       background-color: #0c2046;
     }
+  }
+
+  &.disabled {
+    background-color: #505050;
+    border: 2px solid #f0f0f0;
+    color: #f0f0f0;
   }
 }

@@ -1,11 +1,18 @@
+@import "../../style/variables.less";
+
 .timer {
   display: flex;
-  width: 105px;
-  height: 100px;
+  width: 85px;
+  height: 80px;
   justify-content: center;
   align-items: center;
   background-color: black;
   color: white;
   font-size: 2rem;
   border: 1px solid #f0f0f0;
+}
+
+@media screen and (min-width: @small) {
+  width: 105px;
+  height: 100px;
 }

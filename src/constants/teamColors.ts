@@ -1,9 +1,9 @@
 export const teamColors = [
   { color: "white", code: "#FFFFFF" },
   { color: "black", code: "#000000" },
-  { color: "green", code: "#33FF57" },
-  { color: "red", code: "#FF5733" },
-  { color: "blue", code: "#33C1FF" },
+  { color: "blue", code: "#0a0161ff" },
+  { color: "lagoon", code: "#33ffddff" },
+  { color: "pink", code: "#ee33ffff" },
 ] as const;
 
 export type TTeamColor = (typeof teamColors)[number];

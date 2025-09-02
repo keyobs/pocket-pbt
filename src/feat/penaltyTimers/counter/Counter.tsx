@@ -5,14 +5,15 @@ import { PENALTY_TIME } from "../../../constants/penalties";
 import { JammersCounterData } from "./jammersCounter/JammersCounterData";
 import { BlockerCounterData } from "./blockerCounter/BlockerCounterData";
 import Timer from "../../../components/timer/Timer";
+import { useMobileScreen } from "../../../utils/useMobileScreen";
 
 export interface ICounter {
   type: "jammer" | "blocker";
   jammerId?: "jammer1" | "jammer2";
 }
 
-const Counter = (props: ICounter) => {
-  const { type, jammerId } = props;
+const Counter = ({ type, jammerId }: ICounter) => {
+  const isMobileScreen = useMobileScreen();
   const { isTimePaused } = useTimeContext();
 
   const data =
@@ -34,7 +35,8 @@ const Counter = (props: ICounter) => {
   return (
     <div className="counter">
       <div className="timer-container">
-        <span>{type}</span>
+        <span>{!isMobileScreen && type}</span>
+
         <Timer count={data.count} />
       </div>
       <div className="counter-actions">

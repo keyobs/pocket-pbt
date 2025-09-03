@@ -19,16 +19,5 @@
 }
 
 #app-content {
+  width: min-content;
 }
-
-/* mobile
-{
-  padding-bottom: 60px;
-}
-*/
-
-/* @media (max-width: 768px) {
-  #app-container.container {
-    flex-direction: column;
-  }
-} */

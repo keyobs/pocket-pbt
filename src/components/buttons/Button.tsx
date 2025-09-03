@@ -26,7 +26,12 @@ export const Button = ({
   );
 
   return (
-    <button disabled={disabled} onClick={onClick} className={buttonClass}>
+    <button
+      id="pbt-button"
+      disabled={disabled}
+      onClick={onClick}
+      className={buttonClass}
+    >
       <span>{children}</span>
     </button>
   );

@@ -11,15 +11,16 @@
     display: flex;
   }
 
+  @media (min-height: 700px) {
+    row-gap: 3rem;
+  }
+
   @media (min-width: @xsmall) {
     flex-wrap: nowrap;
     column-gap: 2rem;
+
     .team-wrapper {
       width: 50%;
     }
-  }
-
-  @media (min-width: @small) {
-    column-gap: 2rem;
   }
 }

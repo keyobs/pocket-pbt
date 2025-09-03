@@ -1,0 +1,20 @@
+@import "../../styles/deviceBreakpoints.less";
+
+.badge {
+  position: absolute;
+  top: -10px;
+
+  &#badge-jammer1 {
+    left: -10px;
+  }
+
+  &#badge-jammer2 {
+    left: -10px;
+  }
+  @media (min-width: @xsmall) {
+    &#badge-jammer1 {
+      left: unset;
+      right: -10px;
+    }
+  }
+}

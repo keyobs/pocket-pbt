@@ -6,6 +6,7 @@ import { JammersCounterData } from "./jammersCounter/JammersCounterData";
 import { BlockerCounterData } from "./blockerCounter/BlockerCounterData";
 import Timer from "../../../components/timer/Timer";
 import { useMobileScreen } from "../../../utils/useMobileScreen";
+import StarBadge from "../../../components/badge/StarBadge";
 
 export interface ICounter {
   type: "jammer" | "blocker";
@@ -33,10 +34,11 @@ const Counter = ({ type, jammerId }: ICounter) => {
     data.count === 0 ? "start" : data.isCounterPaused ? "resume" : "pause";
 
   return (
-    <div className="counter">
-      <div className="timer-container">
-        <span>{!isMobileScreen && type}</span>
+    <div className="counter" id={`counter-${jammerId}`}>
+      {!isMobileScreen && <span id="counter-type">{type}</span>}
 
+      <div id="timer-wrapper" className="timer-wrapper">
+        {jammerId && isMobileScreen && <StarBadge jammerId={jammerId} />}
         <Timer count={data.count} />
       </div>
       <div className="counter-actions">

@@ -12,7 +12,7 @@ const PenaltyTimers = () => {
         <div
           id="team-wrapper-1"
           className="team-wrapper"
-          style={{ backgroundColor: team1Color.color }}
+          style={{ backgroundColor: team1Color.code }}
         >
           {Array.from({ length: 2 }).map((_, index) => (
             <Counter key={index} type="blocker" />
@@ -23,7 +23,7 @@ const PenaltyTimers = () => {
         <div
           id="team-wrapper-2"
           className="team-wrapper"
-          style={{ backgroundColor: team2Color.color }}
+          style={{ backgroundColor: team2Color.code }}
         >
           <Counter type="jammer" jammerId="jammer2" />
           {Array.from({ length: 2 }).map((_, index) => (

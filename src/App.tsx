@@ -1,8 +1,8 @@
 import "./App.css";
 import { TimeProvider } from "./components/allCountersActions/time";
-import BottomBar from "./feat/bottomBar/BottomBar";
-import PenaltyTimers from "./feat/penaltyTimers/PenaltyTimers";
-import { TeamColorProvider } from "./feat/teamsColor/context/TeamsColorProvider";
+import BottomBar from "./features/bottomBar/BottomBar";
+import PenaltyTimers from "./features/penaltyTimers/PenaltyTimers";
+import { TeamColorProvider } from "./features/teamsColor/context/TeamsColorProvider";
 
 function App() {
   return (

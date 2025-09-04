@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import { cleanClasses } from "../../utils/cleanClasses";
 import "./pbt-button.less";
 
@@ -9,6 +10,7 @@ interface IButton {
   size?: "medium" | "large" | "fit";
   style?: "default" | "primary";
   children: React.ReactNode;
+  customStyle?: CSSProperties;
 }
 
 export const Button = ({
@@ -18,6 +20,7 @@ export const Button = ({
   paused = false,
   size = "medium",
   style = "default",
+  customStyle,
   children,
 }: IButton) => {
   const buttonClass = cleanClasses(
@@ -31,6 +34,7 @@ export const Button = ({
       disabled={disabled}
       onClick={onClick}
       className={buttonClass}
+      style={customStyle}
     >
       <span>{children}</span>
     </button>

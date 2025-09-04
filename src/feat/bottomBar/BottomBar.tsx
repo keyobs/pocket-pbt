@@ -13,10 +13,13 @@ const BottomBar = () => {
       <div className="bottom-bar-item">
         <MenuButton onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
       </div>
+
       <AllCountersActions />
+
       <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
         <TeamsColorManager />
       </Drawer>
+
       <div className="bottom-bar-item"></div>
     </div>
   );

@@ -1,10 +1,12 @@
+import "./menuButton.less";
+
 interface IMenuButton {
   onClick: () => void;
 }
 
 const MenuButton = ({ onClick }: IMenuButton) => {
   return (
-    <button onClick={onClick} className="menu-button">
+    <button id="pbt-menu-button" onClick={onClick} className="pbt-menu-button ">
       <span>Oo</span>
     </button>
   );

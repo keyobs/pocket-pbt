@@ -8,7 +8,7 @@ type TBadge = {
 const StarBadge = ({ jammerId }: TBadge) => {
   return (
     <div id={`badge-${jammerId}`} className="badge">
-      <Star fill="yellow" size={30} />
+      <Star fill="#d3b605" stroke="#c7ac04" size={30} />
     </div>
   );
 };

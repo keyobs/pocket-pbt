@@ -28,8 +28,8 @@ const TeamsColorManager = () => {
               onClick={() => getOnChangeColor(team)(color)}
               size="fit"
             >
-              <ColorDot color={color} />
-              <span style={{ marginLeft: "4px" }}>{color.color}</span>
+              <ColorDot color={color.code} />
+              <span style={{ marginLeft: "4px" }}>{color.name}</span>
             </Button>
           ))}
         </div>

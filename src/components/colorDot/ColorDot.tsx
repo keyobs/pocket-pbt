@@ -1,13 +1,11 @@
 import "./colorDot.less";
 
 type TColorDot = {
-  color: { code: string; color: string };
+  color: string;
 };
 
 export const ColorDot = ({ color }: TColorDot) => {
-  return (
-    <div className="color-dot" style={{ backgroundColor: color.code }}></div>
-  );
+  return <div className="color-dot" style={{ backgroundColor: color }}></div>;
 };
 
 export default ColorDot;

@@ -1,9 +1,9 @@
 import "./bottomBar.less";
 import { useState } from "react";
-import MenuButton from "@components/buttons/MenuButton";
-import Drawer from "@components/drawer/Drawer";
 import TeamsColorManager from "@features/teamsColor/TeamsColorManager";
+import Drawer from "@components/drawer/Drawer";
 import AllCountersActions from "@components/allCountersActions/AllCountersActions";
+import ColorsMenuButton from "./ColorsMenuButton";
 
 const BottomBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
@@ -11,15 +11,12 @@ const BottomBar = () => {
   return (
     <div className="bottom-bar">
       <div className="bottom-bar-item">
-        <MenuButton onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
+        <ColorsMenuButton onClick={() => setIsDrawerOpen(!isDrawerOpen)} />
       </div>
-
       <AllCountersActions />
-
       <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
         <TeamsColorManager />
       </Drawer>
-
       <div className="bottom-bar-item"></div>
     </div>
   );

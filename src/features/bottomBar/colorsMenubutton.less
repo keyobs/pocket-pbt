@@ -1,0 +1,32 @@
+.dots-loader {
+  width: 27px;
+  aspect-ratio: 1.154;
+  --c1: #fff;
+  --c2: #fff;
+  --c3: #fff;
+  background: no-repeat radial-gradient(farthest-side, var(--c1) 95%, #0000) 50%
+      0,
+    no-repeat radial-gradient(farthest-side, var(--c2) 95%, #0000) 0 100%,
+    no-repeat radial-gradient(farthest-side, var(--c3) 95%, #0000) 100% 100%;
+  background-size: 35% calc(35% * 1.154);
+  animation: rotate-dots 3s ease-in-out;
+  animation-iteration-count: 1;
+
+  @keyframes rotate-dots {
+    0%,
+    15% {
+      background-position: 50% 0, 0 100%, 100% 100%;
+    }
+    33%,
+    48% {
+      background-position: 100% 100%, 50% 0, 0 100%;
+    }
+    66%,
+    81% {
+      background-position: 0 100%, 100% 100%, 50% 0;
+    }
+    100% {
+      background-position: 50% 0, 0 100%, 100% 100%;
+    }
+  }
+}

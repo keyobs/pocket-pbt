@@ -10,7 +10,7 @@ import {
 export function TeamColorProvider({ children }: { children: React.ReactNode }) {
   function getDefaultTeamColor(team: keyof TDefaultTeamColor): TTeamColor {
     const colorName = defaultTeamColor[team];
-    return teamColors.find((c) => c.color === colorName) || teamColors[0];
+    return teamColors.find((c) => c.name === colorName) || teamColors[0];
   }
 
   const [team1Color, setTeam1Color] = useState<TTeamColor>(

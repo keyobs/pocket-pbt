@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useTimeContext } from "../../../../components/allCountersActions/time";
-import { PENALTY_TIME } from "../../../../constants/penalties";
+import { useTimeContext } from "@components/allCountersActions/time";
+import { PENALTY_TIME } from "@constants/penalties";
 
 export type TJammerCounter = "jammer1" | "jammer2";
 

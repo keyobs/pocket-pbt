@@ -5,7 +5,7 @@ import {
   TDefaultTeamColor,
   teamColors,
   TTeamColor,
-} from "../../../constants/teamColors";
+} from "@constants/teamColors";
 
 export function TeamColorProvider({ children }: { children: React.ReactNode }) {
   function getDefaultTeamColor(team: keyof TDefaultTeamColor): TTeamColor {

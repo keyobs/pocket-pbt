@@ -1,4 +1,4 @@
-import { Button } from "../buttons/Button";
+import { Button } from "@components/buttons/Button";
 import { useTimeContext, useTimeDispatch } from "./time";
 
 const AllCountersActions = () => {

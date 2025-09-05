@@ -1,12 +1,12 @@
 import "./counter.less";
-import { Button } from "../../../components/buttons/Button";
-import { useTimeContext } from "../../../components/allCountersActions/time";
-import { PENALTY_TIME } from "../../../constants/penalties";
+import { Button } from "@components/buttons/Button";
+import { useTimeContext } from "@components/allCountersActions/time";
+import { PENALTY_TIME } from "@constants/penalties";
 import { JammersCounterData } from "./jammersCounter/JammersCounterData";
 import { BlockerCounterData } from "./blockerCounter/BlockerCounterData";
-import Timer from "../../../components/timer/Timer";
-import { useMobileScreen } from "../../../utils/useMobileScreen";
-import StarBadge from "../../../components/badge/StarBadge";
+import Timer from "@components/timer/Timer";
+import { useMobileScreen } from "@utils/useMobileScreen";
+import StarBadge from "@components/badge/StarBadge";
 
 export interface ICounter {
   type: "jammer" | "blocker";

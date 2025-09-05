@@ -1,7 +1,7 @@
 import "./teamsColorManager.less";
-import { Button } from "../../components/buttons/Button";
-import ColorDot from "../../components/colorDot/ColorDot";
-import { teamColors } from "../../constants/teamColors";
+import { Button } from "@components/buttons/Button";
+import ColorDot from "@components/colorDot/ColorDot";
+import { teamColors } from "@constants/teamColors";
 import {
   useTeamsColorContextDispatch,
   useTeamsColorContextState,

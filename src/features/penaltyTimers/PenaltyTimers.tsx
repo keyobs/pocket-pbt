@@ -1,7 +1,7 @@
-import { useTeamsColorContextState } from "../teamsColor/context/index";
+import "./penaltyTimers.less";
+import { useTeamsColorContextState } from "@features/teamsColor/context/index";
 import Counter from "./counter/Counter";
 import { JammersCounterProvider } from "./counter/jammersCounter/jammersContext/JammersCounterProvider";
-import "./penaltyTimers.less";
 
 const PenaltyTimers = () => {
   const { team1Color, team2Color } = useTeamsColorContextState();

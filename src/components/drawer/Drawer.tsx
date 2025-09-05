@@ -1,6 +1,6 @@
 import "./drawer.less";
 import { ReactNode } from "react";
-import { Button } from "../buttons/Button";
+import { Button } from "@components/buttons/Button";
 import { ChevronRight } from "react-feather";
 
 interface IDrawer {

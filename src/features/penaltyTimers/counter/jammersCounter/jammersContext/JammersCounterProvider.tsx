@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import useJammersCounter from "../useJammersCounter";
 import { JammersCounterContext } from "./JammersCounterContext";
+import useJammersCounter from "../useJammersCounter";
 
 interface IJammersCounterProvider {
   children: ReactNode;

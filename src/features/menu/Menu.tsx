@@ -1,4 +1,4 @@
-import TeamsColorManager from "../teamsColor/TeamsColorManager";
+import TeamsColorManager from "@features/teamsColor/TeamsColorManager";
 
 const Menu = () => {
   return (

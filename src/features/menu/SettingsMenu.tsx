@@ -1,41 +1,13 @@
-import { useState } from "react";
 import ToggleButton from "@components/buttons/toggleButton/ToggleButton";
-
-type TAppSettings = {
-  jammerTimeOnly: boolean;
-  blockerTimeOnly: boolean;
-  timeOnlyOneTeam: boolean;
-};
-
-const settingsConfig: { key: keyof TAppSettings; label: string }[] = [
-  {
-    key: "jammerTimeOnly",
-    label: "Jammer time only",
-  },
-  {
-    key: "blockerTimeOnly",
-    label: "Blocker time only",
-  },
-  {
-    key: "timeOnlyOneTeam",
-    label: "Time only one team",
-  },
-];
+import { settingsConfig, TAppSettings } from "./SettingsConfig";
+import {
+  useSettingsDispatch,
+  useSettingsState,
+} from "./context/SettingsMenuContext";
 
 const SettingsMenu = () => {
-  const [appSettings, setAppSettings] = useState<TAppSettings>({
-    jammerTimeOnly: false,
-    blockerTimeOnly: false,
-    timeOnlyOneTeam: false,
-  });
-
-  const handleToggle = (settingName: keyof TAppSettings) => {
-    setAppSettings((previous) => ({
-      ...previous,
-      [settingName]: !previous[settingName],
-    }));
-  };
-
+  const appSettings = useSettingsState();
+  const handleToggle = useSettingsDispatch();
   return (
     <div>
       {settingsConfig.map((setting) => (

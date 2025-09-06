@@ -1,0 +1,64 @@
+.pbt-toggle-container {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  margin: 10px;
+
+  .label {
+    margin-right: 20px;
+    font-size: 16px;
+  }
+}
+
+.pbt-toggle-button {
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+
+  .checkbox {
+    position: absolute;
+    visibility: hidden;
+  }
+
+  .switch {
+    display: inline-block;
+    border-radius: 16px;
+    width: 54px;
+    height: 29px;
+    position: relative;
+    vertical-align: middle;
+    transition: background-color 0.25s ease-in-out;
+    border: 2px solid #2a86fb;
+  }
+
+  .switch::before {
+    content: "";
+    display: block;
+    background: #fff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.25s ease-in-out, 0.25s ease-in-out,
+      background 0.25s ease-in-out;
+  }
+
+  .checkbox:checked + .switch {
+    background-color: #0c2046;
+  }
+
+  .checkbox:checked + .switch::before {
+    left: 27px;
+  }
+
+  &:hover .switch::before {
+    background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}

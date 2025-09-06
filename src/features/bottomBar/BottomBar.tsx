@@ -5,7 +5,7 @@ import Drawer from "@components/drawer/Drawer";
 import AllCountersActions from "@components/allCountersActions/AllCountersActions";
 import ColorsMenuButton from "./ColorsMenuButton";
 import MenuButton from "@components/buttons/MenuButton";
-import ParametersMenu from "@features/menu/ParametersMenu";
+import ParametersMenu from "@features/menu/SettingsMenu";
 
 const BottomBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);

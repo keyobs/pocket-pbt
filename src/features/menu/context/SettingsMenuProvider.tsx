@@ -2,6 +2,13 @@ import { ReactNode, useState } from "react";
 import { TAppSettings } from "../SettingsConfig";
 import { SettingsMenuContext } from "./SettingsMenuContext";
 
+const exclusiveSettings: Partial<
+  Record<keyof TAppSettings, keyof TAppSettings>
+> = {
+  jammerTimeOnly: "blockerTimeOnly",
+  blockerTimeOnly: "jammerTimeOnly",
+};
+
 export function SettingsMenuProvider({ children }: { children: ReactNode }) {
   const [appSettings, setAppSettings] = useState<TAppSettings>({
     jammerTimeOnly: false,
@@ -10,10 +17,16 @@ export function SettingsMenuProvider({ children }: { children: ReactNode }) {
   });
 
   const handleToggle = (settingName: keyof TAppSettings) => {
-    setAppSettings((previous) => ({
-      ...previous,
-      [settingName]: !previous[settingName],
-    }));
+    setAppSettings((previous) => {
+      const newSettings = { ...previous };
+      const exclusiveSetting = exclusiveSettings[settingName];
+      if (exclusiveSetting) {
+        newSettings[exclusiveSetting] = false;
+      }
+
+      newSettings[settingName] = !previous[settingName];
+      return newSettings;
+    });
   };
 
   return (

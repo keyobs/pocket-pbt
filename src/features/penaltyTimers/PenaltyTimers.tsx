@@ -1,39 +1,31 @@
 import "./penaltyTimers.less";
-import { useTeamsColorContextState } from "@features/teamsColor/context/index";
-import Counter from "./counter/Counter";
-import { JammersCounterProvider } from "./counter/jammersCounter/jammersContext/JammersCounterProvider";
+
 import { useSettingsState } from "@features/menu/context/SettingsMenuContext";
+import { useTeamsColorContextState } from "@features/teamsColor/context";
+import { JammersCounterProvider } from "./counter/jammersCounter/jammersContext";
+import { TeamCounters } from "./TeamCounters";
 
 const PenaltyTimers = () => {
   const appSettings = useSettingsState();
   const { team1Color, team2Color } = useTeamsColorContextState();
 
-  console.log(appSettings);
+  const isOneTeamOnly = appSettings.timeOnlyOneTeam;
 
   return (
     <JammersCounterProvider>
       <div className="penalty-timers">
-        <div
-          id="team-wrapper-1"
-          className="team-wrapper"
-          style={{ backgroundColor: team1Color.code }}
-        >
-          {Array.from({ length: 2 }).map((_, index) => (
-            <Counter key={index} type="blocker" />
-          ))}
-
-          <Counter type="jammer" jammerId="jammer1" />
-        </div>
-        <div
-          id="team-wrapper-2"
-          className="team-wrapper"
-          style={{ backgroundColor: team2Color.code }}
-        >
-          <Counter type="jammer" jammerId="jammer2" />
-          {Array.from({ length: 2 }).map((_, index) => (
-            <Counter key={index} type="blocker" />
-          ))}
-        </div>
+        <TeamCounters
+          teamId={1}
+          teamColor={team1Color}
+          appSettings={appSettings}
+        />
+        {!isOneTeamOnly && (
+          <TeamCounters
+            teamId={2}
+            teamColor={team2Color}
+            appSettings={appSettings}
+          />
+        )}
       </div>
     </JammersCounterProvider>
   );

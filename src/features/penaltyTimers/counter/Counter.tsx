@@ -33,8 +33,11 @@ const Counter = ({ type, jammerId }: ICounter) => {
   const startPauseButtonLabel =
     data.count === 0 ? "start" : data.isCounterPaused ? "resume" : "pause";
 
+  const getCounterClassName = () =>
+    jammerId === "jammer1" ? `counter counter-${jammerId}` : "counter";
+
   return (
-    <div className="counter" id={`counter-${jammerId}`}>
+    <div className={getCounterClassName()}>
       {!isMobileScreen && <span id="counter-type">{type}</span>}
 
       <div id="timer-wrapper" className="timer-wrapper">

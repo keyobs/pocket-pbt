@@ -8,27 +8,15 @@
 
   &.counter-jammer1 {
     order: 0;
-  }
 
-  @media (min-width: @xsmall) {
-    &.counter-jammer1 {
+    @media (min-width: @xsmall) {
       order: 3;
     }
   }
 
-  #counter-type span {
+  #counter-type {
     margin: 13px 0;
-    color: red;
-  }
-
-  .timer-container {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.5rem;
-
-    span {
-      text-transform: capitalize;
-    }
+    text-transform: capitalize;
   }
 
   .timer-wrapper {
@@ -41,6 +29,10 @@
     justify-content: center;
     align-items: center;
     column-gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 5px;
+
+    @media (min-height: @small) {
+      margin-top: 1rem;
+    }
   }
 }

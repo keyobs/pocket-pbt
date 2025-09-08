@@ -30,14 +30,24 @@ const Counter = ({ type, jammerId }: ICounter) => {
       : data.onStartTime();
   };
 
-  const startPauseButtonLabel =
-    data.count === 0 ? "start" : data.isCounterPaused ? "resume" : "pause";
+  const getButtonLabel = () => {
+    if (data.count === 0) return "start";
+    if (data.isCounterPaused) {
+      const isJammerRelease =
+        type === "jammer" &&
+        jammerId &&
+        (data as { isJammerDone?: boolean }).isJammerDone;
 
-  const getCounterClassName = () =>
+      return isJammerRelease ? "release" : "resume";
+    }
+    return "pause";
+  };
+
+  const counterClassName =
     jammerId === "jammer1" ? `counter counter-${jammerId}` : "counter";
 
   return (
-    <div className={getCounterClassName()}>
+    <div className={counterClassName}>
       {!isMobileScreen && <span id="counter-type">{type}</span>}
 
       <div id="timer-wrapper" className="timer-wrapper">
@@ -65,7 +75,7 @@ const Counter = ({ type, jammerId }: ICounter) => {
           disabled={isTimePaused ?? false}
           onClick={() => onClickStartPauseButton()}
         >
-          {startPauseButtonLabel}
+          {getButtonLabel()}
         </Button>
       </div>
     </div>

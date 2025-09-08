@@ -7,6 +7,7 @@ export const JammersCounterData = (jammerId: TJammerCounter) => {
   return {
     count: jammers.counts[jammerId].count,
     isCounterPaused: jammers.areCountersPaused[jammerId],
+    isJammerDone: jammers.isJammerDone[jammerId],
     onStartTime: () => jammers.onStartTime(jammerId),
     onPauseTime: () => jammers.onPauseTime(jammerId),
     onReset: () => jammers.onReset(jammerId),

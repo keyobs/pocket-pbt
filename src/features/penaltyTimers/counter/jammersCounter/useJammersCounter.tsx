@@ -49,12 +49,7 @@ const useJammersCounter = () => {
         }, 1000);
         timers.push(counting);
       }
-    }
-    return () => timers.forEach(clearTimeout);
-  }, [jammersTime, areCountersPaused, isTimePaused]);
 
-  useEffect(() => {
-    (Object.keys(jammersTime) as TJammerCounter[]).forEach((jammerId) => {
       if (
         wasJammerCountStarted(jammerId) &&
         jammersTime[jammerId].count === 0
@@ -64,8 +59,10 @@ const useJammersCounter = () => {
           [jammerId]: false,
         }));
       }
-    });
-  }, [jammersTime, wasJammerCountStarted]);
+    }
+
+    return () => timers.forEach(clearTimeout);
+  }, [jammersTime, areCountersPaused, isTimePaused, wasJammerCountStarted]);
 
   const onStart = useCallback(
     (jammerId: TJammerCounter) => {

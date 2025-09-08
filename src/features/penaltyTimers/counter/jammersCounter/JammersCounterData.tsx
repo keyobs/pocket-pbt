@@ -2,15 +2,15 @@ import { useJammersCounterContext } from "./jammersContext";
 import { TJammerCounter } from "./useJammersCounter";
 
 export const JammersCounterData = (jammerId: TJammerCounter) => {
-  const jammers = useJammersCounterContext();
+  const data = useJammersCounterContext();
 
   return {
-    count: jammers.counts[jammerId].count,
-    isCounterPaused: jammers.areCountersPaused[jammerId],
-    isJammerDone: jammers.isJammerDone[jammerId],
-    onStartTime: () => jammers.onStartTime(jammerId),
-    onPauseTime: () => jammers.onPauseTime(jammerId),
-    onReset: () => jammers.onReset(jammerId),
-    onAddTime: () => jammers.onAddTime(jammerId),
+    count: data.jammers[jammerId].count,
+    isCounterPaused: data.jammers[jammerId].isPaused,
+    isJammerDone: data.jammers[jammerId].isDone,
+    onStartTime: () => data.onStartTime(jammerId),
+    onPauseTime: () => data.onPauseTime(jammerId),
+    onReset: () => data.onReset(jammerId),
+    onAddTime: () => data.onAddTime(jammerId),
   };
 };

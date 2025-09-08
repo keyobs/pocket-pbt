@@ -3,8 +3,9 @@ import { TJammerCounter } from "./useJammersCounter";
 
 export const JammersCounterData = (jammerId: TJammerCounter) => {
   const jammers = useJammersCounterContext();
+
   return {
-    count: jammers.counts[jammerId],
+    count: jammers.counts[jammerId].count,
     isCounterPaused: jammers.areCountersPaused[jammerId],
     onStartTime: () => jammers.onStartTime(jammerId),
     onPauseTime: () => jammers.onPauseTime(jammerId),

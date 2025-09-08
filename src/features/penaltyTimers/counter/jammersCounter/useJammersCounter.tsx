@@ -12,61 +12,78 @@ const useJammersCounter = () => {
     jammer2: false,
   });
 
-  const [jammersCounts, setJammersCounts] = useState<{ [key: string]: number }>(
-    {
-      jammer1: 0,
-      jammer2: 0,
-    }
-  );
+  type JammersTimeType = {
+    [K in TJammerCounter]: { count: number; round: number };
+  };
+
+  const [jammersTime, setJammersTime] = useState<JammersTimeType>({
+    jammer1: {
+      count: 0,
+      round: 0,
+    },
+    jammer2: {
+      count: 0,
+      round: 0,
+    },
+  });
 
   const wasJammerCountStarted = useCallback(
-    (jammerId: TJammerCounter) => jammersCounts[jammerId] > 0,
-    [jammersCounts]
+    (jammerId: TJammerCounter) => jammersTime[jammerId].count > 0,
+    [jammersTime]
   );
 
   useEffect(() => {
     const timers: NodeJS.Timeout[] = [];
 
-    for (const jammerId of Object.keys(jammersCounts) as TJammerCounter[]) {
+    for (const jammerId of Object.keys(jammersTime) as TJammerCounter[]) {
       if (
-        jammersCounts[jammerId] > 0 &&
+        jammersTime[jammerId].count > 0 &&
         !areCountersPaused[jammerId] &&
         !isTimePaused
       ) {
         const counting = setTimeout(() => {
-          setJammersCounts((prev) => ({
+          setJammersTime((prev) => ({
             ...prev,
-            [jammerId]: prev[jammerId] - 1,
+            [jammerId]: { ...prev[jammerId], count: prev[jammerId].count - 1 },
           }));
         }, 1000);
         timers.push(counting);
       }
     }
     return () => timers.forEach(clearTimeout);
-  }, [jammersCounts, areCountersPaused, isTimePaused]);
+  }, [jammersTime, areCountersPaused, isTimePaused]);
 
   useEffect(() => {
-    (Object.keys(jammersCounts) as TJammerCounter[]).forEach((jammerId) => {
-      if (wasJammerCountStarted(jammerId) && jammersCounts[jammerId] === 0) {
+    (Object.keys(jammersTime) as TJammerCounter[]).forEach((jammerId) => {
+      if (
+        wasJammerCountStarted(jammerId) &&
+        jammersTime[jammerId].count === 0
+      ) {
         setAreCountersPaused((prev) => ({
           ...prev,
           [jammerId]: false,
         }));
       }
     });
-  }, [jammersCounts]);
+  }, [jammersTime, wasJammerCountStarted]);
 
   const onStart = useCallback(
     (jammerId: TJammerCounter) => {
-      return wasJammerCountStarted(jammerId)
-        ? setAreCountersPaused((prev) => ({
-            ...prev,
-            [jammerId]: false,
-          }))
-        : setJammersCounts((prev) => ({
-            ...prev,
-            [jammerId]: PENALTY_TIME,
-          }));
+      if (wasJammerCountStarted(jammerId)) {
+        setAreCountersPaused((prev) => ({
+          ...prev,
+          [jammerId]: false,
+        }));
+      } else {
+        setJammersTime((prev) => ({
+          ...prev,
+          [jammerId]: {
+            ...prev[jammerId],
+            count: PENALTY_TIME,
+            round: prev[jammerId].round + 1,
+          },
+        }));
+      }
     },
     [wasJammerCountStarted]
   );
@@ -78,16 +95,19 @@ const useJammersCounter = () => {
       penalizedJammerId: TJammerCounter
     ) => {
       if (otherJammerCount > PENALTY_TIME) {
-        return setJammersCounts((prev) => ({
+        setJammersTime((prev) => ({
           ...prev,
-          [penalizedJammerId]: 0,
-          [otherJammerId]: PENALTY_TIME,
+          [penalizedJammerId]: { ...prev[penalizedJammerId], count: 0 },
+          [otherJammerId]: { ...prev[otherJammerId], count: PENALTY_TIME },
         }));
       } else {
-        setJammersCounts((prev) => ({
+        setJammersTime((prev) => ({
           ...prev,
-          [penalizedJammerId]: PENALTY_TIME - otherJammerCount,
-          [otherJammerId]: 0,
+          [penalizedJammerId]: {
+            ...prev[penalizedJammerId],
+            count: PENALTY_TIME - otherJammerCount,
+          },
+          [otherJammerId]: { ...prev[otherJammerId], count: 0 },
         }));
       }
     },
@@ -98,7 +118,7 @@ const useJammersCounter = () => {
     (jammerId: TJammerCounter) => {
       const otherJammerId: TJammerCounter =
         jammerId === "jammer1" ? "jammer2" : "jammer1";
-      const otherJammerCount = jammersCounts[otherJammerId];
+      const otherJammerCount = jammersTime[otherJammerId].count;
       const newPenalizedJammerId = jammerId;
 
       if (otherJammerCount > 0) {
@@ -111,7 +131,7 @@ const useJammersCounter = () => {
         onStart(jammerId);
       }
     },
-    [jammersCounts, onStart, onStartWhenOtherJammerIsRunning]
+    [jammersTime, onStart, onStartWhenOtherJammerIsRunning]
   );
 
   const onPauseJammerTime = useCallback((jammerId: TJammerCounter) => {
@@ -122,9 +142,9 @@ const useJammersCounter = () => {
   }, []);
 
   const onReset = useCallback((jammerId: TJammerCounter) => {
-    setJammersCounts((prev) => ({
+    setJammersTime((prev) => ({
       ...prev,
-      [jammerId]: 0,
+      [jammerId]: { count: 0, round: 0 },
     }));
     setAreCountersPaused((prev) => ({
       ...prev,
@@ -133,14 +153,17 @@ const useJammersCounter = () => {
   }, []);
 
   const onAddTime = useCallback((jammerId: TJammerCounter) => {
-    setJammersCounts((prev) => ({
+    setJammersTime((prev) => ({
       ...prev,
-      [jammerId]: prev[jammerId] + PENALTY_TIME,
+      [jammerId]: {
+        ...prev[jammerId],
+        count: prev[jammerId].count + PENALTY_TIME,
+      },
     }));
   }, []);
 
   return {
-    counts: jammersCounts,
+    counts: jammersTime,
     areCountersPaused: areCountersPaused,
     onReset,
     onAddTime,

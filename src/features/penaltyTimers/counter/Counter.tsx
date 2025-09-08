@@ -51,7 +51,7 @@ const Counter = ({ type, jammerId }: ICounter) => {
       {!isMobileScreen && <span id="counter-type">{type}</span>}
 
       <div id="timer-wrapper" className="timer-wrapper">
-        {jammerId && isMobileScreen && <StarBadge jammerId={jammerId} />}
+        {jammerId && <StarBadge jammerId={jammerId} />}
         <Timer count={data.count} />
       </div>
       <div className="counter-actions">

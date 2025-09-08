@@ -1,7 +1,7 @@
 export const teamColors = [
   { name: "white", code: "#FFFFFF" },
   { name: "black", code: "#000000" },
-  { name: "blue", code: "#0a0161ff" },
+  { name: "blue", code: "#4836f9" },
   { name: "lagoon", code: "#33ffdd" },
   { name: "pink", code: "#ee33ff" },
 ] as const;

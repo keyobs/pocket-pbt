@@ -1,6 +1,7 @@
 .drawer {
   height: 100%;
-  width: 45%;
+  width: fit-content;
+  min-width: 45%;
   box-sizing: border-box;
   position: fixed;
   top: 0;
@@ -22,7 +23,12 @@
   }
 
   .content {
-    padding: 12px 0;
+    padding: 12px 5px;
     box-sizing: border-box;
+    width: 100%;
+  }
+
+  & h3 {
+    text-align: left;
   }
 }

@@ -19,7 +19,7 @@ const TeamsColorManager = () => {
   return (
     <div className="teams-color-manager">
       {[1, 2].map((team) => (
-        <div key={team}>
+        <div key={team} className="team">
           <h3>Team {team}</h3>
           {teamColors.map((color, index) => (
             <Button

@@ -1,3 +1,5 @@
+import "./settings.less";
+
 import ToggleButton from "@components/buttons/toggleButton/ToggleButton";
 import { settingsConfig, TAppSettings } from "./SettingsConfig";
 import {
@@ -9,7 +11,8 @@ const SettingsMenu = () => {
   const appSettings = useSettingsState();
   const handleToggle = useSettingsDispatch();
   return (
-    <div>
+    <div className="settings">
+      <h3>Settings</h3>
       {settingsConfig.map((setting) => (
         <ToggleButton
           key={setting.key}

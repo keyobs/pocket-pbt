@@ -1,6 +1,6 @@
 import "./counter.less";
 import { Button } from "@components/buttons/Button";
-import { useTimeContext } from "@components/allCountersActions/time";
+import { useTimeContext } from "@components/globalTimeAction/time";
 import { PENALTY_TIME } from "@constants/penalties";
 import { JammersCounterData } from "./jammersCounter/JammersCounterData";
 import { BlockerCounterData } from "./blockerCounter/BlockerCounterData";

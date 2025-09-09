@@ -1,7 +1,7 @@
 import { Button } from "@components/buttons/Button";
 import { useTimeContext, useTimeDispatch } from "./time";
 
-const AllCountersActions = () => {
+const GlobalTimeAction = () => {
   const { isTimePaused } = useTimeContext();
   const onPauseTime = useTimeDispatch();
 
@@ -20,4 +20,4 @@ const AllCountersActions = () => {
   );
 };
 
-export default AllCountersActions;
+export default GlobalTimeAction;

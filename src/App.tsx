@@ -1,5 +1,5 @@
 import "./App.css";
-import { TimeProvider } from "@components/allCountersActions/time";
+import { TimeProvider } from "@components/globalTimeAction/time";
 import BottomBar from "@features/bottomBar/BottomBar";
 import { SettingsMenuProvider } from "@features/menu/context/SettingsMenuProvider";
 import PenaltyTimers from "@features/penaltyTimers/PenaltyTimers";

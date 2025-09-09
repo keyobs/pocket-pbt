@@ -2,7 +2,7 @@ import "./bottomBar.less";
 import { useEffect, useState } from "react";
 import TeamsColorManager from "@features/teamsColor/TeamsColorManager";
 import Drawer from "@components/drawer/Drawer";
-import AllCountersActions from "@components/allCountersActions/AllCountersActions";
+import AllCountersActions from "@components/globalTimeAction/GlobalTimeAction";
 import ColorsMenuButton from "./ColorsMenuButton";
 import MenuButton from "@components/buttons/MenuButton";
 import ParametersMenu from "@features/menu/SettingsMenu";

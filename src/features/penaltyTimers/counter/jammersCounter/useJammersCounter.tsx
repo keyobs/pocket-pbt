@@ -137,7 +137,7 @@ const useJammersCounter = () => {
           },
         }));
 
-        const timer = setTimeout(() => onReset(otherJammerId), 4000);
+        const timer = setTimeout(() => onReset(otherJammerId), 3000);
         return () => clearTimeout(timer);
       }
     },

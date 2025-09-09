@@ -1,50 +1,87 @@
-# React + TypeScript + Vite
+# Pocket Penalty Box Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Backup timers for roller derby penalty box when you forget to buy batteries.
 
-Currently, two official plugins are available:
+The Pocket Penalty Box Manager is a web app designed to serve as a reliable backup for the official penalty box timers in roller derby.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<br>
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The app is mobile-friendly.
 
-- Configure the top-level `parserOptions` property like this:
+Available :
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- 6 countdown timers for each six penalty box seats
+
+Flexible Timing Configurations:
+
+- Track time for 1 or 2 teams
+- Track only jammers
+- Track only blockers
+
+Automated Jammer Management :
+
+- Automatically swaps a jammer’s active timer when a new jammer is sent to the box.
+
+<br>
+<br>
+
+## NEW TO ROLLER DERBY ?
+
+The sport = [WFTDA - The Game ](https://wftda.com/the-game/)  
+The rules = [WFTDA - The Rules of Flat Track Roller Derby](https://rules.wftda.com/)
+
+<br>
+<br>
+
+## 💻 Developer Setup
+
+Built with React and Vite.  
+Project is open-source.
+
+To get started and contribute, follow these steps:
+
+### Prerequisites
+
+Node.js: Ensure you have Node.js installed on your machine.
+
+### Installation
+
+Clone the repository:
+
+```
+git clone https://github.com/your-username/pocket-pbt.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Navigate to the project directory:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+cd pocket-pbt
+```
+
+Install dependencies:
+
+```
+npm install
+```
+
+Running the Project : start the development server:
+
+```
+npm run dev
+```
+
+Launch the app at http://localhost:5173/ (or a similar port).
+Hotload active : the page will automatically reload as you make changes.
+
+<br>
+
+📜 License  
+This project is licensed under the MIT License. For more details, see the LICENSE file in this repository.
+
+<br>
+
+🤝 Contributing  
+We welcome contributions from the community !  
+If you're interested in helping, please check out our CONTRIBUTING.md file for guidelines on setting up your environment, submitting pull requests, and coding standards.

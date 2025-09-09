@@ -7,7 +7,13 @@ const AllCountersActions = () => {
 
   return (
     <div>
-      <Button onClick={onPauseTime} size="fit">
+      <Button
+        style="secondary"
+        onClick={onPauseTime}
+        size="fit"
+        active={isTimePaused === true}
+        paused={isTimePaused === true}
+      >
         {isTimePaused ? "resume all" : "pause all"}
       </Button>
     </div>

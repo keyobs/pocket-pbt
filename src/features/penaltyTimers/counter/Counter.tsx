@@ -33,12 +33,12 @@ const Counter = ({ type, jammerId }: ICounter) => {
   const getButtonLabel = () => {
     if (data.count === 0) return "start";
     if (data.isCounterPaused) {
-      const isJammerRelease =
+      const isJammerToRelease =
         type === "jammer" &&
         jammerId &&
         (data as { isJammerDone?: boolean }).isJammerDone;
 
-      return isJammerRelease ? "release" : "resume";
+      return isJammerToRelease ? "release" : "resume";
     }
     return "pause";
   };

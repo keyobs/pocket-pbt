@@ -50,6 +50,20 @@
     }
   }
 
+  &.secondary {
+    background-color: transparent;
+    border: 2px solid #2a86fb;
+
+    &.active,
+    &:active {
+      background-color: #0063e2;
+    }
+
+    &.paused {
+      animation: flashing 1s infinite;
+    }
+  }
+
   @keyframes flashing {
     0% {
       background-color: #0c2046;

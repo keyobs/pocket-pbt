@@ -8,7 +8,7 @@ interface IButton {
   onClick: () => void;
   paused?: boolean;
   size?: "medium" | "large" | "fit";
-  style?: "default" | "primary";
+  style?: "default" | "primary" | "secondary";
   children: React.ReactNode;
   customStyle?: CSSProperties;
 }

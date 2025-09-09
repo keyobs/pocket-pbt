@@ -30,17 +30,20 @@ const Counter = ({ type, jammerId }: ICounter) => {
       : data.onStartTime();
   };
 
-  const getButtonLabel = () => {
-    if (data.count === 0) return "start";
-    if (data.isCounterPaused) {
-      const isJammerToRelease =
-        type === "jammer" &&
-        jammerId &&
-        (data as { isJammerDone?: boolean }).isJammerDone;
+  const isJammerToRelease =
+    type === "jammer"
+      ? jammerId && (data as { isJammerDone?: boolean }).isJammerDone
+      : null;
 
-      return isJammerToRelease ? "release" : "resume";
+  const getStartPauseButton = () => {
+    if (data.count === 0)
+      return { label: "start", funct: onClickStartPauseButton };
+    if (data.isCounterPaused) {
+      return isJammerToRelease
+        ? { label: "release", funct: data.onReset }
+        : { label: "resume", funct: onClickStartPauseButton };
     }
-    return "pause";
+    return { label: "pause", funct: onClickStartPauseButton };
   };
 
   const counterClassName =
@@ -73,9 +76,9 @@ const Counter = ({ type, jammerId }: ICounter) => {
           active={data.count !== 0 && !isTimePaused}
           paused={data.isCounterPaused && !isTimePaused}
           disabled={isTimePaused ?? false}
-          onClick={() => onClickStartPauseButton()}
+          onClick={() => getStartPauseButton().funct()}
         >
-          {getButtonLabel()}
+          {getStartPauseButton().label}
         </Button>
       </div>
     </div>

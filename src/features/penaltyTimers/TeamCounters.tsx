@@ -1,7 +1,7 @@
 import "./penaltyTimers.less";
 
 import { TTeamColor } from "@constants/teamColors";
-import { TAppSettings } from "@features/menu/SettingsConfig";
+import { TAppSettings } from "@features/menu/settings/SettingsConfig";
 import Counter from "./counter/Counter";
 
 type TTeamCounters = {

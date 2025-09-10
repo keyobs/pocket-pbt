@@ -1,9 +1,9 @@
 import "./App.css";
 import { TimeProvider } from "@components/globalTimeAction/time";
 import BottomBar from "@features/bottomBar/BottomBar";
-import { SettingsMenuProvider } from "@features/menu/context/SettingsMenuProvider";
+import { SettingsMenuProvider } from "@features/menu/settings/context/SettingsMenuProvider";
 import PenaltyTimers from "@features/penaltyTimers/PenaltyTimers";
-import { TeamColorProvider } from "@features/teamsColor/context/TeamsColorProvider";
+import { TeamColorProvider } from "@features/menu/teamsColor/context/TeamsColorProvider";
 
 function App() {
   return (

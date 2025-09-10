@@ -1,7 +1,7 @@
 import "./penaltyTimers.less";
 
-import { useSettingsState } from "@features/menu/context/SettingsMenuContext";
-import { useTeamsColorContextState } from "@features/teamsColor/context";
+import { useSettingsState } from "@features/menu/settings/context/SettingsMenuContext";
+import { useTeamsColorContextState } from "@features/menu/teamsColor/context";
 import { JammersCounterProvider } from "./counter/jammersCounter/jammersContext";
 import { TeamCounters } from "./TeamCounters";
 

@@ -1,11 +1,11 @@
 import "./bottomBar.less";
 import { useEffect, useState } from "react";
-import TeamsColorManager from "@features/teamsColor/TeamsColorManager";
+import TeamsColorManager from "@features/menu/teamsColor/TeamsColorManager";
 import Drawer from "@components/drawer/Drawer";
 import AllCountersActions from "@components/globalTimeAction/GlobalTimeAction";
 import ColorsMenuButton from "./ColorsMenuButton";
 import MenuButton from "@components/buttons/MenuButton";
-import ParametersMenu from "@features/menu/SettingsMenu";
+import ParametersMenu from "@features/menu/settings/SettingsMenu";
 
 const BottomBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);

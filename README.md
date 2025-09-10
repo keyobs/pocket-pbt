@@ -6,6 +6,12 @@ The Pocket Penalty Box Manager is a web app designed to serve as a reliable back
 
 <br>
 
+<p align="center">
+<img src="./assets/pbt-screen.png" alt="Penalty Box Timer screen" width="500"/>
+</p>
+
+<br>
+
 ## ✨ Features
 
 The app is mobile-friendly.
@@ -13,6 +19,7 @@ The app is mobile-friendly.
 Available :
 
 - 6 countdown timers for each six penalty box seats
+- Colored stroke helper
 
 Flexible Timing Configurations:
 
@@ -23,6 +30,12 @@ Flexible Timing Configurations:
 Automated Jammer Management :
 
 - Automatically swaps a jammer’s active timer when a new jammer is sent to the box.
+
+<br>
+
+<p align="center">
+<img src="./assets/pbt-screen-running.png" alt="Penalty Box Timer screen" width="500"/>
+</p>
 
 <br>
 <br>

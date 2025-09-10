@@ -55,7 +55,7 @@ const Counter = ({ type, jammerId }: ICounter) => {
 
       <div id="timer-wrapper" className="timer-wrapper">
         {jammerId && <StarBadge jammerId={jammerId} />}
-        <Timer count={data.count} />
+        <Timer count={data.count} isPaused={isTimePaused === true} />
       </div>
       <div className="counter-actions">
         <Button

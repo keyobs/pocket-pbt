@@ -44,7 +44,6 @@
     &:active {
       background-color: #0063e2;
     }
-
     &.paused {
       animation: flashing 1s infinite;
     }
@@ -58,9 +57,17 @@
     &:active {
       background-color: #0063e2;
     }
-
     &.paused {
       animation: flashing 1s infinite;
+    }
+  }
+
+  &.go {
+    border: 2px solid #34a853;
+
+    &.active,
+    &.paused {
+      animation: go 1s infinite;
     }
   }
 
@@ -73,6 +80,18 @@
     }
     100% {
       background-color: #0c2046;
+    }
+  }
+
+  @keyframes go {
+    0% {
+      background-color: #0c4620;
+    }
+    50% {
+      background-color: #228b22;
+    }
+    100% {
+      background-color: #0c4620;
     }
   }
 

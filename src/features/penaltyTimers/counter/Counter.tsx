@@ -7,6 +7,7 @@ import { BlockerCounterData } from "./blockerCounter/BlockerCounterData";
 import Timer from "@components/timer/Timer";
 import { useMobileScreen } from "@utils/useMobileScreen";
 import StarBadge from "@components/badge/StarBadge";
+import { useCallback, useMemo } from "react";
 
 export interface ICounter {
   type: "jammer" | "blocker";
@@ -22,29 +23,53 @@ const Counter = ({ type, jammerId }: ICounter) => {
       ? JammersCounterData(jammerId)
       : BlockerCounterData();
 
-  const onClickStartPauseButton = () => {
+  const onClickStartPauseButton = useCallback(() => {
     return data.count > 0
       ? data.isCounterPaused
         ? data.onStartTime()
         : data.onPauseTime()
       : data.onStartTime();
-  };
+  }, [data]);
 
   const isJammerToRelease =
     type === "jammer"
       ? jammerId && (data as { isJammerDone?: boolean }).isJammerDone
       : null;
 
-  const getStartPauseButton = () => {
-    if (data.count === 0)
-      return { label: "start", funct: onClickStartPauseButton };
+  type startPauseButton = {
+    style: "default" | "primary" | "secondary" | "go";
+    label: string;
+    onClick: () => void;
+  };
+  const startPauseButton: startPauseButton = useMemo(() => {
+    if (data.count === 0) {
+      return {
+        style: "primary",
+        label: "start",
+        onClick: onClickStartPauseButton,
+      };
+    }
     if (data.isCounterPaused) {
       return isJammerToRelease
-        ? { label: "release", funct: data.onReset }
-        : { label: "resume", funct: onClickStartPauseButton };
+        ? { style: "go", label: "release", onClick: data.onReset }
+        : {
+            style: "primary",
+            label: "resume",
+            onClick: onClickStartPauseButton,
+          };
     }
-    return { label: "pause", funct: onClickStartPauseButton };
-  };
+    return {
+      style: "primary",
+      label: "pause",
+      onClick: onClickStartPauseButton,
+    };
+  }, [
+    data.count,
+    data.isCounterPaused,
+    isJammerToRelease,
+    onClickStartPauseButton,
+    data.onReset,
+  ]);
 
   const counterClassName =
     jammerId === "jammer1" ? `counter counter-${jammerId}` : "counter";
@@ -71,14 +96,14 @@ const Counter = ({ type, jammerId }: ICounter) => {
           {`+${PENALTY_TIME}`}
         </Button>
         <Button
-          style="primary"
+          style={startPauseButton.style}
           size="large"
           active={data.count !== 0 && !isTimePaused}
           paused={data.isCounterPaused && !isTimePaused}
           disabled={isTimePaused ?? false}
-          onClick={() => getStartPauseButton().funct()}
+          onClick={startPauseButton.onClick}
         >
-          {getStartPauseButton().label}
+          {startPauseButton.label}
         </Button>
       </div>
     </div>

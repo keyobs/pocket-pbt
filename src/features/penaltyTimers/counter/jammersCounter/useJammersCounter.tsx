@@ -74,31 +74,52 @@ const useJammersCounter = () => {
     }));
   }, []);
 
+  // 2 dedicated useEffect to avoid countdown unwanted interactions,especially onReset
   useEffect(() => {
-    const timers: NodeJS.Timeout[] = [];
-
-    for (const jammerId of Object.keys(jammers) as TJammerCounter[]) {
-      if (
-        jammers[jammerId].count > 0 &&
-        !jammers[jammerId].isPaused &&
-        !isTimePaused
-      ) {
-        const counting = setTimeout(() => {
-          setJammers((prev) => ({
+    if (
+      jammers.jammer1.count > 0 &&
+      !jammers.jammer1.isPaused &&
+      !isTimePaused
+    ) {
+      const id = setInterval(() => {
+        setJammers((prev) => {
+          const currentCount = prev.jammer1.count;
+          if (currentCount <= 1) {
+            return { ...prev, jammer1: { ...INITIAL_JAMMER_STATE } };
+          }
+          return {
             ...prev,
-            [jammerId]: { ...prev[jammerId], count: prev[jammerId].count - 1 },
-          }));
-        }, 1000);
-        timers.push(counting);
-      }
+            jammer1: { ...prev.jammer1, count: currentCount - 1 },
+          };
+        });
+      }, 1000);
 
-      if (wasJammerCountStarted(jammerId) && jammers[jammerId].count === 0) {
-        onReset(jammerId);
-      }
+      return () => clearInterval(id);
     }
+  }, [jammers.jammer1.count, jammers.jammer1.isPaused, isTimePaused]);
 
-    return () => timers.forEach(clearTimeout);
-  }, [jammers, isTimePaused, wasJammerCountStarted, onReset]);
+  useEffect(() => {
+    if (
+      jammers.jammer2.count > 0 &&
+      !jammers.jammer2.isPaused &&
+      !isTimePaused
+    ) {
+      const id = setInterval(() => {
+        setJammers((prev) => {
+          const currentCount = prev.jammer2.count;
+          if (currentCount <= 1) {
+            return { ...prev, jammer2: { ...INITIAL_JAMMER_STATE } };
+          }
+          return {
+            ...prev,
+            jammer2: { ...prev.jammer2, count: currentCount - 1 },
+          };
+        });
+      }, 1000);
+
+      return () => clearInterval(id);
+    }
+  }, [jammers.jammer2.count, jammers.jammer2.isPaused, isTimePaused]);
 
   const onStartWhenOtherJammerIsRunning = useCallback(
     (

@@ -6,6 +6,8 @@
   "homepage": "https://keyobs.github.io/pocket-pbt/",
   "scripts": {
     "dev": "vite",
+    "//": "⚠️ NOTE: prebuild generates deviceBreakpoints.less from script",
+    "prebuild": "node scripts/generate-less.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",

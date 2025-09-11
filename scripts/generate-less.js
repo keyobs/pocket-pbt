@@ -2,14 +2,13 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { breakpoints } from "@constants/deviceBreakpoints";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-type Breakpoints = Record<string, number>;
+const { breakpoints } = await import("../src/constants/deviceBreakpoints.ts");
 
-const content = Object.entries(breakpoints as Breakpoints)
+const content = Object.entries(breakpoints)
   .map(([key, value]) => `@${key}: ${value}px;`)
   .join("\n");
 

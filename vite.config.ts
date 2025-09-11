@@ -26,7 +26,7 @@ try {
 }
 
 export default defineConfig({
-  base: "/",
+  base: "/pocket-pbt/",
   plugins: [react(), tsconfigPaths()],
   define: {
     __APP_VERSION__: JSON.stringify(APP_VERSION),

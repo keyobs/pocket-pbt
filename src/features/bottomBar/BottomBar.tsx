@@ -46,14 +46,9 @@ const BottomBar = () => {
   return (
     <>
       <div className="bottom-bar">
-        <div className="bottom-bar-item">
-          <MenuButton onClick={() => onOpenMenu("app-parameters")}>
-            oO
-          </MenuButton>
-          <ColorsMenuButton onClick={() => onOpenMenu("colors")} />
-        </div>
+        <MenuButton onClick={() => onOpenMenu("app-parameters")}>oO</MenuButton>
         <AllCountersActions />
-        <div className="bottom-bar-item"></div>
+        <ColorsMenuButton onClick={() => onOpenMenu("colors")} />
       </div>
 
       <Drawer isOpen={isDrawerOpen} onClose={() => setMenuSelected(null)}>

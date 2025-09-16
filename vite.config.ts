@@ -37,6 +37,11 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "src/styles"),
     },
   },
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: "./src/test/setup.ts",
+  },
   css: {
     preprocessorOptions: {
       less: {

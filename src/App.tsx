@@ -11,7 +11,7 @@ function App() {
       <SettingsMenuProvider>
         <TeamColorProvider>
           <TimeProvider>
-            <div id="app-content">
+            <div id="app-content" role="main">
               <PenaltyTimers />
               <BottomBar />
             </div>

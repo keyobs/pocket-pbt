@@ -5,7 +5,14 @@ type TColorDot = {
 };
 
 export const ColorDot = ({ color }: TColorDot) => {
-  return <div className="color-dot" style={{ backgroundColor: color }}></div>;
+  return (
+    <div
+      role="img"
+      aria-label={`${color} color-dot`}
+      className="color-dot"
+      style={{ backgroundColor: color }}
+    ></div>
+  );
 };
 
 export default ColorDot;

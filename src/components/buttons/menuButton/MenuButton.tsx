@@ -8,7 +8,12 @@ interface IMenuButton {
 
 const MenuButton = ({ children, onClick }: IMenuButton) => {
   return (
-    <button id="pbt-menu-button" onClick={onClick} className="pbt-menu-button ">
+    <button
+      id="pbt-menu-button"
+      role="button"
+      onClick={onClick}
+      className="pbt-menu-button "
+    >
       {children}
     </button>
   );

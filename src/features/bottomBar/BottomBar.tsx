@@ -4,7 +4,7 @@ import TeamsColorManager from "@features/menu/teamsColor/TeamsColorManager";
 import Drawer from "@components/drawer/Drawer";
 import AllCountersActions from "@components/globalTimeAction/GlobalTimeAction";
 import ColorsMenuButton from "./ColorsMenuButton";
-import MenuButton from "@components/buttons/MenuButton";
+import MenuButton from "@components/buttons/menuButton/MenuButton";
 import ParametersMenu from "@features/menu/settings/SettingsMenu";
 
 const BottomBar = () => {

@@ -31,6 +31,7 @@ export const Button = ({
   return (
     <button
       id="pbt-button"
+      role="button"
       disabled={disabled}
       onClick={onClick}
       className={buttonClass}

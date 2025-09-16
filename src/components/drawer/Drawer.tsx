@@ -18,7 +18,12 @@ const Drawer = ({ isOpen, onClose, children }: IDrawer) => {
   };
 
   return (
-    <div id="pbt-drawer" className={`drawer ${isOpen ? "open" : "closed"}`}>
+    <div
+      id="pbt-drawer"
+      aria-label="drawer"
+      role="complementary"
+      className={`drawer ${isOpen ? "open" : "closed"}`}
+    >
       <Button onClick={onClose} customStyle={customStyle} size="fit">
         {<ChevronRight />}
       </Button>

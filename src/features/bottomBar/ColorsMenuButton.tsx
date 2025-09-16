@@ -1,7 +1,7 @@
 import "./colorsMenubutton.less";
 import { CSSProperties } from "react";
 import { teamColors } from "@constants/teamColors";
-import MenuButton from "@components/buttons/MenuButton";
+import MenuButton from "@components/buttons/menuButton/MenuButton";
 
 type TColorsMenuButton = {
   onClick: () => void;

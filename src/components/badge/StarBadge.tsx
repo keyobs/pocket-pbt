@@ -7,8 +7,18 @@ type TBadge = {
 
 const StarBadge = ({ jammerId }: TBadge) => {
   return (
-    <div id={`badge-${jammerId}`} className="badge">
-      <Star fill="#d3b605" stroke="#c7ac04" size={30} />
+    <div
+      id={`badge-${jammerId}`}
+      data-testid={`badge-${jammerId}`}
+      className="badge"
+    >
+      <Star
+        role="img"
+        aria-label="star"
+        fill="#d3b605"
+        stroke="#c7ac04"
+        size={30}
+      />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { PENALTY_TIME } from "@constants/penalties";
 import { JammersCounterData } from "./jammersCounter/JammersCounterData";
 import { BlockerCounterData } from "./blockerCounter/BlockerCounterData";
 import Timer from "@components/timer/Timer";
-import { useMobileScreen } from "@utils/useMobileScreen";
+import { useMobileScreen } from "@hooks/useMobileScreen";
 import StarBadge from "@components/badge/StarBadge";
 import { useCallback, useMemo } from "react";
 

@@ -9,12 +9,7 @@ import {
 
 const TeamsColorManager = () => {
   const { team1Color, team2Color } = useTeamsColorContextState();
-  const { onChangeTeam1Color, onChangeTeam2Color } =
-    useTeamsColorContextDispatch();
-
-  const getOnChangeColor = (team: number) => {
-    return team === 1 ? onChangeTeam1Color : onChangeTeam2Color;
-  };
+  const { getOnChangeColor } = useTeamsColorContextDispatch();
 
   return (
     <div className="teams-color-manager">

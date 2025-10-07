@@ -7,6 +7,7 @@ type TTeamColorContext = {
   team2Color: TTeamColor;
   onChangeTeam1Color: (color: TTeamColor) => void;
   onChangeTeam2Color: (color: TTeamColor) => void;
+  getOnChangeColor: (team: number) => (color: TTeamColor) => void;
 };
 
 export const TeamColorContext = createContext<TTeamColorContext | null>(null);
@@ -27,6 +28,7 @@ export function useTeamsColorContextState() {
 }
 
 export function useTeamsColorContextDispatch() {
-  const { onChangeTeam1Color, onChangeTeam2Color } = useTeamsColorContext();
-  return { onChangeTeam1Color, onChangeTeam2Color };
+  const { onChangeTeam1Color, onChangeTeam2Color, getOnChangeColor } =
+    useTeamsColorContext();
+  return { onChangeTeam1Color, onChangeTeam2Color, getOnChangeColor };
 }

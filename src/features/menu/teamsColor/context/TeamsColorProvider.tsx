@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { TeamColorContext } from "./index";
 import {
   defaultTeamColor,
@@ -20,17 +20,28 @@ export function TeamColorProvider({ children }: { children: React.ReactNode }) {
     getDefaultTeamColor("team2")
   );
 
-  const onChangeTeam1Color = (color: TTeamColor) => {
+  const onChangeTeam1Color = useCallback((color: TTeamColor) => {
     setTeam1Color(color);
-  };
+  }, []);
 
-  const onChangeTeam2Color = (color: TTeamColor) => {
+  const onChangeTeam2Color = useCallback((color: TTeamColor) => {
     setTeam2Color(color);
-  };
+  }, []);
+
+  const getOnChangeColor = useCallback(
+    (team: number) => (team === 1 ? onChangeTeam1Color : onChangeTeam2Color),
+    [onChangeTeam1Color, onChangeTeam2Color]
+  );
 
   return (
     <TeamColorContext.Provider
-      value={{ team1Color, team2Color, onChangeTeam1Color, onChangeTeam2Color }}
+      value={{
+        team1Color,
+        team2Color,
+        onChangeTeam1Color,
+        onChangeTeam2Color,
+        getOnChangeColor,
+      }}
     >
       {children}
     </TeamColorContext.Provider>

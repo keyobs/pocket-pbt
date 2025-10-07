@@ -1,34 +1,25 @@
 import "./teamsColorManager.less";
-import { Button } from "@components/buttons/Button";
-import ColorDot from "@components/colorDot/ColorDot";
 import { teamColors } from "@constants/teamColors";
-import {
-  useTeamsColorContextDispatch,
-  useTeamsColorContextState,
-} from "./context/index";
+import { useTeamsColorContextDispatch } from "./context/index";
+import ColorsList from "./colorsList/ColorsList";
 
 const TeamsColorManager = () => {
-  const { team1Color, team2Color } = useTeamsColorContextState();
   const { getOnChangeColor } = useTeamsColorContextDispatch();
+  const userTeamColors = [...teamColors];
 
   return (
     <div className="teams-color-manager">
-      {[1, 2].map((team) => (
-        <div key={team} className="team">
-          <h3>Team {team}</h3>
-          {teamColors.map((color, index) => (
-            <Button
-              disabled={color === (team === 1 ? team1Color : team2Color)}
-              key={index}
-              onClick={() => getOnChangeColor(team)(color)}
-              size="fit"
-            >
-              <ColorDot color={color.code} />
-              <span style={{ marginLeft: "4px" }}>{color.name}</span>
-            </Button>
-          ))}
-        </div>
-      ))}
+      <div className="teams-colors">
+        {[1, 2].map((team) => (
+          <ColorsList
+            key={team}
+            team={team}
+            title={`Team ${team} Color`}
+            teamColors={userTeamColors}
+            onChange={getOnChangeColor}
+          />
+        ))}
+      </div>
     </div>
   );
 };

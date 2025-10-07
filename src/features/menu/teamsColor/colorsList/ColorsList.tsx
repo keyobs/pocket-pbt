@@ -1,0 +1,36 @@
+import "./colorsList.less";
+import { Button } from "@components/buttons/Button";
+import ColorDot from "@components/colorDot/ColorDot";
+import { useTeamsColorContextState } from "../context";
+import { TTeamColor } from "@constants/teamColors";
+
+interface ITeamColors {
+  title: string;
+  team: number;
+  teamColors: TTeamColor[];
+  onChange: (team: number) => (color: TTeamColor) => void;
+}
+
+const ColorsList = (props: ITeamColors) => {
+  const { team1Color, team2Color } = useTeamsColorContextState();
+  const { team, teamColors, title, onChange } = props;
+
+  return (
+    <div className="colors-list">
+      <h3>{title}</h3>
+      {teamColors.map((color, index) => (
+        <Button
+          disabled={color === (team === 1 ? team1Color : team2Color)}
+          key={index}
+          onClick={() => onChange(team)(color)}
+          size="fit"
+        >
+          <ColorDot color={color.code} />
+          <span style={{ marginLeft: "4px" }}>{color.name}</span>
+        </Button>
+      ))}
+    </div>
+  );
+};
+
+export default ColorsList;

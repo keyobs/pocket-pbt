@@ -5,19 +5,17 @@
   column-count: 2;
   width: 100%;
   column-gap: 50px;
+  min-width: 220px;
 
-  .team {
-    display: flex;
-    flex-direction: column;
-  }
+  .teams-colors {
+    display: grid; //to apply row-gap
+    row-gap: 20px;
+    width: 100%;
 
-  h3 {
-    margin: 0 7px 7px 7px;
-  }
-
-  @media (min-width: @small) {
-    h3 {
-      margin: default;
+    @media (min-width: @xsmall) {
+      display: flex;
+      column-count: 2;
+      column-gap: 50px;
     }
   }
 }

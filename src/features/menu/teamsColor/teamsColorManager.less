@@ -1,21 +1,76 @@
 @import "@styles/deviceBreakpoints.less";
 
 .teams-color-manager {
-  display: flex;
-  column-count: 2;
-  width: 100%;
-  column-gap: 50px;
-  min-width: 220px;
+  text-align: end;
+  padding: 20px 0;
+  box-sizing: border-box;
+  min-height: 100%;
+  border-radius: 5px;
+  width: 300px;
+
+  @media (min-width: @xsmall) {
+    display: flex;
+    column-gap: 20px;
+    text-align: unset;
+    padding: 5px 0;
+    width: 400px;
+    flex-direction: column;
+  }
+
+  &.active {
+    background-color: #2a86fb;
+
+    button {
+      border: 2px solid white;
+    }
+  }
+
+  .top-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 5px 10px;
+
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      flex-grow: 1;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: white;
+    }
+  }
+
+  .pbt-menu-button {
+    margin: 0 5px;
+
+    @media (min-width: @xsmall) {
+      order: 2;
+      margin-left: auto;
+      margin-bottom: unset;
+    }
+  }
+
+  .settings-icon {
+    transition: transform 0.3s ease;
+    transform-origin: center;
+  }
+
+  .settings-icon.active {
+    transform: rotate(90deg);
+  }
 
   .teams-colors {
-    display: grid; //to apply row-gap
-    row-gap: 20px;
+    display: flex; //to apply row-gap
     width: 100%;
+    column-gap: 10px;
 
     @media (min-width: @xsmall) {
       display: flex;
       column-count: 2;
       column-gap: 50px;
+      order: 1;
     }
   }
 }

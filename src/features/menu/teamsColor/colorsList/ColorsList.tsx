@@ -5,7 +5,7 @@ import { useTeamsColorContextState } from "../context";
 import { TTeamColor } from "@constants/teamColors";
 
 interface ITeamColors {
-  title: string;
+  title: string | null;
   team: number;
   teamColors: TTeamColor[];
   onChange: (team: number) => (color: TTeamColor) => void;
@@ -17,7 +17,7 @@ const ColorsList = (props: ITeamColors) => {
 
   return (
     <div className="colors-list">
-      <h3>{title}</h3>
+      <h3>{title || "\u00a0"}</h3>
       {teamColors.map((color, index) => (
         <Button
           disabled={color === (team === 1 ? team1Color : team2Color)}

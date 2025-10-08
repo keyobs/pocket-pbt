@@ -37,6 +37,7 @@ const TeamsColorManager = () => {
               title={!settingsMode ? `Team ${team}` : null}
               teamColors={userTeamColors}
               onChange={getOnChangeColor}
+              disabledStyle={settingsMode ? "selectable" : null}
             />
           )
         )}

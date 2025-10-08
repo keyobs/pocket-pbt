@@ -9,6 +9,7 @@ interface ITeamColors {
   team: number;
   teamColors: TTeamColor[];
   onChange: (team: number) => (color: TTeamColor) => void;
+  disabledStyle?: "selectable" | null;
 }
 
 const ColorsList = (props: ITeamColors) => {
@@ -24,6 +25,8 @@ const ColorsList = (props: ITeamColors) => {
           key={index}
           onClick={() => onChange(team)(color)}
           size="fit"
+          align="start"
+          disabledStyle={props.disabledStyle || "default"}
         >
           <ColorDot color={color.code} />
           <span style={{ marginLeft: "4px" }}>{color.name}</span>

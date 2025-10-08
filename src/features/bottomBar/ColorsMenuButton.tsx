@@ -9,8 +9,8 @@ type TColorsMenuButton = {
 
 const ColorsMenuButton = ({ onClick }: TColorsMenuButton) => {
   const defaultColors = ["blue", "pink", "lagoon"];
-  const colorsSet = useTeamsColorContextState().colorsSet;
 
+  const colorsSet = useTeamsColorContextState().colorsSet;
   const defaultCodeColors = colorsSet
     .filter((color) => defaultColors.includes(color.name))
     .map((color) => color.code);

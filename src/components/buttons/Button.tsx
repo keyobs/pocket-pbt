@@ -31,11 +31,17 @@ export const Button = ({
     disabledStyle === "selectable" ? "selected" : "disabled";
 
   const buttonClass = cleanClasses(
-    `pbt-button ${style} ${size} ${disabled && disabledClass}
-    ${active && "active"} ${paused && "paused"}`
+    [
+      "pbt-button",
+      style,
+      size,
+      disabled ? disabledClass : "",
+      active ? "active" : "",
+      paused ? "paused" : "",
+    ].join(" ")
   );
 
-  const textClass = cleanClasses(`${align}`);
+  const textClass = cleanClasses(align);
 
   return (
     <button

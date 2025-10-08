@@ -1,13 +1,8 @@
 import "./colorsList.less";
-import { useState } from "react";
-import { TTeamColor } from "@constants/defaultColorsSet";
 import { Button } from "@components/buttons/Button";
 import ColorDot from "@components/colorDot/ColorDot";
-import {
-  useTeamsColorContextDispatch,
-  useTeamsColorContextState,
-} from "../context";
 import ColorPicker from "../colorPicker/ColorPicker";
+import { useColorsList } from "./useColorList";
 
 interface ITeamColors {
   title: string | null;
@@ -16,35 +11,8 @@ interface ITeamColors {
 }
 
 const ColorsList = ({ settingsMode, team, title }: ITeamColors) => {
-  const { team1Color, team2Color, colorsSet } = useTeamsColorContextState();
-  const { getOnChangeColor } = useTeamsColorContextDispatch();
-
-  function findTeam1Index() {
-    return colorsSet.findIndex((color) => color === team1Color);
-  }
-
-  const [selectedColorIndex, setSelectedColorIndex] = useState<number>(
-    findTeam1Index()
-  );
-
-  const onSelectColorSpot = (index: number) => {
-    if (settingsMode) {
-      setSelectedColorIndex(index);
-    }
-  };
-
-  const handleColorChange = (color: TTeamColor, index: number) => {
-    if (settingsMode) onSelectColorSpot(index);
-    else getOnChangeColor(team)(color);
-  };
-
-  const isButtondisabled = (index: number, color: TTeamColor) => {
-    if (settingsMode) {
-      return index === selectedColorIndex;
-    } else {
-      return color === (team === 1 ? team1Color : team2Color);
-    }
-  };
+  const { colorsSet, handleColorChange, isButtondisabled, selectedColorIndex } =
+    useColorsList(settingsMode, team);
 
   return (
     <div className="colors-list">

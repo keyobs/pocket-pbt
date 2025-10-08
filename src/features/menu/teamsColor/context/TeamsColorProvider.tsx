@@ -3,14 +3,16 @@ import { TeamColorContext } from "./index";
 import {
   defaultTeamColor,
   TDefaultTeamColor,
-  teamColors,
+  defaultColorsSet,
   TTeamColor,
-} from "@constants/teamColors";
+} from "@constants/defaultColorsSet";
 
 export function TeamColorProvider({ children }: { children: React.ReactNode }) {
+  const colorsSet = [...defaultColorsSet];
+
   function getDefaultTeamColor(team: keyof TDefaultTeamColor): TTeamColor {
     const colorName = defaultTeamColor[team];
-    return teamColors.find((c) => c.name === colorName) || teamColors[0];
+    return colorsSet.find((c) => c.name === colorName) || colorsSet[0];
   }
 
   const [team1Color, setTeam1Color] = useState<TTeamColor>(
@@ -36,6 +38,7 @@ export function TeamColorProvider({ children }: { children: React.ReactNode }) {
   return (
     <TeamColorContext.Provider
       value={{
+        colorsSet,
         team1Color,
         team2Color,
         onChangeTeam1Color,

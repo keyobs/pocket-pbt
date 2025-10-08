@@ -2,7 +2,7 @@ import "./colorsList.less";
 import { Button } from "@components/buttons/Button";
 import ColorDot from "@components/colorDot/ColorDot";
 import { useTeamsColorContextState } from "../context";
-import { TTeamColor } from "@constants/teamColors";
+import { TTeamColor } from "@constants/defaultColorsSet";
 
 interface ITeamColors {
   title: string | null;

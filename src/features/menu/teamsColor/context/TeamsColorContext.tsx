@@ -1,8 +1,9 @@
 import { createContext } from "react";
-import { TTeamColor } from "@constants/teamColors";
+import { TTeamColor } from "@constants/defaultColorsSet";
 import { useContext } from "react";
 
 type TTeamColorContext = {
+  colorsSet: TTeamColor[];
   team1Color: TTeamColor;
   team2Color: TTeamColor;
   onChangeTeam1Color: (color: TTeamColor) => void;
@@ -23,8 +24,8 @@ export function useTeamsColorContext() {
 }
 
 export function useTeamsColorContextState() {
-  const { team1Color, team2Color } = useTeamsColorContext();
-  return { team1Color, team2Color };
+  const { colorsSet, team1Color, team2Color } = useTeamsColorContext();
+  return { colorsSet, team1Color, team2Color };
 }
 
 export function useTeamsColorContextDispatch() {

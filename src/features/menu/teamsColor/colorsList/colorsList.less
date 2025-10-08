@@ -1,16 +1,29 @@
 @import "@styles/deviceBreakpoints.less";
 
 .colors-list {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 
-  h3 {
-    margin: 0 7px 7px 7px;
+  @media (min-width: @xsmall) {
+    display: flex;
+    justify-content: space-between;
   }
 
-  @media (min-width: @small) {
+  .list {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: @xsmall) {
+    }
+
     h3 {
-      margin: default;
+      margin: 0 7px 7px 7px;
+    }
+
+    @media (min-width: @small) {
+      h3 {
+        margin: default;
+      }
     }
   }
 }

@@ -1,37 +1,71 @@
 import "./colorsList.less";
+import { useState } from "react";
+import { TTeamColor } from "@constants/defaultColorsSet";
 import { Button } from "@components/buttons/Button";
 import ColorDot from "@components/colorDot/ColorDot";
-import { useTeamsColorContextState } from "../context";
-import { TTeamColor } from "@constants/defaultColorsSet";
+import {
+  useTeamsColorContextDispatch,
+  useTeamsColorContextState,
+} from "../context";
+import ColorPicker from "../colorPicker/ColorPicker";
 
 interface ITeamColors {
   title: string | null;
   team: number;
-  teamColors: TTeamColor[];
-  onChange: (team: number) => (color: TTeamColor) => void;
-  disabledStyle?: "selectable" | null;
+  settingsMode: boolean;
 }
 
-const ColorsList = (props: ITeamColors) => {
-  const { team1Color, team2Color } = useTeamsColorContextState();
-  const { team, teamColors, title, onChange } = props;
+const ColorsList = ({ settingsMode, team, title }: ITeamColors) => {
+  const { team1Color, team2Color, colorsSet } = useTeamsColorContextState();
+  const { getOnChangeColor } = useTeamsColorContextDispatch();
+
+  function findTeam1Index() {
+    return colorsSet.findIndex((color) => color === team1Color);
+  }
+
+  const [selectedColorIndex, setSelectedColorIndex] = useState<number>(
+    findTeam1Index()
+  );
+
+  const onSelectColorSpot = (index: number) => {
+    if (settingsMode) {
+      setSelectedColorIndex(index);
+    }
+  };
+
+  const handleColorChange = (color: TTeamColor, index: number) => {
+    if (settingsMode) onSelectColorSpot(index);
+    else getOnChangeColor(team)(color);
+  };
+
+  const isButtondisabled = (index: number, color: TTeamColor) => {
+    if (settingsMode) {
+      return index === selectedColorIndex;
+    } else {
+      return color === (team === 1 ? team1Color : team2Color);
+    }
+  };
 
   return (
     <div className="colors-list">
-      <h3>{title || "\u00a0"}</h3>
-      {teamColors.map((color, index) => (
-        <Button
-          disabled={color === (team === 1 ? team1Color : team2Color)}
-          key={index}
-          onClick={() => onChange(team)(color)}
-          size="fit"
-          align="start"
-          disabledStyle={props.disabledStyle || "default"}
-        >
-          <ColorDot color={color.code} />
-          <span style={{ marginLeft: "4px" }}>{color.name}</span>
-        </Button>
-      ))}
+      <div className="list">
+        <h3>{title || "\u00a0"}</h3>
+        {colorsSet.map((color, index) => (
+          <Button
+            disabled={isButtondisabled(index, color)}
+            key={index}
+            onClick={() => handleColorChange(color, index)}
+            size="fit"
+            align="start"
+            disabledStyle={settingsMode ? "selectable" : "default"}
+          >
+            <ColorDot color={color.code} />
+            <span style={{ marginLeft: "4px" }}>{color.name}</span>
+          </Button>
+        ))}
+      </div>
+
+      {settingsMode && <ColorPicker index={selectedColorIndex} />}
     </div>
   );
 };

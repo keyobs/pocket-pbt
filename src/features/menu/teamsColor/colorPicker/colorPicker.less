@@ -1,0 +1,15 @@
+@import "@styles/deviceBreakpoints.less";
+
+.color-picker {
+  display: flex;
+  flex-direction: column;
+  margin-right: 40px;
+  margin-top: 20px;
+  align-items: center;
+
+  @media (min-width: @xsmall) {
+    margin-right: 20px;
+    margin-top: unset;
+    justify-content: flex-end;
+  }
+}

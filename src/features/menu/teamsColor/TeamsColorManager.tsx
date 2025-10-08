@@ -2,18 +2,10 @@ import "./teamsColorManager.less";
 import { useState } from "react";
 import { Settings } from "react-feather";
 import MenuButton from "@components/buttons/menuButton/MenuButton";
-import {
-  useTeamsColorContextDispatch,
-  useTeamsColorContextState,
-} from "./context/index";
 import ColorsList from "./colorsList/ColorsList";
 
 const TeamsColorManager = () => {
   const [settingsMode, setSettingsMode] = useState(false);
-  const { getOnChangeColor } = useTeamsColorContextDispatch();
-
-  const colorsSet = useTeamsColorContextState().colorsSet;
-
   const numberOfList = settingsMode ? 1 : 2;
 
   return (
@@ -34,12 +26,10 @@ const TeamsColorManager = () => {
         {Array.from({ length: numberOfList }, (_, index) => index + 1).map(
           (team) => (
             <ColorsList
+              settingsMode={settingsMode}
               key={team}
               team={team}
               title={!settingsMode ? `Team ${team}` : null}
-              teamColors={colorsSet}
-              onChange={getOnChangeColor}
-              disabledStyle={settingsMode ? "selectable" : null}
             />
           )
         )}

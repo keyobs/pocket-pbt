@@ -6,7 +6,7 @@ export const defaultColorsSet = [
   { name: "pink", code: "#ee33ff" },
 ] as const;
 
-export type TTeamColor = (typeof defaultColorsSet)[number];
+export type TTeamColor = { name: string; code: string };
 export type TTeamColorName = (typeof defaultColorsSet)[number]["name"];
 
 export type TDefaultTeamColor = {

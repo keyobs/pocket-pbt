@@ -8,7 +8,9 @@ import {
 } from "@constants/defaultColorsSet";
 
 export function TeamColorProvider({ children }: { children: React.ReactNode }) {
-  const colorsSet = [...defaultColorsSet];
+  const [colorsSet, setColorsSet] = useState<TTeamColor[]>([
+    ...defaultColorsSet,
+  ]);
 
   function getDefaultTeamColor(team: keyof TDefaultTeamColor): TTeamColor {
     const colorName = defaultTeamColor[team];
@@ -35,6 +37,36 @@ export function TeamColorProvider({ children }: { children: React.ReactNode }) {
     [onChangeTeam1Color, onChangeTeam2Color]
   );
 
+  const getOnChangeColorInColorsSet = useCallback(
+    (index: number, newColorCode: string) => {
+      setColorsSet((prevColors) => {
+        if (index < 0 || index >= prevColors.length) {
+          return prevColors;
+        }
+
+        const previousColor = prevColors[index];
+        const updatedColor: TTeamColor = {
+          // TODO : api or library to generate color names
+          name: `color-${index + 1}`,
+          code: newColorCode,
+        };
+
+        const nextColors = [...prevColors];
+        nextColors[index] = updatedColor;
+
+        setTeam1Color((prevTeam1) =>
+          prevTeam1 === previousColor ? updatedColor : prevTeam1
+        );
+        setTeam2Color((prevTeam2) =>
+          prevTeam2 === previousColor ? updatedColor : prevTeam2
+        );
+
+        return nextColors;
+      });
+    },
+    []
+  );
+
   return (
     <TeamColorContext.Provider
       value={{
@@ -44,6 +76,7 @@ export function TeamColorProvider({ children }: { children: React.ReactNode }) {
         onChangeTeam1Color,
         onChangeTeam2Color,
         getOnChangeColor,
+        getOnChangeColorInColorsSet,
       }}
     >
       {children}

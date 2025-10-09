@@ -9,7 +9,7 @@ type TTeamColorContext = {
   onChangeTeam1Color: (color: TTeamColor) => void;
   onChangeTeam2Color: (color: TTeamColor) => void;
   getOnChangeColor: (team: number) => (color: TTeamColor) => void;
-  getOnChangeColorInColorsSet: (index: number, newColor: string) => void;
+  getOnChangeColorInColorsSet: (index: number, newColor: TTeamColor) => void;
 };
 
 export const TeamColorContext = createContext<TTeamColorContext | null>(null);

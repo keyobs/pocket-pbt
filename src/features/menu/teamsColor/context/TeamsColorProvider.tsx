@@ -38,27 +38,20 @@ export function TeamColorProvider({ children }: { children: React.ReactNode }) {
   );
 
   const getOnChangeColorInColorsSet = useCallback(
-    (index: number, newColorCode: string) => {
+    (index: number, newColor: TTeamColor) => {
       setColorsSet((prevColors) => {
-        if (index < 0 || index >= prevColors.length) {
-          return prevColors;
-        }
+        if (index < 0 || index >= prevColors.length) return prevColors;
 
         const previousColor = prevColors[index];
-        const updatedColor: TTeamColor = {
-          // TODO : api or library to generate color names
-          name: `color-${index + 1}`,
-          code: newColorCode,
-        };
 
         const nextColors = [...prevColors];
-        nextColors[index] = updatedColor;
+        nextColors[index] = newColor;
 
         setTeam1Color((prevTeam1) =>
-          prevTeam1 === previousColor ? updatedColor : prevTeam1
+          prevTeam1 === previousColor ? newColor : prevTeam1
         );
         setTeam2Color((prevTeam2) =>
-          prevTeam2 === previousColor ? updatedColor : prevTeam2
+          prevTeam2 === previousColor ? newColor : prevTeam2
         );
 
         return nextColors;

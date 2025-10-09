@@ -28,7 +28,7 @@ export const useColorsList = (settingsMode: boolean, team: number) => {
     else getOnChangeColor(team)(color);
   };
 
-  const isButtondisabled = (index: number, color: TTeamColor) => {
+  const isButtonDisabled = (index: number, color: TTeamColor) => {
     if (settingsMode) {
       return index === selectedColorIndex;
     } else {
@@ -39,7 +39,7 @@ export const useColorsList = (settingsMode: boolean, team: number) => {
   return {
     colorsSet,
     handleColorChange,
-    isButtondisabled,
+    isButtonDisabled,
     selectedColorIndex,
   };
 };

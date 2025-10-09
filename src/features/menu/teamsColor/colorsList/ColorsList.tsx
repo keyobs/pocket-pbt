@@ -1,8 +1,7 @@
 import "./colorsList.less";
-import { Button } from "@components/buttons/Button";
-import ColorDot from "@components/colorDot/ColorDot";
 import ColorPicker from "../colorPicker/ColorPicker";
 import { useColorsList } from "./useColorList";
+import ColorButton from "@components/buttons/colorButton/ColorButton";
 
 interface ITeamColors {
   title: string | null;
@@ -11,7 +10,7 @@ interface ITeamColors {
 }
 
 const ColorsList = ({ settingsMode, team, title }: ITeamColors) => {
-  const { colorsSet, handleColorChange, isButtondisabled, selectedColorIndex } =
+  const { colorsSet, handleColorChange, isButtonDisabled, selectedColorIndex } =
     useColorsList(settingsMode, team);
 
   return (
@@ -19,17 +18,13 @@ const ColorsList = ({ settingsMode, team, title }: ITeamColors) => {
       <div className="list">
         <h3>{title || "\u00a0"}</h3>
         {colorsSet.map((color, index) => (
-          <Button
-            disabled={isButtondisabled(index, color)}
+          <ColorButton
             key={index}
-            onClick={() => handleColorChange(color, index)}
-            size="fit"
-            align="start"
-            disabledStyle={settingsMode ? "selectable" : "default"}
-          >
-            <ColorDot color={color.code} />
-            <span style={{ marginLeft: "4px" }}>{color.name}</span>
-          </Button>
+            color={color}
+            disabled={isButtonDisabled(index, color)}
+            handleOnClick={() => handleColorChange(color, index)}
+            settingsMode={settingsMode}
+          />
         ))}
       </div>
 

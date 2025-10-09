@@ -20,7 +20,8 @@ const ColorButton = ({
   const spanStyle: CSSProperties = {
     whiteSpace: "normal",
     textAlign: "left",
-    maxWidth: 85,
+    minWidth: 53,
+    maxWidth: 75,
   };
 
   return (

@@ -1,6 +1,6 @@
-import "./colorsList.less";
+import "./colorSelector.less";
 import ColorPicker from "../colorPicker/ColorPicker";
-import { useColorsList } from "./useColorList";
+import { useColorSelector } from "./useColorSelector";
 import ColorButton from "@components/buttons/colorButton/ColorButton";
 
 interface ITeamColors {
@@ -9,12 +9,12 @@ interface ITeamColors {
   settingsMode: boolean;
 }
 
-const ColorsList = ({ settingsMode, team, title }: ITeamColors) => {
+const ColorsSelector = ({ settingsMode, team, title }: ITeamColors) => {
   const { colorsSet, handleColorChange, isColorSelected, selectedColorIndex } =
-    useColorsList(settingsMode, team);
+    useColorSelector(settingsMode, team);
 
   return (
-    <div className="colors-list">
+    <div className="color-selector">
       <div className="list">
         <h3>{title || "\u00a0"}</h3>
         {colorsSet.map((color, index) => (
@@ -33,4 +33,4 @@ const ColorsList = ({ settingsMode, team, title }: ITeamColors) => {
   );
 };
 
-export default ColorsList;
+export default ColorsSelector;

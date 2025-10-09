@@ -2,7 +2,7 @@ import "./teamsColorManager.less";
 import { useState } from "react";
 import { Settings } from "react-feather";
 import MenuButton from "@components/buttons/menuButton/MenuButton";
-import ColorsList from "./colorsList/ColorsList";
+import ColorSelector from "./colorSelector/ColorSelector";
 
 const TeamsColorManager = () => {
   const [settingsMode, setSettingsMode] = useState(false);
@@ -25,7 +25,7 @@ const TeamsColorManager = () => {
       <div className="teams-colors">
         {Array.from({ length: numberOfList }, (_, index) => index + 1).map(
           (team) => (
-            <ColorsList
+            <ColorSelector
               settingsMode={settingsMode}
               key={team}
               team={team}

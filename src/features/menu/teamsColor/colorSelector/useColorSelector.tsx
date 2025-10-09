@@ -5,7 +5,7 @@ import {
   useTeamsColorContextDispatch,
 } from "../context";
 
-export const useColorsList = (settingsMode: boolean, team: number) => {
+export const useColorSelector = (settingsMode: boolean, team: number) => {
   const { team1Color, team2Color, colorsSet } = useTeamsColorContextState();
   const { getOnChangeColor } = useTeamsColorContextDispatch();
 

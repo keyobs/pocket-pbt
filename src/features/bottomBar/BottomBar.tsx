@@ -5,7 +5,7 @@ import Drawer from "@components/drawer/Drawer";
 import AllCountersActions from "@components/globalTimeAction/GlobalTimeAction";
 import ColorsMenuButton from "./ColorsMenuButton";
 import MenuButton from "@components/buttons/menuButton/MenuButton";
-import ParametersMenu from "@features/menu/settings/SettingsMenu";
+import SettingsMenu from "@features/menu/settings/SettingsMenu";
 
 const BottomBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
@@ -35,7 +35,7 @@ const BottomBar = () => {
   const renderDrawerContent = () => {
     switch (menuSelected) {
       case "app-parameters":
-        return <ParametersMenu />;
+        return <SettingsMenu />;
       case "colors":
         return <TeamsColorManager />;
       default:

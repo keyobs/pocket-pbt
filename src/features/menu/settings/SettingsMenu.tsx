@@ -1,36 +1,58 @@
-import "./settings.less";
-const version = import.meta.env.VITE_APP_VERSION;
+import SubMenuButton from "@components/buttons/subMenuButton/SubMenuButton";
+import { useState } from "react";
+import QuickSettings from "./QuickSettings";
+import SubMenu from "./SubMenu";
+import VersionLog from "./versionLog/VersionLog";
 
-import ToggleButton from "@components/buttons/toggleButton/ToggleButton";
-import { settingsConfig, TAppSettings } from "./SettingsConfig";
-import {
-  useSettingsDispatch,
-  useSettingsState,
-} from "./context/SettingsMenuContext";
+type TSubMenuOptions = "default" | "about";
+const subMenuOptions: TSubMenuOptions[] = ["about"];
 
 const SettingsMenu = () => {
-  const appSettings = useSettingsState();
-  const handleToggle = useSettingsDispatch();
+  const [subMenuSelected, setSubMenuSelected] =
+    useState<TSubMenuOptions>("default");
+
+  const renderDrawerContent = () => {
+    switch (subMenuSelected) {
+      case "default":
+        return <MainSettings handleOnClick={setSubMenuSelected} />;
+      case "about":
+        return (
+          <SubMenu title="about" goBack={() => setSubMenuSelected("default")}>
+            <VersionLog />
+          </SubMenu>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="settings">
-      <h3>Settings</h3>
-      <div className="content">
-        {settingsConfig.map((setting) => (
-          <ToggleButton
-            key={setting.key}
-            label={setting.label}
-            isToggled={appSettings[setting.key]}
-            onToggle={() => handleToggle(setting.key as keyof TAppSettings)}
-          />
-        ))}
-      </div>
-      <footer>
-        <span>Version: {version}</span>
-        <br />
-        <span>Update: {__LAST_UPDATE_DATE__}</span>
-      </footer>
+      <div className="content">{renderDrawerContent()}</div>
     </div>
   );
 };
 
 export default SettingsMenu;
+
+const MainSettings = ({
+  handleOnClick,
+}: {
+  handleOnClick: (option: TSubMenuOptions) => void;
+}) => {
+  return (
+    <>
+      <h3>Settings</h3>
+      <QuickSettings />
+      <div>
+        {subMenuOptions.map((option) => (
+          <SubMenuButton
+            key={option}
+            text={option}
+            handleOnClick={() => handleOnClick(option)}
+          />
+        ))}
+      </div>
+    </>
+  );
+};

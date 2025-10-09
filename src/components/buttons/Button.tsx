@@ -3,9 +3,9 @@ import { cleanClasses } from "@utils/cleanClasses";
 import "./pbt-button.less";
 
 interface IButton {
+  onClick: () => void;
   active?: boolean;
   disabled?: boolean;
-  onClick: () => void;
   paused?: boolean;
   size?: "medium" | "large" | "fit";
   align?: "center" | "start";

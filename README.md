@@ -50,7 +50,7 @@ The rules = [WFTDA - The Rules of Flat Track Roller Derby](https://rules.wftda.c
 <br>
 <br>
 
-## 💻 Developer Setup
+## 💻 Developper Setup
 
 Built with React and Vite.  
 Project is open-source.

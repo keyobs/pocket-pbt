@@ -10,7 +10,7 @@ interface ITeamColors {
 }
 
 const ColorsList = ({ settingsMode, team, title }: ITeamColors) => {
-  const { colorsSet, handleColorChange, isButtonDisabled, selectedColorIndex } =
+  const { colorsSet, handleColorChange, isColorSelected, selectedColorIndex } =
     useColorsList(settingsMode, team);
 
   return (
@@ -21,7 +21,7 @@ const ColorsList = ({ settingsMode, team, title }: ITeamColors) => {
           <ColorButton
             key={index}
             color={color}
-            disabled={isButtonDisabled(index, color)}
+            active={isColorSelected(index, color)}
             handleOnClick={() => handleColorChange(color, index)}
             settingsMode={settingsMode}
           />

@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 import { cleanClasses } from "@utils/cleanClasses";
 import "./pbt-button.less";
 
@@ -9,10 +9,10 @@ interface IButton {
   paused?: boolean;
   size?: "medium" | "large" | "fit";
   align?: "center" | "start";
-  style?: "default" | "primary" | "secondary" | "go";
-  children: React.ReactNode;
+  style?: "default" | "primary" | "secondary" | "go" | "selection";
+  activeStyle?: "default" | "active" | "selected";
   customStyle?: CSSProperties;
-  disabledStyle?: "default" | "selectable";
+  children: ReactNode;
 }
 
 export const Button = ({
@@ -23,21 +23,18 @@ export const Button = ({
   size = "medium",
   align = "center",
   style = "default",
-  disabledStyle = "default",
+  activeStyle = "default",
   customStyle,
   children,
 }: IButton) => {
-  const disabledClass =
-    disabledStyle === "selectable" ? "selected" : "disabled";
-
   const buttonClass = cleanClasses(
     [
       "pbt-button",
       style,
       size,
-      disabled ? disabledClass : "",
-      active ? "active" : "",
       paused ? "paused" : "",
+      active ? "active" : "",
+      active ? activeStyle : "",
     ].join(" ")
   );
 

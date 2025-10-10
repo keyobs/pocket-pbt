@@ -35,6 +35,7 @@ export const Button = ({
       paused ? "paused" : "",
       active ? "active" : "",
       active ? activeStyle : "",
+      disabled ? "disabled" : "",
     ].join(" ")
   );
 

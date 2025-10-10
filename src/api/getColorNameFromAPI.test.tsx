@@ -19,7 +19,6 @@ describe("getColorNameFromApi", () => {
     });
 
     const result = await getColorNameFromApi("#87ceeb");
-
     expect(mockFetch).toHaveBeenCalledTimes(1);
     expect(mockFetch).toHaveBeenCalledWith(
       "https://api.color.pizza/v1/?values=87ceeb"
@@ -37,19 +36,19 @@ describe("getColorNameFromApi", () => {
     });
 
     const result = await getColorNameFromApi("ff0000");
-
     expect(mockFetch).toHaveBeenCalledWith(
       "https://api.color.pizza/v1/?values=ff0000"
     );
     expect(result).toBe("Bright Red");
   });
 
-  it("throws if API fails or response malformed", async () => {
+  it("returns fallback if API fails or response malformed", async () => {
     mockFetch.mockResolvedValueOnce({
-      json: async () => ({}), // no colors property
+      json: async () => ({}),
     });
 
-    await expect(getColorNameFromApi("#000000")).rejects.toThrow();
+    const result = await getColorNameFromApi("#000000");
+    expect(result).toBe("color#000000");
   });
 
   it("throws if fetch rejects", async () => {

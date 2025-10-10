@@ -7,5 +7,12 @@ export async function getColorNameFromApi(hex: string): Promise<string> {
   const response = await fetch(`${url}/?values=${cleanHex}`);
   const data = await response.json();
 
-  return data.colors[0].name;
+  const name = data?.colors?.[0]?.name;
+
+  if (typeof name === "string" && name.trim() !== "") {
+    return name;
+  }
+
+  // If no network or response malformed, use fallback
+  return `color#${cleanHex}`;
 }

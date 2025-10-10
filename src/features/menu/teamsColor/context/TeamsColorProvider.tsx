@@ -13,7 +13,7 @@ const localStorageColorSetKey = "custom-set-colors";
 export function TeamColorProvider({ children }: { children: React.ReactNode }) {
   const { storedData, updateStoredData, removeStoredData } = useLocalStorage(
     localStorageColorSetKey,
-    defaultColorsSet
+    [...defaultColorsSet]
   );
   const initialColorsSet = storedData ? [...storedData] : [...defaultColorsSet];
 
@@ -70,7 +70,19 @@ export function TeamColorProvider({ children }: { children: React.ReactNode }) {
 
   const resetSetColorsToDefault = useCallback(() => {
     removeStoredData();
-    setColorsSet([...defaultColorsSet]);
+
+    const defaultSet = [...defaultColorsSet];
+    setColorsSet(defaultSet);
+
+    const getDefaultColor = (team: keyof TDefaultTeamColor) => {
+      const colorName = defaultTeamColor[team];
+      return (
+        defaultSet.find((color) => color.name === colorName) || defaultSet[0]
+      );
+    };
+
+    setTeam1Color(getDefaultColor("team1"));
+    setTeam2Color(getDefaultColor("team2"));
   }, [removeStoredData]);
 
   return (

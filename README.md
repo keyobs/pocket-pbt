@@ -22,6 +22,7 @@ Available :
 
 - 6 countdown timers for each six penalty box seats
 - Colored stroke helper
+- Customize your own color set
 
 Flexible Timing Configurations:
 

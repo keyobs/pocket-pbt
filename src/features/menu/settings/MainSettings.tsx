@@ -1,3 +1,4 @@
+import "./settings.less";
 import SubMenuButton from "@components/buttons/subMenuButton/SubMenuButton";
 import QuickSettings from "./QuickSettings";
 
@@ -13,8 +14,8 @@ const MainSettings = ({
   return (
     <>
       <h3>Settings</h3>
-      <QuickSettings />
-      <div>
+      <div className="main-settings">
+        <QuickSettings />
         {subMenuOptions.map((option) => (
           <SubMenuButton
             key={option}

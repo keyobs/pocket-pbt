@@ -3,6 +3,7 @@
   flex-direction: column;
   row-gap: 4px;
   height: 100%;
+  position: relative;
 
   .content {
     flex-grow: 1;
@@ -14,5 +15,18 @@
 
   footer {
     text-align: left;
+  }
+
+  .main-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 80px);
+  }
+
+  .goBack-wrapper {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
   }
 }

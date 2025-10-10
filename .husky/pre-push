@@ -1,0 +1,15 @@
+branch="$(git rev-parse --abbrev-ref HEAD)"
+protected_branches=("main" "develop" )
+
+echo "🧪 Running tests before pushing..."
+
+if ! pnpm test; then
+  if printf '%s\n' "${protected_branches[@]}" | grep -q -P "^${branch}$"; then
+    echo "❌ Tests failed. Push aborted on protected $branch."
+    exit 1
+  else
+    echo "⚠️ Tests failed, but push will continue on non-protected branch $branch."
+  fi
+else
+  echo "✅ Tests passed."
+fi

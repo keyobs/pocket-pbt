@@ -2,6 +2,9 @@ import "./colorSelector.less";
 import ColorPicker from "../colorPicker/ColorPicker";
 import { useColorSelector } from "./useColorSelector";
 import ColorButton from "@components/buttons/colorButton/ColorButton";
+import { Button } from "@components/buttons/Button";
+import { useTeamsColorContextDispatch } from "../context";
+import { AlertTriangle } from "react-feather";
 
 interface ITeamColors {
   title: string | null;
@@ -12,6 +15,8 @@ interface ITeamColors {
 const ColorsSelector = ({ settingsMode, team, title }: ITeamColors) => {
   const { colorsSet, handleColorChange, isColorSelected, selectedColorIndex } =
     useColorSelector(settingsMode, team);
+
+  const { resetSetColorsToDefault } = useTeamsColorContextDispatch();
 
   return (
     <div className="color-selector">
@@ -29,6 +34,19 @@ const ColorsSelector = ({ settingsMode, team, title }: ITeamColors) => {
       </div>
 
       {settingsMode && <ColorPicker index={selectedColorIndex} />}
+
+      {settingsMode && (
+        <div style={{ width: "100%" }}>
+          <Button
+            size="fit"
+            onClick={resetSetColorsToDefault}
+            customStyle={{ marginTop: 35 }}
+          >
+            <AlertTriangle />
+            <span style={{ marginLeft: 10 }}>reset all colors</span>
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

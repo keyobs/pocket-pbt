@@ -60,6 +60,10 @@ export function TeamColorProvider({ children }: { children: React.ReactNode }) {
     []
   );
 
+  const resetSetColorsToDefault = useCallback(() => {
+    setColorsSet([...defaultColorsSet]);
+  }, []);
+
   return (
     <TeamColorContext.Provider
       value={{
@@ -70,6 +74,7 @@ export function TeamColorProvider({ children }: { children: React.ReactNode }) {
         onChangeTeam2Color,
         getOnChangeColor,
         getOnChangeColorInColorsSet,
+        resetSetColorsToDefault,
       }}
     >
       {children}

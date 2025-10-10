@@ -2,10 +2,15 @@
 
 .color-selector {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media (min-width: @xsmall) {
-    display: flex;
     justify-content: space-between;
+    flex-direction: unset;
+    flex-wrap: wrap;
+    align-items: unset;
   }
 
   .list {

@@ -10,6 +10,7 @@ type TTeamColorContext = {
   onChangeTeam2Color: (color: TTeamColor) => void;
   getOnChangeColor: (team: number) => (color: TTeamColor) => void;
   getOnChangeColorInColorsSet: (index: number, newColor: TTeamColor) => void;
+  resetSetColorsToDefault: () => void;
 };
 
 export const TeamColorContext = createContext<TTeamColorContext | null>(null);
@@ -35,11 +36,14 @@ export function useTeamsColorContextDispatch() {
     onChangeTeam2Color,
     getOnChangeColor,
     getOnChangeColorInColorsSet,
+    resetSetColorsToDefault,
   } = useTeamsColorContext();
+
   return {
     onChangeTeam1Color,
     onChangeTeam2Color,
     getOnChangeColor,
     getOnChangeColorInColorsSet,
+    resetSetColorsToDefault,
   };
 }

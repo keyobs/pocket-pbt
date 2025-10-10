@@ -5,6 +5,7 @@
   "type": "module",
   "homepage": "https://keyobs.github.io/pocket-pbt/",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "test": "vitest",
     "test:run": "vitest run",

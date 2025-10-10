@@ -53,8 +53,10 @@ The rules = [WFTDA - The Rules of Flat Track Roller Derby](https://rules.wftda.c
 
 ## 💻 Developper Setup
 
-Built with React and Vite.  
 Project is open-source.
+
+Built with React and Vite.  
+Enforce pnpm use.
 
 To get started and contribute, follow these steps:
 
@@ -79,13 +81,13 @@ cd pocket-pbt
 Install dependencies:
 
 ```
-npm install
+pnpm install
 ```
 
 Running the Project : start the development server:
 
 ```
-npm run dev
+pnpm run dev
 ```
 
 Launch the app at http://localhost:5173/ (or a similar port).

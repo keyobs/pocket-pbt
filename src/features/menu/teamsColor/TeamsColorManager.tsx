@@ -1,39 +1,39 @@
 import "./teamsColorManager.less";
-import { Button } from "@components/buttons/Button";
-import ColorDot from "@components/colorDot/ColorDot";
-import { teamColors } from "@constants/teamColors";
-import {
-  useTeamsColorContextDispatch,
-  useTeamsColorContextState,
-} from "./context/index";
+import { useState } from "react";
+import { Settings } from "react-feather";
+import MenuButton from "@components/buttons/menuButton/MenuButton";
+import ColorSelector from "./colorSelector/ColorSelector";
 
 const TeamsColorManager = () => {
-  const { team1Color, team2Color } = useTeamsColorContextState();
-  const { onChangeTeam1Color, onChangeTeam2Color } =
-    useTeamsColorContextDispatch();
-
-  const getOnChangeColor = (team: number) => {
-    return team === 1 ? onChangeTeam1Color : onChangeTeam2Color;
-  };
+  const [settingsMode, setSettingsMode] = useState(false);
+  const numberOfList = settingsMode ? 1 : 2;
 
   return (
-    <div className="teams-color-manager">
-      {[1, 2].map((team) => (
-        <div key={team} className="team">
-          <h3>Team {team}</h3>
-          {teamColors.map((color, index) => (
-            <Button
-              disabled={color === (team === 1 ? team1Color : team2Color)}
-              key={index}
-              onClick={() => getOnChangeColor(team)(color)}
-              size="fit"
-            >
-              <ColorDot color={color.code} />
-              <span style={{ marginLeft: "4px" }}>{color.name}</span>
-            </Button>
-          ))}
-        </div>
-      ))}
+    <div className={`teams-color-manager${settingsMode ? " active" : ""}`}>
+      <div className="top-line">
+        <span>{settingsMode ? "Set your colors" : `Teams color`}</span>
+        <MenuButton onClick={() => setSettingsMode(!settingsMode)}>
+          {
+            <Settings
+              className={`settings-icon${settingsMode ? " active" : ""}`}
+              color={settingsMode ? "#2a86fb" : "#fff"}
+            />
+          }
+        </MenuButton>
+      </div>
+
+      <div className="teams-colors">
+        {Array.from({ length: numberOfList }, (_, index) => index + 1).map(
+          (team) => (
+            <ColorSelector
+              settingsMode={settingsMode}
+              key={team}
+              team={team}
+              title={!settingsMode ? `Team ${team}` : null}
+            />
+          )
+        )}
+      </div>
     </div>
   );
 };

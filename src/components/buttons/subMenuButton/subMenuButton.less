@@ -1,0 +1,26 @@
+.sub-menu-button {
+  width: calc(100% - 10px);
+  height: 40px;
+  padding-left: 50px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 15px;
+  border-top: 1px solid #2a86fb;
+  border-bottom: 1px solid #2a86fb;
+  border-left: none;
+  border-right: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  background-color: #0c2046;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:active {
+    background-color: darken(#0c2046, 10%);
+    border-color: lighten(#2a86fb, 10%);
+    transition: all 0.1s ease-in-out;
+  }
+}

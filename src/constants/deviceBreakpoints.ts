@@ -1,4 +1,4 @@
-// devices screen width breakpoints
+// breakpoints as max-width in pixels
 
 export const breakpoints = {
   xsmall: 480,

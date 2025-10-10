@@ -22,6 +22,7 @@ Available :
 
 - 6 countdown timers for each six penalty box seats
 - Colored stroke helper
+- Customize your own color set
 
 Flexible Timing Configurations:
 
@@ -50,7 +51,7 @@ The rules = [WFTDA - The Rules of Flat Track Roller Derby](https://rules.wftda.c
 <br>
 <br>
 
-## 💻 Developer Setup
+## 💻 Developper Setup
 
 Built with React and Vite.  
 Project is open-source.

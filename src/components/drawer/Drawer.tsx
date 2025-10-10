@@ -9,12 +9,13 @@ interface IDrawer {
   children: ReactNode;
 }
 const Drawer = ({ isOpen, onClose, children }: IDrawer) => {
-  const customStyle = {
+
+  const closeButtonCustomStyle = {
     backgroundColor: "unset",
     borderWidth: "0 1px 0 0",
     borderRadius: 0,
     margin: "10px 0",
-    padding: 12,
+    padding: 20,
   };
 
   return (
@@ -24,7 +25,7 @@ const Drawer = ({ isOpen, onClose, children }: IDrawer) => {
       role="complementary"
       className={`drawer ${isOpen ? "open" : "closed"}`}
     >
-      <Button onClick={onClose} customStyle={customStyle} size="fit">
+      <Button onClick={onClose} customStyle={closeButtonCustomStyle} size="fit">
         {<ChevronRight />}
       </Button>
       <div id="pbt-drawer-content" className="content">

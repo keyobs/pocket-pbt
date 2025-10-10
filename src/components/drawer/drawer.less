@@ -1,3 +1,5 @@
+@import "@styles/deviceBreakpoints.less";
+
 .drawer {
   height: 100%;
   width: fit-content;
@@ -13,6 +15,7 @@
   transition: transform 0.3s ease-in-out;
   display: flex;
   box-sizing: border-box;
+  box-shadow: -3px 0 10px rgb(0 0 0);
 
   &.open {
     transform: translateX(0);
@@ -22,13 +25,24 @@
     transform: translateX(100%);
   }
 
-  .content {
-    padding: 12px 5px;
-    box-sizing: border-box;
-    width: 100%;
-  }
-
   & h3 {
     text-align: left;
+    margin-left: 10px;
+
+    @media (min-width: @medium) {
+      margin: auto;
+    }
+  }
+  .content {
+    padding: 10px 0;
+    box-sizing: border-box;
+    min-width: 270px;
+    width: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+
+    @media (min-width: @xsmall) {
+      padding: 12px 15px;
+    }
   }
 }

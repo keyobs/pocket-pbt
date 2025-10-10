@@ -11,7 +11,7 @@ export const ColorDot = ({ color }: TColorDot) => {
       aria-label={`${color} color-dot`}
       className="color-dot"
       style={{ backgroundColor: color }}
-    ></div>
+    />
   );
 };
 

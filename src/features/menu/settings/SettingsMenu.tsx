@@ -1,34 +1,40 @@
 import "./settings.less";
-const version = import.meta.env.VITE_APP_VERSION;
 
-import ToggleButton from "@components/buttons/toggleButton/ToggleButton";
-import { settingsConfig, TAppSettings } from "./SettingsConfig";
-import {
-  useSettingsDispatch,
-  useSettingsState,
-} from "./context/SettingsMenuContext";
+import { useState } from "react";
+import SubMenu from "./SubMenu";
+import VersionLog from "./versionLog/VersionLog";
+import MainSettings, { TSubMenuOptions } from "./MainSettings";
+import SubMenuButton from "@components/buttons/subMenuButton/SubMenuButton";
 
 const SettingsMenu = () => {
-  const appSettings = useSettingsState();
-  const handleToggle = useSettingsDispatch();
+  const [subMenuSelected, setSubMenuSelected] =
+    useState<TSubMenuOptions>("default");
+
+  const renderDrawerContent = () => {
+    switch (subMenuSelected) {
+      case "default":
+        return <MainSettings handleOnClick={setSubMenuSelected} />;
+      case "about":
+        return (
+          <SubMenu title="about">
+            <VersionLog />
+          </SubMenu>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const goBack = () => setSubMenuSelected("default");
+
   return (
     <div className="settings">
-      <h3>Settings</h3>
-      <div className="content">
-        {settingsConfig.map((setting) => (
-          <ToggleButton
-            key={setting.key}
-            label={setting.label}
-            isToggled={appSettings[setting.key]}
-            onToggle={() => handleToggle(setting.key as keyof TAppSettings)}
-          />
-        ))}
-      </div>
-      <footer>
-        <span>Version: {version}</span>
-        <br />
-        <span>Update: {__LAST_UPDATE_DATE__}</span>
-      </footer>
+      <div className="content">{renderDrawerContent()}</div>
+      {subMenuSelected !== "default" && (
+        <div className="goBack-wrapper">
+          <SubMenuButton handleOnClick={goBack} text="go back" />
+        </div>
+      )}
     </div>
   );
 };

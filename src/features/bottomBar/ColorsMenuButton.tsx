@@ -1,7 +1,7 @@
 import "./colorsMenubutton.less";
 import { CSSProperties } from "react";
-import { teamColors } from "@constants/teamColors";
 import MenuButton from "@components/buttons/menuButton/MenuButton";
+import { defaultColorsSet } from "@constants/defaultColorsSet";
 
 type TColorsMenuButton = {
   onClick: () => void;
@@ -9,7 +9,8 @@ type TColorsMenuButton = {
 
 const ColorsMenuButton = ({ onClick }: TColorsMenuButton) => {
   const defaultColors = ["blue", "pink", "lagoon"];
-  const defaultCodeColors = teamColors
+
+  const defaultCodeColors = defaultColorsSet
     .filter((color) => defaultColors.includes(color.name))
     .map((color) => color.code);
 

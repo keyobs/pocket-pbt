@@ -1,0 +1,17 @@
+[
+  {
+    "version": "1.1.0",
+    "date": "2025-10-10",
+    "changes": [
+      "Color picker allows to choose their own colors set",
+      "Customized color set saved to local storage)",
+      "Prevent screen turning off when app is running",
+      "History log available"
+    ]
+  },
+  {
+    "version": "1.0.0",
+    "date": "2025-09-16",
+    "changes": ["Version 1", "6 timers", "5 preset colors"]
+  }
+]

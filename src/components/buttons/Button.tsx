@@ -1,16 +1,18 @@
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 import { cleanClasses } from "@utils/cleanClasses";
 import "./pbt-button.less";
 
 interface IButton {
+  onClick: () => void;
   active?: boolean;
   disabled?: boolean;
-  onClick: () => void;
   paused?: boolean;
   size?: "medium" | "large" | "fit";
-  style?: "default" | "primary" | "secondary" | "go";
-  children: React.ReactNode;
+  align?: "center" | "start";
+  style?: "default" | "primary" | "secondary" | "go" | "selection";
+  activeStyle?: "default" | "active" | "selected";
   customStyle?: CSSProperties;
+  children: ReactNode;
 }
 
 export const Button = ({
@@ -19,14 +21,25 @@ export const Button = ({
   onClick,
   paused = false,
   size = "medium",
+  align = "center",
   style = "default",
+  activeStyle = "default",
   customStyle,
   children,
 }: IButton) => {
   const buttonClass = cleanClasses(
-    `pbt-button ${style} ${size} ${disabled && "disabled"}
-    ${active && "active"} ${paused && "paused"}`
+    [
+      "pbt-button",
+      style,
+      size,
+      paused ? "paused" : "",
+      active ? "active" : "",
+      active ? activeStyle : "",
+      disabled ? "disabled" : "",
+    ].join(" ")
   );
+
+  const textClass = cleanClasses(align);
 
   return (
     <button
@@ -37,7 +50,7 @@ export const Button = ({
       className={buttonClass}
       style={customStyle}
     >
-      <span>{children}</span>
+      <span className={textClass}>{children}</span>
     </button>
   );
 };

@@ -1,11 +1,7 @@
-import SubMenuButton from "@components/buttons/subMenuButton/SubMenuButton";
 import { useState } from "react";
-import QuickSettings from "./QuickSettings";
 import SubMenu from "./SubMenu";
 import VersionLog from "./versionLog/VersionLog";
-
-type TSubMenuOptions = "default" | "about";
-const subMenuOptions: TSubMenuOptions[] = ["about"];
+import MainSettings, { TSubMenuOptions } from "./MainSettings";
 
 const SettingsMenu = () => {
   const [subMenuSelected, setSubMenuSelected] =
@@ -34,25 +30,3 @@ const SettingsMenu = () => {
 };
 
 export default SettingsMenu;
-
-const MainSettings = ({
-  handleOnClick,
-}: {
-  handleOnClick: (option: TSubMenuOptions) => void;
-}) => {
-  return (
-    <>
-      <h3>Settings</h3>
-      <QuickSettings />
-      <div>
-        {subMenuOptions.map((option) => (
-          <SubMenuButton
-            key={option}
-            text={option}
-            handleOnClick={() => handleOnClick(option)}
-          />
-        ))}
-      </div>
-    </>
-  );
-};

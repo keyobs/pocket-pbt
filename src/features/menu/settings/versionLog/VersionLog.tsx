@@ -4,22 +4,25 @@ import "./versionLog.less";
 export default function VersionLog() {
   return (
     <div className="about">
-      <div className="section-title">
+      <section>
         <span>Contact</span>
         <br />
-        <span>
+        <p>
           We'll love to hear about you. <br />
-          Send us suggestions to hey@pocket-pbt.org
-        </span>
-      </div>
+          Send us your feedback and tell us about enhancements&nbsp;
+          <a href="mailto:apps@rollerderbybordeaux.fr?subject=Pocket-pbt%20feedback%20:">
+            by emailing us
+          </a>
+        </p>
+      </section>
 
-      <div className="section-title">
+      <section>
         <span>Version History</span>
         <br />
-        <span>Last update: {__LAST_UPDATE_DATE__}</span>
-      </div>
+        <p>Last update: {__LAST_UPDATE_DATE__}</p>
+      </section>
 
-      <div className="entries">
+      <section>
         {versionLog.map((entry) => (
           <div key={entry.version} className="entry">
             <h3>
@@ -33,7 +36,7 @@ export default function VersionLog() {
             </ul>
           </div>
         ))}
-      </div>
+      </section>
     </div>
   );
 }

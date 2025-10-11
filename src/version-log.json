@@ -4,7 +4,7 @@
     "date": "2025-10-10",
     "changes": [
       "Color picker allows to choose their own colors set",
-      "Customized color set saved to local storage)",
+      "Customized color set saved to local storage",
       "Prevent screen turning off when app is running",
       "History log available"
     ]

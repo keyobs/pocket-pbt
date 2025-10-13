@@ -1,12 +1,14 @@
 @import "@styles/deviceBreakpoints.less";
 
 .pbt-button {
-  padding: 10px 20px;
   margin: 7px 5px;
+  padding: 10px 20px;
   border-radius: 25px;
   color: #fff;
-  font-size: 16px;
+  font-size: 0.9rem;
+  line-height: 18px;
   font-weight: bold;
+  text-transform: uppercase;
   transition: background-color 0.3s;
 
   &:active {
@@ -25,6 +27,11 @@
 
   &.large {
     width: 90px;
+  }
+
+  &.full {
+    width: 100%;
+    margin: 5px 0;
   }
 
   &.fit {

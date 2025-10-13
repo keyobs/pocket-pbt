@@ -5,6 +5,7 @@ import SubMenu from "./SubMenu";
 import VersionLog from "./versionLog/VersionLog";
 import MainSettings, { TSubMenuOptions } from "./MainSettings";
 import SubMenuButton from "@components/buttons/subMenuButton/SubMenuButton";
+import { cleanClasses } from "@utils/cleanClasses";
 
 const SettingsMenu = () => {
   const [subMenuSelected, setSubMenuSelected] =
@@ -27,9 +28,13 @@ const SettingsMenu = () => {
 
   const goBack = () => setSubMenuSelected("default");
 
+  const className = cleanClasses(
+    ["content", subMenuSelected !== "default" ? " sub-menu" : ""].join(" ")
+  );
+
   return (
     <div className="settings">
-      <div className="content">{renderDrawerContent()}</div>
+      <div className={className}>{renderDrawerContent()}</div>
       {subMenuSelected !== "default" && (
         <div className="goBack-wrapper">
           <SubMenuButton handleOnClick={goBack} text="go back" />

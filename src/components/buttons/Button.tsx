@@ -7,7 +7,7 @@ interface IButton {
   active?: boolean;
   disabled?: boolean;
   paused?: boolean;
-  size?: "medium" | "large" | "fit";
+  size?: "medium" | "large" | "fit" | "full";
   align?: "center" | "start";
   style?: "default" | "primary" | "secondary" | "go" | "selection";
   activeStyle?: "default" | "active" | "selected";

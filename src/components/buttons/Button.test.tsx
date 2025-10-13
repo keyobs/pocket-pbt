@@ -71,6 +71,16 @@ describe("Button component", () => {
     expect(button).toHaveClass("pbt-button", "primary", "large");
   });
 
+  it("applies custom style and size props correctly", () => {
+    render(
+      <Button onClick={handleClick} style="primary" size="full">
+        Styled
+      </Button>
+    );
+    const button = screen.getByRole("button");
+    expect(button).toHaveClass("pbt-button", "primary", "full");
+  });
+
   it("applies custom inline styles", () => {
     const customStyle = { backgroundColor: "#FF0000", padding: "10px" };
     render(

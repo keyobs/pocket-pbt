@@ -84,12 +84,14 @@ const Counter = ({ type, jammerId }: ICounter) => {
       </div>
       <div className="counter-actions">
         <Button
+          size="full"
           disabled={data.count === 0 || data.isCounterPaused}
           onClick={() => data.onReset()}
         >
           reset
         </Button>
         <Button
+          size="full"
           disabled={data.count === 0 && !isTimePaused}
           onClick={() => data.onAddTime()}
         >
@@ -97,7 +99,7 @@ const Counter = ({ type, jammerId }: ICounter) => {
         </Button>
         <Button
           style={startPauseButton.style}
-          size="large"
+          size="full"
           active={data.count !== 0 && !isTimePaused}
           paused={data.isCounterPaused && !isTimePaused}
           disabled={isTimePaused ?? false}

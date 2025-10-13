@@ -1,7 +1,7 @@
 [
   {
     "version": "1.1.1",
-    "date": "2025-10-13",
+    "date": "13 oct 2025",
     "changes": [
       "Timer : Increase the font size and the elapsed time marker",
       "Package manager: migrate from npm to pnpm"
@@ -9,7 +9,7 @@
   },
   {
     "version": "1.1.0",
-    "date": "2025-10-10",
+    "date": "10 oct 2025",
     "changes": [
       "Color picker allows to choose their own colors set",
       "Customized color set saved to local storage",
@@ -19,7 +19,7 @@
   },
   {
     "version": "1.0.0",
-    "date": "2025-09-16",
+    "date": "16 sept 2025",
     "changes": ["Version 1", "6 timers", "5 preset colors"]
   }
 ]

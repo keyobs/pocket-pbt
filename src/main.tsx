@@ -4,12 +4,8 @@ import "./index.css";
 import App from "./App";
 import { Sentry } from "./quality/sentry/init";
 
-const container = document.getElementById("root");
+const container = document.getElementById("root")!;
 const root = createRoot(container, {
-  onUncaughtError: Sentry.reactErrorHandler((error, errorInfo) => {
-    console.warn("Uncaught error", error, errorInfo.componentStack);
-  }),
-  onCaughtError: Sentry.reactErrorHandler(),
   onRecoverableError: Sentry.reactErrorHandler(),
 });
 

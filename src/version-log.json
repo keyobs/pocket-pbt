@@ -1,5 +1,13 @@
 [
   {
+    "version": "1.2.0",
+    "date": "20 oct 2025",
+    "changes": [
+      "Monitoring: Integrated Sentry for error and performance tracking",
+      "Deployment: app lived on Netlify and Github Pages"
+    ]
+  },
+  {
     "version": "1.1.1",
     "date": "13 oct 2025",
     "changes": [

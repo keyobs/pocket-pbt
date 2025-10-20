@@ -8,7 +8,25 @@ export const handler: Handler = async (
   event: HandlerEvent
 ): Promise<HandlerResponse> => {
   const SENTRY_DSN = process.env.SENTRY_DSN;
-  if (!SENTRY_DSN) return { statusCode: 200 };
+  if (!SENTRY_DSN) {
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+  }
+
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    };
+  }
 
   const url = SENTRY_DSN.replace(
     /^https:\/\/[^@]+@([^/]+)\/(\d+)$/,
@@ -21,9 +39,20 @@ export const handler: Handler = async (
       headers: { "Content-Type": "application/x-sentry-envelope" },
       body: event.body,
     });
-    return { statusCode: resp.status };
+
+    return {
+      statusCode: resp.status,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
   } catch (err) {
     console.error("Sentry tunnel error:", err);
-    return { statusCode: 500 };
+    return {
+      statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
   }
 };

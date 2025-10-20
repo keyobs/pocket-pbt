@@ -25,8 +25,11 @@ try {
   console.warn("Could not get last commit date:", error);
 }
 
+const isNetlify = process.env.NETLIFY === "true";
+const basePath = isNetlify ? "" : "/pocket-pbt/";
+
 export default defineConfig({
-  base: "/pocket-pbt/",
+  base: basePath,
   plugins: [react(), tsconfigPaths()],
   define: {
     __APP_VERSION__: JSON.stringify(APP_VERSION),

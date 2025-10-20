@@ -150,4 +150,4 @@ dist-ssr
 
 # project
 /src/styles/deviceBreakpoints.less
-notes.txt
+.notes.txt

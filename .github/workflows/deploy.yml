@@ -41,6 +41,8 @@ jobs:
         run: node scripts/generate-less.js
 
       - name: Build project
+        env:
+          VITE_SENTRY_DSN: "https://pocket@pbt@mock/699"
         run: pnpm run build
 
       - name: Upload Pages artifact

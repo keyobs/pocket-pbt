@@ -7,7 +7,8 @@ const isSentryEnabled = Boolean(SENTRY_DSN);
 
 if (isSentryEnabled) {
   Sentry.init({
-    dsn: import.meta.env.VITE_SENTRY_DSN,
+    dsn: "https://pocket@pbt@mock/699",
+    tunnel: "https://pocket-pbt.netlify.app/.netlify/functions/sentry-tunnel",
     integrations: [Sentry.browserTracingIntegration()],
     tracesSampleRate: 1.0,
     tracePropagationTargets: ["localhost", /^\//],

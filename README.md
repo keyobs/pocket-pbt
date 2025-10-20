@@ -51,12 +51,45 @@ The rules = [WFTDA - The Rules of Flat Track Roller Derby](https://rules.wftda.c
 <br>
 <br>
 
-## 💻 Developper Setup
+## 💻 Stack
 
-Project is open-source.
+Project is open-source.  
+Feel free to fork and/or contribute.
 
 Built with React and Vite.  
 Enforce pnpm use.
+
+**Frontend**
+
+- React **19**
+- TypeScript
+- Less
+- Vite
+- pnpm
+
+**Code Quality**
+
+- ESLint
+- Vitest
+- Husky
+- TypeScript ESLint
+
+**Monitoring**
+
+- Sentry
+  - optionnal - disabled if no DSN
+  - uses secure tunnel on Netlify (prevents ad blockers, keep sentry dsn secret)
+
+**CI/CD & Tooling**
+
+- GitHub Pages (deployment)
+- gh-pages (deployment helper)
+- only-allow (ensures pnpm usage)
+
+<br>
+<br>
+
+## 💻 Developper Setup
 
 To get started and contribute, follow these steps:
 

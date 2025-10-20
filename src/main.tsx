@@ -2,9 +2,21 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import { Sentry } from "./quality/sentry/init";
 
-createRoot(document.getElementById("root")!).render(
+const container = document.getElementById("root");
+const root = createRoot(container, {
+  onUncaughtError: Sentry.reactErrorHandler((error, errorInfo) => {
+    console.warn("Uncaught error", error, errorInfo.componentStack);
+  }),
+  onCaughtError: Sentry.reactErrorHandler(),
+  onRecoverableError: Sentry.reactErrorHandler(),
+});
+
+root.render(
   <StrictMode>
-    <App />
+    <Sentry.ErrorBoundary fallback={<p>Something went wrong.</p>}>
+      <App />
+    </Sentry.ErrorBoundary>
   </StrictMode>
 );

@@ -147,9 +147,9 @@ dist-ssr
 *.sln
 *.sw?
 
-
 # project
 /src/styles/deviceBreakpoints.less
 .notes.txt
+
 # Local Netlify folder
 .netlify

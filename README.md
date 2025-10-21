@@ -61,22 +61,20 @@ Enforce pnpm use.
 
 **Frontend**
 
-- React **19**
-- TypeScript
-- Less
-- Vite
-- pnpm
+- React **19** + TypeScript
+- Less (styling preprocessor)
+- Vite (building tool)
+- pnpm (package manager)
 
 **Code Quality**
 
-- ESLint
-- Vitest
-- Husky
-- TypeScript ESLint
+- ESLint + TypeScript ESLint (linter)
+- Vitest (unit and component testing)
+- Husky (commit guard)
 
 **Monitoring**
 
-- Sentry
+- Sentry (crash and errors monitoring)
   - optionnal - disabled if no DSN
   - uses secure tunnel on Netlify (prevents ad blockers, keep sentry dsn secret)
 
@@ -85,6 +83,13 @@ Enforce pnpm use.
 - GitHub Pages (deployment)
 - gh-pages (deployment helper)
 - only-allow (ensures pnpm usage)
+
+**Hosting**
+
+Project lives at :
+
+- Github Pages : [https://keyobs.github.io/pocket-pbt/](https://keyobs.github.io/pocket-pbt/)
+- Netlify : [https://pocket-pbt.netlify.app/](https://pocket-pbt.netlify.app/)
 
 <br>
 <br>
@@ -102,7 +107,7 @@ Node.js: Ensure you have Node.js installed on your machine.
 Clone the repository:
 
 ```
-git clone https://github.com/your-username/pocket-pbt.git
+git clone https://github.com/keyobs/pocket-pbt.git
 ```
 
 Navigate to the project directory:

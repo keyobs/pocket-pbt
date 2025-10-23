@@ -8,18 +8,16 @@ import { useWakeLock } from "@hooks/useWakeLock";
 
 function App() {
   useWakeLock(true);
-  const { isSupportedMessage } = useWakeLock(true);
-  console.log(isSupportedMessage);
 
   return (
     <div id="app-container" className="container">
       <SettingsMenuProvider>
         <TeamColorProvider>
           <TimeProvider>
-            <div id="app-content" role="main">
+            <main id="app-content">
               <PenaltyTimers />
               <BottomBar />
-            </div>
+            </main>
           </TimeProvider>
         </TeamColorProvider>
       </SettingsMenuProvider>

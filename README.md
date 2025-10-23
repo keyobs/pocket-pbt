@@ -68,7 +68,7 @@ Enforce pnpm use.
 
 **Code Quality**
 
-- ESLint + TypeScript ESLint (linter)
+- Biome (linter + formatter)
 - Vitest (unit and component testing)
 - Husky (commit guard)
 

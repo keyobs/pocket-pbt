@@ -1,1 +1,2 @@
-pnpm test
+echo "🧪 Running tests before commit..."
+bash scripts/pre-commit.sh

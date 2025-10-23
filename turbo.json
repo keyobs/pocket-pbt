@@ -11,12 +11,17 @@
       "persistent": true,
       "cache": false
     },
-     "lint": {
+    "lint": {
       "outputs": []
     },
     "test": {
       "dependsOn": ["^build"],
-      "outputs": ["coverage/**"]
+      "outputs": ["coverage/**"],
+      "cache": false
+    },
+    "test:run": {
+      "outputs": [],
+      "cache": false
     }
   }
 }

@@ -2,11 +2,11 @@ import { useCallback, useState } from "react";
 import { TeamColorContext } from "./index";
 import {
   defaultTeamColor,
-  TDefaultTeamColor,
   defaultColorsSet,
+  TDefaultTeamColor,
   TTeamColor,
-} from "@constants/defaultColorsSet";
-import { useLocalStorage } from "@hooks/useLocalStorage";
+} from "@core/constants/defaultColorsSet";
+import { useLocalStorage } from "@core/hooks/useLocalStorage";
 
 const localStorageColorSetKey = "custom-set-colors";
 

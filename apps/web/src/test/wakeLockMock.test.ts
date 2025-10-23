@@ -1,6 +1,6 @@
 import { beforeEach, describe, it, expect, vi, Mock } from "vitest";
 import { renderHook, act, RenderHookResult } from "@testing-library/react";
-import { useWakeLock } from "@hooks/useWakeLock";
+import { useWakeLock } from "@core/hooks/useWakeLock";
 
 interface MockWakeLockSentinel {
   release: Mock<() => Promise<void>>;

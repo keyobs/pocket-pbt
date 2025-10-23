@@ -1,7 +1,7 @@
 import "./colorsMenubutton.less";
 import { CSSProperties } from "react";
 import MenuButton from "@components/buttons/menuButton/MenuButton";
-import { defaultColorsSet } from "@constants/defaultColorsSet";
+import { defaultColorsSet } from "@core/constants/defaultColorsSet";
 
 type TColorsMenuButton = {
   onClick: () => void;

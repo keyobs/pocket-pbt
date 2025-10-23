@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode } from "react";
-import { cleanClasses } from "@utils/cleanClasses";
+import { cleanClasses } from "@core/utils/cleanClasses";
 import "./pbt-button.less";
 
 interface IButton {

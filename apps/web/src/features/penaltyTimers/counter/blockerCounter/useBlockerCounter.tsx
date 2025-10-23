@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTimeContext } from "@components/globalTimeAction/time";
-import { PENALTY_TIME } from "@constants/penalties";
+import { PENALTY_TIME } from "@core/constants/penalties";
 
 export type TUseCounter = {
   count: number;

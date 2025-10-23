@@ -22,10 +22,10 @@ export function useWakeLock(enabled: boolean = true) {
     let cancelled = false;
 
     const handleRelease = () => {
-        if (!cancelled) {
-            setIsActive(false);
-            wakeLockRef.current = null;
-        }
+      if (!cancelled) {
+        setIsActive(false);
+        wakeLockRef.current = null;
+      }
     };
 
     const requestWakeLock = async () => {
@@ -33,14 +33,13 @@ export function useWakeLock(enabled: boolean = true) {
         wakeLockRef.current.release().catch(() => {});
         wakeLockRef.current = null;
       }
-      
+
       try {
         const wakeLock = await navigator.wakeLock.request("screen");
         wakeLockRef.current = wakeLock;
         setIsActive(true);
 
         wakeLock.addEventListener("release", handleRelease);
-
       } catch (err) {
         console.error("Wake Lock error:", err);
         setIsActive(false);
@@ -57,22 +56,26 @@ export function useWakeLock(enabled: boolean = true) {
     document.addEventListener("visibilitychange", handleVisibility);
 
     return () => {
-      cancelled = true; 
-      
+      cancelled = true;
+
       document.removeEventListener("visibilitychange", handleVisibility);
 
       if (wakeLockRef.current) {
-          wakeLockRef.current.removeEventListener("release", handleRelease); 
-          wakeLockRef.current.release().catch(() => {});
-          wakeLockRef.current = null;
+        wakeLockRef.current.removeEventListener("release", handleRelease);
+        wakeLockRef.current.release().catch(() => {});
+        wakeLockRef.current = null;
       }
       setIsActive(false);
     };
   }, [enabled, isSupported]);
 
   // Debug info (kept for convenience)
-  const isSupportedMessage: string =  `Wake Lock supported: ${isSupported ? "✅ Yes" : "❌ No"}`;
-  const isActiveMessage: string =  `Wake Lock active: ${isActive ? "✅ Yes" : "❌ No"}`
+  const isSupportedMessage: string = `Wake Lock supported: ${
+    isSupported ? "✅ Yes" : "❌ No"
+  }`;
+  const isActiveMessage: string = `Wake Lock active: ${
+    isActive ? "✅ Yes" : "❌ No"
+  }`;
 
   return { isSupported, isSupportedMessage, isActive, isActiveMessage };
 }

@@ -5,7 +5,7 @@ import SubMenu from "./SubMenu";
 import VersionLog from "./versionLog/VersionLog";
 import MainSettings, { TSubMenuOptions } from "./MainSettings";
 import SubMenuButton from "@components/buttons/subMenuButton/SubMenuButton";
-import { cleanClasses } from "@utils/cleanClasses";
+import { cleanClasses } from "@core/utils/cleanClasses";
 
 const SettingsMenu = () => {
   const [subMenuSelected, setSubMenuSelected] =

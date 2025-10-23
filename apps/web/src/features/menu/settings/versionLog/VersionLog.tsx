@@ -1,4 +1,4 @@
-import versionLog from "../../../../version-log.json";
+import versionLog from "../../../../../../../version-log.json";
 import "./versionLog.less";
 
 export default function VersionLog() {

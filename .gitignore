@@ -153,3 +153,6 @@ dist-ssr
 
 # Local Netlify folder
 .netlify
+
+# turborepo
+.turbo

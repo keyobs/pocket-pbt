@@ -8,6 +8,8 @@ import { useWakeLock } from "@hooks/useWakeLock";
 
 function App() {
   useWakeLock(true);
+  const { isSupportedMessage } = useWakeLock(true);
+  console.log(isSupportedMessage);
 
   return (
     <div id="app-container" className="container">

@@ -1,18 +1,51 @@
 {
-  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
-    "module": "ESNext",
-    "strict": true,
-    "jsx": "react-jsx",
     "target": "ES2020",
+    "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* === Bundler / Compatibility === */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "moduleDetection": "force",
+    "noEmit": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "types": ["vitest/globals"]
+
+    /* === Linting / Strictness === */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    /* === Aliases === */
+    "baseUrl": ".",
+    "types": ["vitest/globals"],
+    "paths": {
+      "@web/*": ["apps/web/src/*"],
+      //"@mobile/*": ["apps/mobile/app/*"],
+
+      "@scripts/*": ["scripts/*"],
+      "@core": ["packages/core"],
+      "@core/*": ["packages/core/*"],
+      "@assets/*": ["assets/*"],
+      "@api/*": ["packages/core/api/*"],
+      "@constants/*": ["packages/core/constants/*"],
+      "@hooks/*": ["packages/core/hooks/*"],
+      "@utils/*": ["packages/core/utils/*"]
+    },
+
+    /* === Build cache === */
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo"
   },
-  "include": ["src", "scripts", "vite.config.ts", "src/test/setup.ts"]
+
+  "include": ["apps", "packages", "scripts", "vitest.config.ts"],
+
+  "exclude": ["node_modules", "dist"]
 }

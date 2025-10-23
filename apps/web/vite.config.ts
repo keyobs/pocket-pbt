@@ -30,7 +30,24 @@ const basePath = isNetlify ? "" : "/pocket-pbt/";
 
 export default defineConfig({
   base: basePath,
-  plugins: [react(), tsconfigPaths()],
+  server: {
+    fs: {
+      allow: [
+        // 👇 allow vite to read from outside the app folder
+        path.resolve(__dirname, "../../"),
+      ],
+    },
+  },
+  plugins: [
+    react(),
+    tsconfigPaths({
+      root: path.resolve(__dirname, "../../"),
+      projects: [
+        path.resolve(__dirname, "tsconfig.json"),
+        path.resolve(__dirname, "../../tsconfig.json"),
+      ],
+    }),
+  ],
   define: {
     __APP_VERSION__: JSON.stringify(APP_VERSION),
     __LAST_UPDATE_DATE__: JSON.stringify(LAST_COMMIT_DATE),
@@ -38,6 +55,10 @@ export default defineConfig({
   resolve: {
     alias: {
       "@styles": path.resolve(__dirname, "src/styles"),
+      "@hooks": path.resolve(__dirname, "../../packages/core/hooks"),
+      "@utils": path.resolve(__dirname, "../../packages/core/utils"),
+      "@constants": path.resolve(__dirname, "../../packages/core/constants"),
+      "@api": path.resolve(__dirname, "../../packages/core/api"),
     },
   },
   test: {

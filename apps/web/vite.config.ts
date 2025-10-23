@@ -1,10 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
-import path from "path";
-import { fileURLToPath } from "url";
-import { readFileSync } from "fs";
-import { execSync } from "child_process";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { readFileSync } from "node:fs";
+import { execSync } from "node:child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,20 +33,13 @@ export default defineConfig({
   server: {
     fs: {
       allow: [
-        // 👇 allow vite to read from outside the app folder
         path.resolve(__dirname, "../../"),
       ],
     },
   },
   plugins: [
     react(),
-    tsconfigPaths({
-      root: path.resolve(__dirname, "../../"),
-      projects: [
-        path.resolve(__dirname, "tsconfig.json"),
-        path.resolve(__dirname, "../../tsconfig.json"),
-      ],
-    }),
+    tsconfigPaths(),
   ],
   define: {
     __APP_VERSION__: JSON.stringify(APP_VERSION),
@@ -55,10 +48,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@styles": path.resolve(__dirname, "src/styles"),
-      "@hooks": path.resolve(__dirname, "../../packages/core/hooks"),
-      "@utils": path.resolve(__dirname, "../../packages/core/utils"),
-      "@constants": path.resolve(__dirname, "../../packages/core/constants"),
-      "@api": path.resolve(__dirname, "../../packages/core/api"),
     },
   },
   test: {

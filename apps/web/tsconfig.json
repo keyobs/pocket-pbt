@@ -1,6 +1,6 @@
 /* web app paths */
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
     "baseUrl": ".",
@@ -8,8 +8,9 @@
       "@components/*": ["src/components/*"],
       "@features/*": ["src/features/*"],
       "@quality/*": ["src/quality/*"],
-      "@styles/*": ["src/styles/*"],
-      "@test/*": ["src/test/*"]
+      "@styles/*": ["srcstyles/*"],
+      "@test/*": ["src/test/*"],
+      "@core/*": ["../../packages/core/*"],
     },
     "types": ["vite/client"]
   },

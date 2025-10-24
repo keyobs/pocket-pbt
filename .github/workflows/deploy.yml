@@ -5,6 +5,9 @@ on:
     branches:
       - main
       - develop
+    tags:
+      - "test-deploy"
+      - "test-preview"
 
 permissions:
   contents: read
@@ -53,21 +56,53 @@ jobs:
           VITE_SENTRY_DSN: "https://pocket@pbt@mock/699"
           BASE_PATH: "/pocket-pbt/"
         run: pnpm run build
-
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-dist-${{ github.ref_name }}
+          path: ./apps/web/dist
       - name: Upload Pages artifact
-        if: github.ref == 'refs/heads/main'
+        if: |
+          github.ref == 'refs/heads/main' ||
+          github.ref == 'refs/heads/develop' ||
+          github.ref == 'refs/tags/test-preview'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./apps/web/dist
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref == 'refs/heads/main'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    env:
+      simulate: "false"
+    if: |
+      github.ref == 'refs/heads/main' ||
+      github.ref == 'refs/heads/develop' ||
+      github.ref == 'refs/tags/test-preview' ||
+      github.ref == 'refs/tags/test-deploy'
     steps:
+      - name: Simulate or Deploy
+        id: conditional-deploy
+        run: |
+          echo "🧪 CI context:"
+          echo "  ref=${{ github.ref }}"
+          echo "  ref_name=${{ github.ref_name }}"
+
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            echo "🚀 Deploying to production (github-pages)..."
+            echo "environment=github-pages" >> $GITHUB_ENV
+          elif [[ "${GITHUB_REF}" == "refs/heads/develop" ]]; then
+            echo "🚀 Deploying to preview (develop)..."
+            echo "environment=preview-develop" >> $GITHUB_ENV
+          elif [[ "${GITHUB_REF}" == "refs/tags/test-preview" ]]; then
+            echo "🚀 Deploying to preview for test tag..."
+            echo "environment=preview-${{ github.ref_name }}" >> $GITHUB_ENV
+          elif [[ "${GITHUB_REF}" == "refs/tags/test-deploy" ]]; then
+            echo "🧩 Simulating deployment only (no deploy)..."
+            echo "simulate=true" >> $GITHUB_ENV
+          fi
       - name: Deploy to GitHub Pages
+        if: ${{ env.simulate != 'true' }}
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

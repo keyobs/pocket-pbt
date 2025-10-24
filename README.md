@@ -53,15 +53,16 @@ The rules = [WFTDA - The Rules of Flat Track Roller Derby](https://rules.wftda.c
 
 ## 💻 Stack
 
-Project is open-source.  
+Project is open-source.
 Feel free to fork and/or contribute.
 
-Built with React and Vite.  
+Built with React, Vite, and organized as a Turborepo monorepo.
 Enforce pnpm use.
 
 **Frontend**
 
 - React **19** + TypeScript
+- Turborepo (monorepo task orchestration)
 - Less (styling preprocessor)
 - Vite (building tool)
 - pnpm (package manager)
@@ -80,9 +81,10 @@ Enforce pnpm use.
 
 **CI/CD & Tooling**
 
-- GitHub Pages (deployment)
-- gh-pages (deployment helper)
-- only-allow (ensures pnpm usage)
+- GitHub Actions (build, test, deploy pipeline)
+- GitHub Pages (production deployment)
+- Netlify (staging / preview deployment)
+- Turbo cache (improves CI build speed)
 
 **Hosting**
 
@@ -94,25 +96,50 @@ Project lives at :
 <br>
 <br>
 
-## 💻 Developper Setup
+## 🧱 Repository Structure
 
-To get started and contribute, follow these steps:
+```
+pocket-pbt/
+├── github/
+│   └── workflows/
+├── apps/
+│   └── mobile/             # React Native app
+│       ├── app
+│       ├── package.json
+│   └── web/                # React app
+│       ├── package.json
+│       ├── src/
+├── packages/               # Shared logic
+│   └── config/
+│   └── core/
+│       ├── api/
+│       ├── constants/
+│       └── hooks/
+│       └── utils/
+├── scripts/
+├── turbo.json              # Turborepo pipeline config
+├── package.json            # Root workspace config
+└── pnpm-workspace.yaml
+└── netlify.toml
+```
+
+<br>
+<br>
+
+## 💻 Developper Setup
 
 ### Prerequisites
 
-Node.js: Ensure you have Node.js installed on your machine.
+- Node.js ≥ 22
+- (optional) Turbo CLI for better local DX
 
-### Installation
+### ⚙️ Installation
 
 Clone the repository:
 
 ```
 git clone https://github.com/keyobs/pocket-pbt.git
-```
 
-Navigate to the project directory:
-
-```
 cd pocket-pbt
 ```
 
@@ -122,19 +149,106 @@ Install dependencies:
 pnpm install
 ```
 
-Running the Project : start the development server:
+<br>
+
+### 🧑‍💻 Development
+
+Start the development server for the web app:
 
 ```
-pnpm run dev
+pnpm dev
 ```
 
-Launch the app at http://localhost:5173/ (or a similar port).
-Hotload active : the page will automatically reload as you make changes.
+This runs Turbo in dev mode and starts apps/web via Vite.  
+App available at http://localhost:5173/ (auto hot reload enabled).
+
+<br>
+<br>
+
+## 🚀 Build & Deployment Simulation
+
+The repository includes Turborepo-powered scripts to simulate real deployments locally.
+
+🧩 Available commands
+
+| Command                 | Description                                                        | URL opened                                       |
+| ----------------------- | ------------------------------------------------------------------ | ------------------------------------------------ |
+| `pnpm simulate:netlify` | Builds and serves the Netlify version (`base="/"`)                 | [http://localhost:4173/](http://localhost:4173/) |
+| `pnpm simulate:github`  | Builds and serves the GitHub Pages version (`base="/pocket-pbt/"`) | [http://localhost:4174/](http://localhost:4174/) |
+
+Both use vite preview via Turborepo.  
+They mimic CI/CD behavior — same build command, same environment.
 
 <br>
 
+🧩 Example usage
+
+```
+pnpm simulate:netlify   # → preview how the site looks on Netlify
+pnpm simulate:github    # → preview how GitHub Pages renders the build
+```
+
+You can run both at once — each uses its own port.
+Browser opens automatically when ready.
+
+<br>
+<br>
+
+🧪 CI/CD Overview
+
+The CI pipeline (.github/workflows/deploy.yml) handles:
+
+| Trigger            | Action                                       | Environment                 |
+| ------------------ | -------------------------------------------- | --------------------------- |
+| `main` branch      | Test → Build → Deploy                        | `github-pages` (production) |
+| `develop` branch   | Test → Build → Deploy                        | `preview-develop`           |
+| `test-deploy` tag  | Test → Build → **Simulate only (no deploy)** | —                           |
+| `test-preview` tag | Test → Build → Deploy                        | `preview-<tag>`             |
+
+Trigger a test run manually :
+
+```
+git tag test-deploy
+git push origin test-deploy
+```
+
+or deploy a temporary live preview :
+
+```
+git tag test-preview
+git push origin test-preview
+```
+
+<br>
+
+🧩 Notes for Contributors
+
+- Always use pnpm (only-allow enforces it).
+- Avoid direct changes in dist/ or generated folders.
+- For local testing of builds, use the simulation commands above.
+- CI/CD automatically runs tests before deploying.
+
+<br>                    
+<br>
+
+## 🧠 TL;DR
+
+| Task                    | Command                     |
+| ----------------------- | --------------------------- |
+| Install deps            | `pnpm install`              |
+| Run dev mode            | `pnpm dev`                  |
+| Simulate Netlify deploy | `pnpm simulate:netlify`     |
+| Simulate GitHub deploy  | `pnpm simulate:github`      |
+| Run tests               | `pnpm test`                 |
+| Format/lint             | `pnpm format` / `pnpm lint` |
+
+<br>
+<br>
+<br>
+<br>
+
 📜 License  
-This project is licensed under the MIT License. For more details, see the LICENSE file in this repository.
+MIT License [©keyobs](https://github.com/keyobs)
 
 <br>
 

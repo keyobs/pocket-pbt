@@ -6,6 +6,9 @@
   "type": "module",
   "packageManager": "pnpm@10.18.2",
   "scripts": {
+    "simulate:github": "cross-env NETLIFY=false turbo run build --filter=@pocket/web && pnpm --filter @pocket/web run preview -- --port=3000 & sleep 1 && open-cli http://localhost:4174/",
+    "simulate:netlify": "cross-env NETLIFY=true turbo run build --filter=@pocket/web && pnpm --filter @pocket/web run preview -- --port=4173 & sleep 1 && open-cli http://localhost:4173/",
+    "simulate": "pnpm run simulate:github",
     "preinstall": "npx only-allow pnpm",
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
@@ -17,16 +20,18 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.2.7",
+    "@types/react": "^19.2.2",
+    "@vitejs/plugin-react": "^4.3.3",
+    "cross-env": "^10.1.0",
+    "open-cli": "^8.0.0",
+    "globals": "^15.11.0",
+    "husky": "^9.1.7",
+    "react": "^19.2.0",
     "turbo": "^2.5.8",
     "typescript": "~5.6.2",
     "vite": "^5.4.14",
     "vite-tsconfig-paths": "^5.1.4",
-    "globals": "^15.11.0",
-    "husky": "^9.1.7",
-    "@biomejs/biome": "2.2.7",
-    "vitest": "^3.2.4",
-    "@vitejs/plugin-react": "^4.3.3",
-    "@types/react": "^19.2.2",
-    "react": "^19.2.0"
+    "vitest": "^3.2.4"
   }
 }

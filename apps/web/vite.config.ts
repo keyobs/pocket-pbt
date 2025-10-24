@@ -26,21 +26,17 @@ try {
 }
 
 const isNetlify = process.env.NETLIFY === "true";
-const basePath = isNetlify ? "" : "/pocket-pbt/";
+const isCI = process.env.CI === "true";
+const basePath = isNetlify || !isCI ? "/" : "/pocket-pbt/";
 
 export default defineConfig({
   base: basePath,
   server: {
     fs: {
-      allow: [
-        path.resolve(__dirname, "../../"),
-      ],
+      allow: [path.resolve(__dirname, "../../")],
     },
   },
-  plugins: [
-    react(),
-    tsconfigPaths(),
-  ],
+  plugins: [react(), tsconfigPaths()],
   define: {
     __APP_VERSION__: JSON.stringify(APP_VERSION),
     __LAST_UPDATE_DATE__: JSON.stringify(LAST_COMMIT_DATE),

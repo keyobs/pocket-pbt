@@ -1,0 +1,54 @@
+name: Tests
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: "Ref (branch or tag) to test"
+        required: false
+        type: string
+        default: ""
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Ref (branch or tag) to run on"
+        required: false
+        default: ""
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: ⚙️ Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18
+          run_install: false
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: ⚡ Setup Turbo cache
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: turbo-${{ github.ref }}
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      - name: 🧪 Run tests via Turborepo
+        run: pnpm turbo run test:run --filter=@pocket/web
+      - name: ✅ Tests complete
+        run: |
+          echo "✅ Tests successfull."

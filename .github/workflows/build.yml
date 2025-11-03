@@ -1,0 +1,77 @@
+name: Build
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: "Ref (branch or tag) to build"
+        required: false
+        type: string
+        default: ""
+    outputs:
+      artifact-name:
+        description: "Name of the uploaded build artifact"
+        value: ${{ jobs.build.outputs.artifact-name }}
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Ref (branch or tag) to test"
+        required: false
+        type: string
+        default: ""
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      artifact-name: ${{ steps.set-name.outputs.name }}
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: ⚙️ Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18
+          run_install: false
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: ⚡ Setup Turbo cache
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: turbo-${{ github.ref }}
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      - name: 🧾 Generate deviceBreakpoints.less
+        run: node scripts/generate-less.js
+
+      - name: 🏗️ Build project via Turborepo
+        env:
+          VITE_SENTRY_DSN: "https://pocket@pbt@mock/699"
+          BASE_PATH: "/pocket-pbt/"
+        run: pnpm turbo run build --filter=@pocket/web
+
+      - name: 🏷️ Set artifact name
+        id: set-name
+        run: echo "name=web-dist-${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+
+      - name: 📤 Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ steps.set-name.outputs.name }}
+          path: ./apps/web/dist
+      - name: ✅ Build complete
+        run: |
+          echo "✅ Build successfull."

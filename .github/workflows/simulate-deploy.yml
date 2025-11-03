@@ -1,45 +1,40 @@
-name: Simulate Deploy
-
-run-name: >-
-    ${{ github.event_name == 'workflow_dispatch'
-        && format('Simulate Deploy (manual) — {0}', inputs.ref)
-        || format('Simulate Deploy (develop) — {0}', github.ref_name) }}
+name: Simulate deploy
 
 on:
-    push:
-        branches: [develop]
-    workflow_dispatch:
-        inputs:
-            ref:
-                description: "Branch or tag to simulate"
-                required: true
-                type: string
+  push:
+    branches: [develop]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch or tag to simulate"
+        required: true
+        type: string
 
 permissions:
-    contents: read
+  contents: read
 
 jobs:
-    tests:
-        name: ✅ Tests
-        uses: ./.github/workflows/test.yml
-        with:
-            ref: ${{ inputs.ref || github.ref }}
+  tests:
+    name: ✅ Tests
+    uses: ./.github/workflows/test.yml
+    with:
+      ref: ${{ inputs.ref || github.ref }}
 
-    build:
-        name: 🏗️ Build
-        needs: tests
-        uses: ./.github/workflows/build.yml
-        with:
-            ref: ${{ inputs.ref || github.ref }}
+  build:
+    name: 🏗️ Build
+    needs: tests
+    uses: ./.github/workflows/build.yml
+    with:
+      ref: ${{ inputs.ref || github.ref }}
 
-    done:
-        name: ✅ Simulation complete (artifact available)
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - name: ℹ️ Info
-              run: |
-                  echo "✅ Simulated deploy finished for '${{ inputs.ref || github.ref_name }}'."
-                  echo "📦 Download artifact from this run:"
-                  echo "    ${{ needs.build.outputs['artifact-name'] }}"
-                  echo "👉 Find it under the run's Artifacts section."
+  done:
+    name: ✅ Simulation complete (artifact available)
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: ℹ️ Info
+        run: |
+          echo "✅ Simulated deploy finished for '${{ inputs.ref || github.ref_name }}'."
+          echo "📦 Download artifact from this run:"
+          echo "    ${{ needs.build.outputs['artifact-name'] }}"
+          echo "👉 Find it under the run's Artifacts section."

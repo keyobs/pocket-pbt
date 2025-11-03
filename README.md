@@ -167,9 +167,11 @@ App available at http://localhost:5173/ (auto hot reload enabled).
 
 ## 🚀 Build & Deployment Simulation
 
-The repository includes Turborepo-powered scripts to simulate real deployments locally.
+This repository includes Turborepo-powered workflows and scripts that let you build, preview, and test deployments locally — using the exact same commands and environments as CI.
 
-🧩 Available commands
+<br>
+
+### 🧩 Local simulation commands
 
 | Command                 | Description                                                        | URL opened                                       |
 | ----------------------- | ------------------------------------------------------------------ | ------------------------------------------------ |
@@ -192,34 +194,54 @@ You can run both at once — each uses its own port.
 Browser opens automatically when ready.
 
 <br>
-<br>
 
-🧪 CI/CD Overview
+### 🧪 CI/CD
 
-The CI pipeline (.github/workflows/deploy.yml) handles:
+All CI is handled with GitHub Actions under .github/workflows/, using reusable workflows (test.yml, build.yml) and pipelines (simulate-deploy.yml, main-deploy.yml).
 
-| Trigger            | Action                                       | Environment                 |
-| ------------------ | -------------------------------------------- | --------------------------- |
-| `main` branch      | Test → Build → Deploy                        | `github-pages` (production) |
-| `develop` branch   | Test → Build → Deploy                        | `preview-develop`           |
-| `test-deploy` tag  | Test → Build → **Simulate only (no deploy)** | —                           |
-| `test-preview` tag | Test → Build → Deploy                        | `preview-<tag>`             |
-
-Trigger a test run manually :
-
-```
-git tag test-deploy
-git push origin test-deploy
-```
-
-or deploy a temporary live preview :
-
-```
-git tag test-preview
-git push origin test-preview
-```
+| Trigger               | Workflow                | Action                                          | Deployment                      |
+| --------------------- | ----------------------- | ----------------------------------------------- | ------------------------------- |
+| **Push to `main`**    | `main-deploy.yml`       | ✅ Test → Build → Deploy                         | **Production** (`github-pages`) |
+| **Push to `develop`** | `simulate-deploy.yml`   | ✅ Test → Build → **Simulate only (no publish)** | —                               |
+| **Manual run**        | `simulate-deploy.yml`   | ✅ Test → Build → Simulate (custom branch/tag)   | —                               |
+| **Reusable jobs**     | `test.yml`, `build.yml` | Provide shared logic for other workflows        | —                               |
 
 <br>
+
+Each workflow reuses the same environment: pnpm, Node 22, Turborepo caching, and the same build/test scripts as local runs.
+
+<br>
+
+### ▶️ Run CI pipelines manually (from GitHub)
+
+Go to Actions tab → select the workflow (e.g., Simulate Deploy).
+
+Use the branch dropdown to pick the right branch (develop, main, etc.).
+
+Click Run workflow → enter a ref name (e.g., develop, feature/foo).
+
+You can also trigger them with the GitHub CLI:
+
+```
+# Run simulate-deploy manually for a branch
+gh workflow run "Simulate Deploy" -f ref=develop
+
+# Run tests or build directly
+gh workflow run "Reusable - Tests" -f ref=develop
+gh workflow run "Reusable - Build" -f ref=develop
+```
+
+| Environment         | Source branch | Behavior                                            |
+| ------------------- | ------------- | --------------------------------------------------- |
+| **Production**      | `main`        | Deploys live to GitHub Pages                        |
+| **Develop**         | `develop`     | Runs full simulation (tests + build, artifact only) |
+| **Local (Netlify)** | —             | Simulated build, base="/"                           |
+| **Local (GitHub)**  | —             | Simulated build, base="/pocket-pbt/"                |
+
+
+<br>                    
+<br>
+
 
 🧩 Notes for Contributors
 

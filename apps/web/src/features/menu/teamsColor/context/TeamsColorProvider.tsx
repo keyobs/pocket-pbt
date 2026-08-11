@@ -6,7 +6,7 @@ import {
   TDefaultTeamColor,
   TTeamColor,
 } from "@core/constants/defaultColorsSet";
-import { useLocalStorage } from "@core/hooks/useLocalStorage";
+import { useLocalStorage } from "@hooks/useLocalStorage";
 
 const localStorageColorSetKey = "custom-set-colors";
 

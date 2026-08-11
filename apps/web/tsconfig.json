@@ -7,10 +7,12 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@features/*": ["src/features/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@quality/*": ["src/quality/*"],
       "@styles/*": ["srcstyles/*"],
       "@test/*": ["src/test/*"],
-      "@core/*": ["../../packages/core/*"],
+      "@utils/*": ["src/utils/*"],
+      "@core/*": ["../core/*"],
     },
     "types": ["vite/client"]
   },

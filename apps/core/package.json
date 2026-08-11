@@ -1,0 +1,12 @@
+{
+  "name": "@pocket/core",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "lint": "biome check ."
+  },
+  "peerDependencies": {
+    "react": "^19.2.0"
+  }
+}

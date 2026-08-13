@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { breakpoints } from "@core/constants/deviceBreakpoints";
+import { breakpoints } from "@constants/deviceBreakpoints";
 
 export const breakpointMobile = breakpoints.medium;
 

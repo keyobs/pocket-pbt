@@ -1,5 +1,5 @@
-import { usePromise } from "@core/hooks/usePromise";
-import { getColorNameFromApi } from "@core/api/getColorNameFromAPI";
+import { usePromise } from "./usePromise";
+import { getColorNameFromApi } from "../api/getColorNameFromAPI";
 
 export function useColorName() {
   const { loading, data, error, run } = usePromise(getColorNameFromApi);

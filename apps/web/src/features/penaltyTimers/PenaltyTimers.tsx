@@ -1,8 +1,8 @@
 import "./penaltyTimers.less";
 
-import { useSettingsState } from "@features/menu/settings/context/SettingsMenuContext";
-import { useTeamsColorContextState } from "@features/menu/teamsColor/context";
-import { JammersCounterProvider } from "./counter/jammersCounter/jammersContext";
+import { useSettingsState } from "@core/settings/context/SettingsMenuContext";
+import { useTeamsColorContextState } from "@core/teamsColor/context/TeamsColorContext";
+import { JammersCounterProvider } from "@core/penaltyTimers/counter/jammersCounter/jammersContext";
 import { TeamCounters } from "./TeamCounters";
 
 const PenaltyTimers = () => {

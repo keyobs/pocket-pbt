@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { TTeamColor } from "@constants/defaultColorsSet";
+import { TTeamColor } from "../../constants/defaultColorsSet";
 import { useContext } from "react";
 
 type TTeamColorContext = {

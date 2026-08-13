@@ -1,9 +1,9 @@
 import "./colorSelector.less";
+import { useTeamsColorContextDispatch } from "@core/teamsColor/context/TeamsColorContext";
+import { useColorSelector } from "@core/teamsColor/colorSelector/useColorSelector";
 import ColorPicker from "../colorPicker/ColorPicker";
-import { useColorSelector } from "./useColorSelector";
 import ColorButton from "@components/buttons/colorButton/ColorButton";
 import { Button } from "@components/buttons/Button";
-import { useTeamsColorContextDispatch } from "../context";
 import { AlertTriangle } from "react-feather";
 
 interface ITeamColors {

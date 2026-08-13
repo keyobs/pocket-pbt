@@ -1,7 +1,7 @@
 import "./App.css";
-import { TimeProvider } from "@components/globalTimeAction/time";
+import { TimeProvider } from "@core/time";
 import BottomBar from "@features/bottomBar/BottomBar";
-import { SettingsMenuProvider } from "@features/menu/settings/context/SettingsMenuProvider";
+import { SettingsMenuProvider } from "@core/settings/context/SettingsMenuProvider";
 import PenaltyTimers from "@features/penaltyTimers/PenaltyTimers";
 import { TeamColorProvider } from "@features/menu/teamsColor/context/TeamsColorProvider";
 import { useWakeLock } from "@hooks/useWakeLock";

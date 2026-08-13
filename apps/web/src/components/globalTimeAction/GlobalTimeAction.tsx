@@ -1,5 +1,5 @@
+import { useTimeContext, useTimeDispatch } from "@core/time";
 import { Button } from "@components/buttons/Button";
-import { useTimeContext, useTimeDispatch } from "./time";
 
 const GlobalTimeAction = () => {
   const { isTimePaused } = useTimeContext();

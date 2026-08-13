@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { debounce } from "@core/utils/debounce";
+import { debounce } from "../../utils/debounce";
 import {
   useTeamsColorContextDispatch,
   useTeamsColorContextState,
-} from "../context";
-import { useColorName } from "@core/hooks/useGetColorName";
+} from "../context/TeamsColorContext";
+import { useColorName } from "../../hooks/useGetColorName";
 
 const COLOR_PICKER_DEBOUNCE_DELAY = 150;
 

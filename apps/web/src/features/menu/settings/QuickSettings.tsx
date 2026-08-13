@@ -1,9 +1,9 @@
-import ToggleButton from "@components/buttons/toggleButton/ToggleButton";
 import {
   useSettingsState,
   useSettingsDispatch,
-} from "./context/SettingsMenuContext";
-import { settingsConfig, TAppSettings } from "./SettingsConfig";
+} from "@core/settings/context/SettingsMenuContext";
+import { settingsConfig, TAppSettings } from "@core/settings/SettingsConfig";
+import ToggleButton from "@components/buttons/toggleButton/ToggleButton";
 
 const QuickSettings = () => {
   const appSettings = useSettingsState();

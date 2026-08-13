@@ -1,9 +1,9 @@
-import { TTeamColor } from "@constants/defaultColorsSet";
+import { TTeamColor } from "../../constants/defaultColorsSet";
 import { useState } from "react";
 import {
   useTeamsColorContextState,
   useTeamsColorContextDispatch,
-} from "../context";
+} from "../context/TeamsColorContext";
 
 export const useColorSelector = (settingsMode: boolean, team: number) => {
   const { team1Color, team2Color, colorsSet } = useTeamsColorContextState();

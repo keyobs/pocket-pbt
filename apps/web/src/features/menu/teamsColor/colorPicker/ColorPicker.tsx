@@ -1,6 +1,6 @@
 import "./colorPicker.less";
+import useColorPicker from "@core/teamsColor/colorPicker/useColorPicker";
 import { HexColorPicker } from "react-colorful";
-import useColorPicker from "./useColorPicker";
 
 const ColorPicker = ({ index }: { index: number }) => {
   const { color, handleSetColorAndUpdate } = useColorPicker(index);

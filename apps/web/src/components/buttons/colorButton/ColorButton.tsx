@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
+import { TTeamColor } from "@core/constants/defaultColorsSet";
 import { Button } from "@components/buttons/Button";
 import ColorDot from "@components/colorDot/ColorDot";
-import { TTeamColor } from "@constants/defaultColorsSet";
 
 type TColorButton = {
   color: TTeamColor;

@@ -2,11 +2,11 @@
 
 import { render, screen, fireEvent } from "@testing-library/react";
 import GlobalTimeAction from "./GlobalTimeAction";
-import { useTimeContext, useTimeDispatch } from "./time";
+import { useTimeContext, useTimeDispatch } from "@core/time";
 import { describe, it, expect, vi } from "vitest";
 
 // Mock the entire time module at the file level
-vi.mock("./time", () => {
+vi.mock("@core/time", () => {
   const useTimeContext = vi.fn();
   const useTimeDispatch = vi.fn();
   return { useTimeContext, useTimeDispatch };

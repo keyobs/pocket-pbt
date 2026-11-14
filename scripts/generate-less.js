@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const { breakpoints } = await import(
-  "../packages/core/constants/deviceBreakpoints.ts"
+  "../apps/web/src/constants/deviceBreakpoints.ts"
 );
 
 const content = Object.entries(breakpoints)

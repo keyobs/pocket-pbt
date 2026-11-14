@@ -1,11 +1,11 @@
 import "./counter.less";
-import { Button } from "@components/buttons/Button";
-import { useTimeContext } from "@components/globalTimeAction/time";
+import { useTimeContext } from "@core/time";
 import { PENALTY_TIME } from "@core/constants/penalties";
-import { JammersCounterData } from "./jammersCounter/JammersCounterData";
-import { BlockerCounterData } from "./blockerCounter/BlockerCounterData";
+import { JammersCounterData } from "@core/penaltyTimers/counter/jammersCounter/JammersCounterData";
+import { BlockerCounterData } from "@core/penaltyTimers/counter/blockerCounter/BlockerCounterData";
+import { useMobileScreen } from "@hooks/useMobileScreen";
+import { Button } from "@components/buttons/Button";
 import Timer from "@components/timer/Timer";
-import { useMobileScreen } from "@core/hooks/useMobileScreen";
 import StarBadge from "@components/badge/StarBadge";
 import { useCallback, useMemo } from "react";
 
